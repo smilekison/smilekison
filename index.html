@@ -1,80 +1,101 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Smile Kisan — Software Engineer</title>
-  <meta name="description" content="Smile Kisan — Product-focused software engineer (backend, ML, infra). Visit my portfolio at smilekisan.com">
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed;color-scheme:dark}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,#071024 0%,var(--bg) 100%);color:#e6eef8;display:flex;align-items:center;justify-content:center;padding:32px}
-    .container{max-width:900px;width:100%}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.04);padding:36px;border-radius:12px}
-    h1{margin:0;font-size:28px}
-    p.lead{color:var(--muted);margin:8px 0 24px}
-    .links a{color:#c7d2fe;text-decoration:none;margin-right:18px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
-    .meta{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
-    .muted{color:var(--muted);font-size:14px}
-    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),#4f46e5);color:white;padding:10px 14px;border-radius:8px;text-decoration:none}
-    footer{margin-top:20px;color:var(--muted);font-size:13px}
-    @media(max-width:800px){.grid{grid-template-columns:1fr;}.meta{order:-1}}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smile Kisan — Portfolio</title>
+  <meta name="description" content="Smile Kisan — portfolio. Skills, projects and contact for recruiters." />
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:title" content="Smile Kisan — Portfolio" />
+  <meta property="og:description" content="Developer portfolio: skills, projects, and contact for recruiters." />
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <h1>Smile Kisan — Software Engineer</h1>
-          <p class="lead">Building product-led systems, data pipelines, and delightful developer experiences. I ship reliable production software and open-source tools.</p>
-          <div class="links">
-            <a href="https://smilekisan.com" target="_blank" rel="noopener">Website</a>
-            <a href="https://github.com/smilekison" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/smile-kisan" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div class="muted">Open to senior roles & collaboration</div>
-          <div style="margin-top:12px"><a class="cta" href="https://smilekisan.com" target="_blank">See portfolio / Contact</a></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="hero">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/1275726441?s=240&v=4" alt="Smile Kisan" />
+        <div class="hero-text">
+          <h1>Smile Kisan</h1>
+          <p class="subtitle">Driven web developer — focused on building clear, maintainable interfaces for users and recruiters.</p>
+          <p class="cta-row">
+            <a class="btn primary" href="/blob/main/smile-kisan-cv.pdf">Download CV</a>
+            <a class="btn" href="https://github.com/smilekison" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/smile-kisan" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
         </div>
       </div>
-
-      <div style="margin-top:28px" class="grid">
-        <div>
-          <h3 style="margin-top:0">Selected work</h3>
-          <p class="muted">A curated list of my most impactful projects and case studies lives on my website. Below are quick entry points.</p>
-          <ul>
-            <li><strong>Product analytics pipeline</strong> — real-time event processing and dashboards for product growth (Python, Kafka, Airflow).</li>
-            <li><strong>ML prototyping</strong> — rapid experiments and reliable model serving for recommendation features (Pytorch, FastAPI).</li>
-            <li><strong>Open-source tooling</strong> — developer-focused libraries and CLI tools that reduce onboarding time.</li>
-          </ul>
-
-          <h3>Focus</h3>
-          <p class="muted">Systems design, product thinking, ML prototyping, and developer experience.</p>
-
-          <h3>Tech</h3>
-          <p class="muted">Python · TypeScript · React · FastAPI · Docker · Terraform · CI/CD · PostgreSQL · Kafka</p>
-        </div>
-        <div class="meta">
-          <div style="font-weight:600">Contact</div>
-          <div class="muted" style="margin-top:6px">Website / Contact form</div>
-          <div style="margin-top:10px"><a href="https://smilekisan.com" target="_blank" rel="noopener">smilekisan.com</a></div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0">
-          <div style="font-weight:600">Location</div>
-          <div class="muted">Based remotely — available worldwide</div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0">
-          <div style="font-weight:600">CV</div>
-          <div class="muted">Download a PDF CV</div>
-          <div style="margin-top:8px"><a class="cta" href="https://smilekisan.com" target="_blank">Download CV</a></div>
-        </div>
-      </div>
-
-      <footer>Built by Smile Kisan — <span class="muted">I iterate on this profile — tell me the tone and I'll refine copy, design, and case studies.</span></footer>
     </div>
-  </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        Hello — I'm Smile. This page highlights my skills, contact details and recent projects so recruiters can quickly see what I do and how to reach me.
+        Edit the content in <code>index.html</code> to reflect your exact job title, skills and descriptions.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Top Skills</h2>
+      <p class="lead">Recruiters look for clarity — here are the areas I focus on. Replace these with your real strengths and technologies.</p>
+      <ul class="skill-grid">
+        <li><strong>Frontend</strong><br/>HTML • CSS • JavaScript</li>
+        <li><strong>UI</strong><br/>Responsive Design • Accessibility (a11y)</li>
+        <li><strong>Tools</strong><br/>Git • Chrome DevTools • VS Code</li>
+        <li><strong>Performance</strong><br/>Optimization • Lighthouse</li>
+        <li><strong>Soft Skills</strong><br/>Communication • Teamwork • Problem solving</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects</h2>
+      <p class="lead">Showcase 2–4 projects here with 1–2 line descriptions and links to repos or live demos.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Project Title One</h3>
+          <p>Short summary of the project — what problem it solved and your role. Add a repo or demo link.</p>
+          <p class="muted">Tech: HTML • CSS • JavaScript</p>
+        </article>
+
+        <article class="card">
+          <h3>Project Title Two</h3>
+          <p>Short summary of the project — what problem it solved and your role. Add a repo or demo link.</p>
+          <p class="muted">Tech: HTML • CSS • (add frameworks)</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lead">Fast ways to reach me — I respond promptly to recruiter outreach.</p>
+      <ul class="contact-list">
+        <li>Phone: <a href="tel:+9779847613598">+977 9847613598</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/smile-kisan" target="_blank" rel="noopener">linkedin.com/in/smile-kisan</a></li>
+        <li>GitHub: <a href="https://github.com/smilekison" target="_blank" rel="noopener">github.com/smilekison</a></li>
+        <li>Website: <a href="https://smilekisan.com/" target="_blank" rel="noopener">smilekisan.com</a></li>
+        <li>CV: <a href="/blob/main/smile-kisan-cv.pdf">smile-kisan-cv.pdf</a></li>
+      </ul>
+      <p class="note">Tip: add an email address here (or a contact form) so recruiters can email you directly.</p>
+    </section>
+
+    <section id="improve">
+      <h2>How to make this perfect for recruiters</h2>
+      <ol>
+        <li>Replace the placeholder skills with your top 6–10 skills and list tools and frameworks you use daily.</li>
+        <li>Add 2–4 projects with links to repos and short measurable outcomes (what you shipped, impact).</li>
+        <li>Add an email address and optionally a short testimonial or measurable metric (e.g., "reduced load time by 40%").</li>
+        <li>Keep the CV up to date and link to a live demo when possible.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Smile Kisan — <a href="https://github.com/smilekison" target="_blank" rel="noopener">github.com/smilekison</a></p>
+    </div>
+  </footer>
+
 </body>
 </html>

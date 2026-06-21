@@ -1,83 +1,34 @@
-<!--
-Profile README — updated with CV-sourced contact info and expanded sections.
-This file is intended for the profile README displayed on your GitHub profile.
--->
+# smilekison — portfolio website
 
-# Smile Kisan (smilekison)
+This repository now contains a recruiter-focused homepage (index.html) and styles (styles.css) to help present your CV, skills, and contact information clearly.
 
-> Software engineer who builds impact-focused products, data pipelines, and open-source tools. I design reliable systems, ship elegant UX, and apply machine learning where it moves the needle.
+What I added
 
-<img align="right" src="https://octodex.github.com/images/hula_loop_octodex03.gif" width="180" alt="octocat" />
+- `index.html` — a clean, responsive portfolio homepage with: hero, about, skills, selected projects, contact, and improvement tips.
+- `styles.css` — lightweight styles to give a modern, recruiter-friendly look.
 
-[Website](https://smilekisan.com) • [LinkedIn](https://www.linkedin.com/in/smile-kisan) • [GitHub](https://github.com/smilekison)
+Important links included in the page (taken from files/metadata you provided)
 
----
-
-## Quick pitch
-
-I build production-ready web products and backend systems with a product-first mindset. I focus on measurable outcomes, developer experience, and long-term maintainability.
-
-If you lead a team building world-class products and are looking for someone who can bridge product thinking, engineering, and data, let's talk.
-
----
-
-## Contact (public)
-
-- Email: hello@smilekisan.com
+- CV (PDF): `smile-kisan-cv.pdf` (linked from the homepage)
+- LinkedIn: https://www.linkedin.com/in/smile-kisan
+- GitHub: https://github.com/smilekison
+- Website: https://smilekisan.com/
 - Phone: +977 9847613598
-- Website / CV: https://smilekisan.com
 
-(These contact details are shown publicly by your request.)
+How to customize (quick)
 
----
+1. Open `index.html` and replace the placeholder skill list and project cards with your real skills and projects (2-4 projects recommended, with links).
+2. Add your email address to the Contact section or wire a simple contact form (Netlify/Forms or Formspree).
+3. Update the hero subtitle to match your actual job title (e.g., "Frontend Engineer", "Full-stack Developer").
+4. Commit further changes and enable GitHub Pages (Settings → Pages) to publish the site at `https://smilekison.github.io/smilekison/`.
 
-## Experience & highlights (CV summary)
+If you'd like, I can:
 
-Below are concise highlights pulled from your CV and public site. I kept language factual and focused on impact; if you want exact role names, dates, or company details added verbatim, I will insert them on the next pass.
+- Add a contact form and host example form handling.
+- Pull your actual project list from existing repos and auto-generate project cards.
+- Improve SEO and add structured data for recruiter parsing.
 
-- Built and shipped end-to-end web applications and APIs with React, Next.js, Node.js and Python.
-- Designed data pipelines and ETL workflows to power analytics and reporting for product teams.
-- Implemented containerized deployments (Docker) and CI/CD automation for repeatable, observable releases.
-- Contributed to developer tooling and open-source projects to improve team efficiency.
+Next steps
 
----
+Tell me which specific skills, projects, and job title you want shown and I will update the page content and refine the copy (I can also add sample metrics for each project if you provide them). 
 
-## Technologies & tools
-
-JavaScript • TypeScript • React • Next.js • Node.js • Python • FastAPI • PostgreSQL • Docker • Kafka • Airflow • AWS • Terraform • GitHub Actions
-
----
-
-## Selected work & projects
-
-- Personal site & portfolio — https://smilekisan.com (case studies, writing, contact)
-- Analytics / ETL systems — real-time and batch pipelines powering product dashboards
-- Production services — REST/GraphQL APIs, service reliability and performance improvements
-
-I will add 3 detailed case studies (problem → approach → outcome) from your CV on the next commit. Tell me which projects you want prioritized or I’ll pick the highest-impact items from your CV.
-
----
-
-## Writing & talks
-
-I publish articles, notes and talks on my site: https://smilekisan.com — I can pull and highlight selected posts in this README if you want.
-
----
-
-## GitHub activity
-
-<p align="left">
-  <img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=default" />
-  <img alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=default" />
-</p>
-
----
-
-## What I can do next
-
-1. Add exact roles, dates, and 3–6 bullets per role copied from your CV (I will not invent or paraphrase without marking it).  
-2. Create 3 polished case studies with metrics and screenshots.  
-3. Upload the CV PDF (`smile-kisan-cv.pdf`) into the repo for direct download and link it from the README and site.  
-4. Improve visual styling, badges, and social preview images for high-impact sharing.
-
-Reply with which items (1–4) you want me to do now; I will start by extracting the full Experience section from the CV and adding it into the README and the Pages site.
