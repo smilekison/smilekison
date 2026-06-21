@@ -1,12 +1,14 @@
 <div align="center">
 
-<img src="./assets/banner.svg" width="100%" />
+<img src="./assets/devops-lifecycle-banner.svg" width="100%" />
 
 # Smile Kisan
 
-### Cloud Platform Engineer
+### DevOps & Platform Engineer
 
-Building cloud-native infrastructure, automation systems, and internal platforms.
+Building cloud-native infrastructure, automation systems, and reliable platforms.
+
+**AWS • Kubernetes • Terraform • GitOps • Observability**
 
 </div>
 
@@ -44,8 +46,8 @@ Kubernetes
 ### 🚀 Automation
 Terraform
 <br>GitHub Actions
-<br>Jenkins
 <br>Ansible
+<br>CI/CD
 
 </td>
 </tr>
@@ -88,6 +90,6 @@ Distributed Systems
 
 <div align="center">
 
-**AWS • Kubernetes • Terraform • GitOps • Observability**
+**Infrastructure • Automation • Reliability**
 
 </div>
