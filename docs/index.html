@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smile Kisan — Portfolio</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#6ee7b7;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071029 0%, #071c30 100%);}
+    .container{max-width:900px;margin:48px auto;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;box-shadow:0 10px 30px rgba(2,6,23,0.6);}
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{width:96px;height:96px;border-radius:14px;background:var(--glass);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    h1{margin:0;font-size:28px}
+    p.lead{color:var(--muted);margin:8px 0 16px}
+    .links a{display:inline-block;margin-right:10px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);color:var(--accent);text-decoration:none;font-weight:600}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:18px;border-radius:12px}
+    .muted{color:var(--muted);font-size:14px}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr} .avatar{width:80px;height:80px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar"><img src="https://avatars.githubusercontent.com/u/24309222?v=4" alt="Smile Kisan"/></div>
+      <div>
+        <h1>Smile Kisan <span style="color:var(--muted);font-weight:600">(@smilekison)</span></h1>
+        <p class="lead">I build software and data-driven products — pragmatic, reliable, and designed for real impact. I bridge engineering, design, and product to ship meaningful features.</p>
+        <div class="links">
+          <a href="https://smilekisan.com" target="_blank">Website / CV</a>
+          <a href="https://www.linkedin.com/in/smile-kisan" target="_blank">LinkedIn</a>
+          <a href="https://github.com/smilekison" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h3>About</h3>
+          <p class="muted">I specialize in building robust web platforms, data tooling, and integrations that help teams move faster and ship with confidence. My approach focuses on shipping high-leverage work, measurable outcomes, and long-term maintainability.</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Looking for</h3>
+          <p class="muted">Senior engineering, technical product, or research-engineering roles. Open to remote and hybrid positions. Prefer companies building ambitious products with strong engineering cultures.</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Next steps — how I’ll make this world-class</h3>
+          <ol class="muted">
+            <li>Pull and curate 4–6 high-impact projects from the CV and GitHub.</li>
+            <li>Write short one-paragraph case studies for each project (what, how, impact).</li>
+            <li>Add a visual timeline and highlights (metrics, traffic, revenue, users if available).</li>
+            <li>Iterate copy and design until it’s tight and memorable.</li>
+          </ol>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3>Contact</h3>
+          <p class="muted">Open to messages on GitHub and LinkedIn. For direct outreach, see my website for contact options.</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Quick links</h3>
+          <p class="muted">Website: <a href="https://smilekisan.com" target="_blank">smilekisan.com</a><br/>LinkedIn: <a href="https://www.linkedin.com/in/smile-kisan" target="_blank">/in/smile-kisan</a><br/>GitHub: <a href="https://github.com/smilekison" target="_blank">/smilekison</a></p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="muted">This is an initial, high-impact profile page. I will iterate and add curated projects, metrics, and design polish on your go-ahead.</div>
+    </footer>
+  </div>
+</body>
+</html>
