@@ -2,100 +2,108 @@
 
 # Smile Kisan
 
-### ☁️ Cloud Engineer • DevOps Engineer • Platform Engineer
+### Cloud Engineer · Platform Engineer · DevOps
 
-**AWS • Kubernetes • Terraform • Docker • GitHub Actions • Observability**
+Building cloud-native infrastructure, automation platforms, and reliable distributed systems.
+
+**AWS · Kubernetes · Terraform · GitOps · Observability**
 
 <br>
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&duration=3500&pause=1000&center=true&vCenter=true&width=750&lines=Building+Cloud-Native+Systems;Infrastructure+as+Code;Automation+%7C+Reliability+%7C+Scale;Platform+Engineering+%26+DevOps" />
+<img src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&hide_border=true&theme=transparent&rank_icon=github" height="165" />
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&hide_border=true&theme=transparent" height="165" />
 
 </div>
 
 ---
 
-## 📊 GitHub Overview
-
-<p align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=transparent&hide_border=true&rank_icon=github" />
-
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=transparent&hide_border=true" />
-
-</p>
-
-<p align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=transparent&hide_border=true" />
-
-</p>
-
----
-
-## ⚡ Technology Stack
-
-<p align="center">
-
-<img src="https://skillicons.dev/icons?i=aws,kubernetes,docker,terraform,githubactions,jenkins,python,go,linux,bash,postgres,mysql&perline=6" />
-
-</p>
-
----
-
-## 🚀 Current Focus
+## Technology Stack
 
 ```text
-☁️ Cloud Infrastructure
+Cloud
+├── AWS
+├── Kubernetes
+├── Docker
+└── Linux
 
-🚀 Kubernetes Platforms
+Infrastructure as Code
+├── Terraform
+├── GitHub Actions
+└── Jenkins
 
-⚙️ Infrastructure as Code
+Programming
+├── Go
+├── Python
+└── Bash
 
-📦 GitOps Workflows
+Data
+├── PostgreSQL
+└── MySQL
 
-📊 Observability & Monitoring
-
-🔒 Cloud Security
-
-🛠️ Platform Engineering
+Observability
+├── Prometheus
+├── Grafana
+└── CloudWatch
 ```
 
 ---
 
-## 🏆 Certifications
+## Focus Areas
 
-* AWS Certified Developer Associate
-* Docker Certified Associate
-* HashiCorp Terraform Associate
-
----
-
-## 🎓 Education
-
-**MSc Advanced Computer Science**
-Cardiff Metropolitan University
-
-**BSc Computing**
-The British College
+* Platform Engineering
+* Cloud Infrastructure
+* Kubernetes Operations
+* Infrastructure as Code
+* GitOps Workflows
+* CI/CD Automation
+* Cloud Security
+* Site Reliability Engineering
 
 ---
 
-## 📌 What You'll Find Here
+## Current Projects
 
-* Cloud Infrastructure Projects
-* Kubernetes Deployments
-* Terraform Modules
-* CI/CD Pipelines
-* Automation Scripts
-* Platform Engineering Experiments
-* DevOps Learning Projects
+```text
+aws-platform-blueprint
+terraform-eks-platform
+gitops-kubernetes-platform
+cloud-observability-stack
+platform-automation-toolkit
+```
+
+---
+
+## Engineering Philosophy
+
+```text
+Automate repetitive work.
+
+Design for failure.
+
+Prefer simplicity.
+
+Measure everything.
+
+Document decisions.
+
+Build systems that scale.
+```
+
+---
+
+## Background
+
+* MSc Advanced Computer Science
+* Cardiff Metropolitan University
+* Cloud & Infrastructure Engineering
+* AWS / Kubernetes / Terraform
+* Backend & Platform Development
 
 ---
 
 <div align="center">
 
-### Infrastructure • Automation • Reliability
-
-*Designing systems that scale, automate, and endure.*
+Infrastructure • Automation • Reliability
 
 </div>
