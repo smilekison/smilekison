@@ -1,100 +1,64 @@
 <div align="center">
-<img src="./assets/custom-file.svg" width="100%" height="75%"/>
+<img src="./assets/custom-file.svg" width="100%"/>
 </div>
 
-## 🚀 Platform Engineer Snapshot
+<br>
 
 <table>
 <tr>
 <td width="50%">
 
-### Professional Profile
-- MSc Advanced Computer Science
-- 3+ Years Engineering Experience
-- DevOps & Platform Engineering
-- Cloud Infrastructure Automation
-- CI/CD & GitOps Workflows
-- Reliability & Observability
-
-</td>
-<td width="50%">
-
-### Core Stack
-- AWS • Kubernetes • Terraform
-- Docker • Linux • Networking
-- GitHub Actions • GitLab CI/CD
-- Prometheus • Grafana • ELK
-- Go • Python • Bash
-- EKS • Helm • ArgoCD
-
-</td>
-</tr>
-</table>
-
----
-
-## 🏗️ Engineering Focus
-
-<table>
-<tr>
-<td width="33%">
-
-### ☁️ Cloud
+### ☁️ CLOUD & PLATFORM
+```text
 AWS
-<br>Docker
-<br>Linux
-<br>Networking
-
-</td>
-<td width="33%">
-
-### ⚙️ Platform
 Kubernetes
-<br>GitOps
-<br>Helm
-<br>EKS
+Terraform
+Docker
+Linux
+EKS
+```
 
 </td>
-<td width="33%">
+<td width="50%">
 
-### 🚀 Automation
-Terraform
-<br>GitHub Actions
-<br>Ansible
-<br>CI/CD
+### ⚡ AUTOMATION & OBSERVABILITY
+```text
+GitHub Actions
+GitLab CI/CD
+Prometheus
+Grafana
+ELK
+ArgoCD
+```
 
 </td>
 </tr>
 </table>
 
----
-
-## 🎓 Background & Interests
-
 <table>
 <tr>
 <td width="50%">
 
-### Background
-MSc Advanced Computer Science
-
-Cloud Infrastructure
-
+### 🏗️ CURRENT FOCUS
+```text
 Platform Engineering
-
-DevOps Automation
+Infrastructure as Code
+Cloud Architecture
+Reliability Engineering
+```
 
 </td>
 <td width="50%">
 
-### Core Interests
-Observability
-
-Cloud Security
-
-SRE
-
-Distributed Systems
+### 🔧 LANGUAGES & TOOLING
+```text
+Go
+Python
+Bash
+Helm
+Ansible
+Networking
+```
 
 </td>
 </tr>
@@ -104,6 +68,16 @@ Distributed Systems
 
 <div align="center">
 
-**Infrastructure • Automation • Reliability • Platform Engineering**
+### FEATURED ENGINEERING DOMAINS
+
+`Cloud Infrastructure` • `Kubernetes` • `DevOps` • `SRE` • `Observability` • `Automation`
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=smilekison&theme=github-dark&hide_border=true" width="100%" />
 
 </div>
