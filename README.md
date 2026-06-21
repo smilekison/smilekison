@@ -1,25 +1,39 @@
 <div align="center">
-
 <img src="./assets/custom-file.svg" width="100%" height="75%"/>
-
-# Smile Kisan
-
-### DevOps & Platform Engineer
-
-Building cloud-native infrastructure, automation systems, and reliable platforms.
-
-**AWS • Kubernetes • Terraform • GitOps • Observability**
-
 </div>
+
+## 🚀 Platform Engineer Snapshot
+
+<table>
+<tr>
+<td width="50%">
+
+### Professional Profile
+- MSc Advanced Computer Science
+- 3+ Years Engineering Experience
+- DevOps & Platform Engineering
+- Cloud Infrastructure Automation
+- CI/CD & GitOps Workflows
+- Reliability & Observability
+
+</td>
+<td width="50%">
+
+### Core Stack
+- AWS • Kubernetes • Terraform
+- Docker • Linux • Networking
+- GitHub Actions • GitLab CI/CD
+- Prometheus • Grafana • ELK
+- Go • Python • Bash
+- EKS • Helm • ArgoCD
+
+</td>
+</tr>
+</table>
 
 ---
 
-<div align="center">
-<img height="180" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github" />
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=github_dark&hide_border=true" />
-</div>
-
----
+## 🏗️ Engineering Focus
 
 <table>
 <tr>
@@ -55,12 +69,13 @@ Terraform
 
 ---
 
+## 🎓 Background & Interests
+
 <table>
 <tr>
 <td width="50%">
 
 ### Background
-
 MSc Advanced Computer Science
 
 Cloud Infrastructure
@@ -73,7 +88,6 @@ DevOps Automation
 <td width="50%">
 
 ### Core Interests
-
 Observability
 
 Cloud Security
@@ -90,6 +104,6 @@ Distributed Systems
 
 <div align="center">
 
-**Infrastructure • Automation • Reliability**
+**Infrastructure • Automation • Reliability • Platform Engineering**
 
 </div>
