@@ -1,34 +1,240 @@
-# smilekison — portfolio website
+<div align="center">
 
-This repository now contains a recruiter-focused homepage (index.html) and styles (styles.css) to help present your CV, skills, and contact information clearly.
+<img src="YOUR_BANNER_URL" alt="Banner" width="100%" />
 
-What I added
+# 👋 Hi, I'm Smile Kisan
 
-- `index.html` — a clean, responsive portfolio homepage with: hero, about, skills, selected projects, contact, and improvement tips.
-- `styles.css` — lightweight styles to give a modern, recruiter-friendly look.
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&center=true&vCenter=true&width=800&lines=Cloud+Engineer;DevOps+Engineer;Platform+Engineer;AWS+%7C+Kubernetes+%7C+Terraform;Building+Scalable+Cloud+Infrastructure" />
 
-Important links included in the page (taken from files/metadata you provided)
+<br>
 
-- CV (PDF): `smile-kisan-cv.pdf` (linked from the homepage)
-- LinkedIn: https://www.linkedin.com/in/smile-kisan
-- GitHub: https://github.com/smilekison
-- Website: https://smilekisan.com/
-- Phone: +977 9847613598
+<a href="YOUR_LINKEDIN_URL">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
 
-How to customize (quick)
+<a href="mailto:smilekisan.dev@gmail.com">
+<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+</a>
 
-1. Open `index.html` and replace the placeholder skill list and project cards with your real skills and projects (2-4 projects recommended, with links).
-2. Add your email address to the Contact section or wire a simple contact form (Netlify/Forms or Formspree).
-3. Update the hero subtitle to match your actual job title (e.g., "Frontend Engineer", "Full-stack Developer").
-4. Commit further changes and enable GitHub Pages (Settings → Pages) to publish the site at `https://smilekison.github.io/smilekison/`.
+<a href="YOUR_PORTFOLIO_URL">
+<img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+</a>
 
-If you'd like, I can:
+<img src="https://komarev.com/ghpvc/?username=smilekison&style=for-the-badge" />
 
-- Add a contact form and host example form handling.
-- Pull your actual project list from existing repos and auto-generate project cards.
-- Improve SEO and add structured data for recruiter parsing.
+</div>
 
-Next steps
+---
 
-Tell me which specific skills, projects, and job title you want shown and I will update the page content and refine the copy (I can also add sample metrics for each project if you provide them). 
+# 🚀 About Me
 
+```yaml
+Name: Smile Kisan
+
+Location: Nepal 🇳🇵
+
+Education:
+  - MSc Advanced Computer Science (Distinction)
+  - Cardiff Metropolitan University
+
+Role:
+  - Cloud Engineer
+  - DevOps Engineer
+  - Platform Engineer
+
+Interests:
+  - Cloud Architecture
+  - Kubernetes
+  - Infrastructure as Code
+  - CI/CD Automation
+  - Site Reliability Engineering
+  - Platform Engineering
+
+Currently Learning:
+  - Advanced Kubernetes
+  - GitOps
+  - Platform Engineering
+```
+
+---
+
+# ⚡ Tech Stack
+
+### ☁️ Cloud & Infrastructure
+
+<p>
+<img src="https://skillicons.dev/icons?i=aws,docker,kubernetes,terraform" />
+</p>
+
+### 🚀 CI/CD & DevOps
+
+<p>
+<img src="https://skillicons.dev/icons?i=githubactions,jenkins,git,linux,bash" />
+</p>
+
+### 💻 Languages
+
+<p>
+<img src="https://skillicons.dev/icons?i=python,go,nodejs" />
+</p>
+
+### 🗄 Databases
+
+<p>
+<img src="https://skillicons.dev/icons?i=postgres,mysql,mongodb" />
+</p>
+
+### 📊 Monitoring & Observability
+
+```text
+Prometheus
+Grafana
+ELK Stack
+CloudWatch
+```
+
+---
+
+# 🏗 Featured Projects
+
+## ☁️ AWS Enterprise Landing Zone
+
+Production-ready AWS environment built with Terraform.
+
+### Features
+
+- Multi-AZ Architecture
+- Secure Networking
+- IAM Best Practices
+- EKS Cluster
+- RDS Deployment
+- Monitoring Stack
+
+---
+
+## 🚀 Production Kubernetes Platform
+
+Container orchestration platform with:
+
+- Kubernetes
+- Helm
+- ArgoCD
+- Prometheus
+- Grafana
+- Loki
+- Ingress Controller
+
+---
+
+## 🔐 Enterprise DevSecOps Pipeline
+
+Automated CI/CD workflow integrating:
+
+- Jenkins
+- SonarQube
+- Trivy
+- Docker
+- Kubernetes
+- Security Scanning
+
+---
+
+## ⚙️ Terraform AWS Modules
+
+Reusable Infrastructure as Code modules for:
+
+- VPC
+- EKS
+- RDS
+- IAM
+- Security Groups
+
+---
+
+# 📈 GitHub Analytics
+
+<div align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=tokyonight&hide_border=true" />
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=tokyonight&hide_border=true" />
+
+</div>
+
+---
+
+# 🔥 GitHub Streak
+
+<div align="center">
+
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=tokyonight&hide_border=true" />
+
+</div>
+
+---
+
+# 📊 Contribution Graph
+
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=smilekison&theme=tokyo-night" />
+
+</div>
+
+---
+
+# 🏆 Certifications
+
+✅ AWS Certified Developer Associate
+
+✅ Docker Certified Associate
+
+✅ HashiCorp Terraform Associate
+
+---
+
+# 🎯 Professional Highlights
+
+- Led a team of 5 engineers
+- Progressed from Intern to Infrastructure Team Lead
+- Experience supporting cloud-based production environments
+- Built CI/CD pipelines and deployment automation
+- Worked with AWS infrastructure and containerized workloads
+- Implemented monitoring and observability solutions
+
+---
+
+# 🌍 Open To
+
+```text
+Cloud Engineering Roles
+DevOps Engineering Roles
+Platform Engineering Roles
+Site Reliability Engineering (SRE)
+Kubernetes Engineering
+Infrastructure Automation
+```
+
+---
+
+# 📫 Let's Connect
+
+<div align="center">
+
+<a href="YOUR_LINKEDIN_URL">
+<img src="https://skillicons.dev/icons?i=linkedin" />
+</a>
+
+<a href="mailto:smilekisan.dev@gmail.com">
+<img src="https://skillicons.dev/icons?i=gmail" />
+</a>
+
+</div>
+
+---
+
+<div align="center">
+
+### 🚀 Automate Everything • Monitor Everything • Improve Continuously
+
+</div>
