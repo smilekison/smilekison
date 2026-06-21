@@ -1,72 +1,93 @@
 <div align="center">
 
+<img src="./assets/banner.svg" width="100%" />
+
 # Smile Kisan
 
 ### Cloud Platform Engineer
 
 Building cloud-native infrastructure, automation systems, and internal platforms.
 
-**AWS • Kubernetes • Terraform • GitOps**
-
 </div>
 
 ---
 
 <div align="center">
-
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github" />
-
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=github_dark&hide_border=true" />
-
+<img height="180" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github" />
+<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=github_dark&hide_border=true" />
 </div>
 
 ---
 
-## Stack
+<table>
+<tr>
+<td width="33%">
 
-| Cloud | Platform | Automation |
-|---------|---------|---------|
-| AWS | Kubernetes | Terraform |
-| Docker | GitOps | GitHub Actions |
-| Linux | Helm | Jenkins |
+### ☁️ Cloud
+AWS
+<br>Docker
+<br>Linux
+<br>Networking
 
-| Development | Observability | Data |
-|---------|---------|---------|
-| Go | Prometheus | PostgreSQL |
-| Python | Grafana | MySQL |
-| Bash | CloudWatch | Redis |
+</td>
+<td width="33%">
+
+### ⚙️ Platform
+Kubernetes
+<br>GitOps
+<br>Helm
+<br>EKS
+
+</td>
+<td width="33%">
+
+### 🚀 Automation
+Terraform
+<br>GitHub Actions
+<br>Jenkins
+<br>Ansible
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Experience Snapshot
+<table>
+<tr>
+<td width="50%">
 
-```text
+### Background
+
 MSc Advanced Computer Science
 
 Cloud Infrastructure
+
 Platform Engineering
+
 DevOps Automation
 
-AWS Certified
-Docker Certified
-Terraform Certified
-```
+</td>
+<td width="50%">
 
----
+### Core Interests
 
-## Selected Repositories
+Observability
 
-- Terraform Topics
-- Flask Terraform
-- Docker Java Kubernetes Project
-- Dive Into Ansible Lab
-- DevOps Lab
-- SRE Interview Prep Guide
+Cloud Security
+
+SRE
+
+Distributed Systems
+
+</td>
+</tr>
+</table>
 
 ---
 
 <div align="center">
 
-Infrastructure • Automation • Reliability
+**AWS • Kubernetes • Terraform • GitOps • Observability**
 
 </div>
