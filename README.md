@@ -1,87 +1,65 @@
 <div align="center">
 
-# 👋 Smile Kisan
+# Smile Kisan
 
-### Cloud Engineer • Platform Engineer • DevOps
+### Cloud Engineer · Platform Engineer · DevOps
 
-Building cloud-native infrastructure, automation platforms, and reliable distributed systems.
+Building cloud-native infrastructure, automation systems, and scalable platforms.
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&duration=3000&pause=1000&center=true&vCenter=true&width=800&lines=AWS+%7C+Kubernetes+%7C+Terraform;Platform+Engineering;Infrastructure+as+Code;Cloud-Native+Systems;Automation+%7C+Reliability+%7C+Scale" />
+AWS · Kubernetes · Terraform · Docker · GitOps
+
+</div>
 
 <br>
-
-<img src="https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazonaws" />
-<img src="https://img.shields.io/badge/Kubernetes-Orchestration-blue?style=for-the-badge&logo=kubernetes" />
-<img src="https://img.shields.io/badge/Terraform-IaC-purple?style=for-the-badge&logo=terraform" />
-
-</div>
-
----
-
-<div align="center">
-
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=tokyonight&hide_border=true" />
-
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=tokyonight&hide_border=true" />
-
-</div>
-
-<div align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=tokyonight&hide_border=true" />
-
-</div>
-
----
-
-## ⚡ Technology Stack
 
 <table>
 <tr>
 <td width="50%">
 
-### ☁️ Cloud & Platform
-
-* AWS
-* Kubernetes
-* Docker
-* Linux
-* GitOps
+<img src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&hide_border=true&theme=transparent&rank_icon=github" />
 
 </td>
 <td width="50%">
 
-### 🏗 Infrastructure
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&hide_border=true&theme=transparent" />
+
+</td>
+</tr>
+</table>
+
+---
+
+## Technology Stack
+
+<table>
+<tr>
+<td width="33%">
+
+### Cloud
+
+* AWS
+* Docker
+* Linux
+
+</td>
+
+<td width="33%">
+
+### Platform
+
+* Kubernetes
+* GitOps
+* Helm
+
+</td>
+
+<td width="33%">
+
+### Automation
 
 * Terraform
 * GitHub Actions
 * Jenkins
-* CI/CD
-* Automation
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### 💻 Development
-
-* Go
-* Python
-* Bash
-* Node.js
-
-</td>
-<td width="50%">
-
-### 📊 Observability
-
-* Prometheus
-* Grafana
-* CloudWatch
-* Logging
-* Monitoring
 
 </td>
 </tr>
@@ -89,29 +67,29 @@ Building cloud-native infrastructure, automation platforms, and reliable distrib
 
 ---
 
-## 🎯 Focus Areas
+## Engineering Focus
 
 <table>
 <tr>
 <td width="50%">
 
-### Current Focus
+### Building
+
+* Cloud Infrastructure
+* Kubernetes Platforms
+* Terraform Modules
+* CI/CD Pipelines
+
+</td>
+
+<td width="50%">
+
+### Interested In
 
 * Platform Engineering
-* Kubernetes
+* Observability
 * Cloud Security
-* GitOps
-
-</td>
-
-<td width="50%">
-
-### Engineering Interests
-
-* Distributed Systems
-* SRE
-* Automation
-* Reliability
+* Site Reliability Engineering
 
 </td>
 </tr>
@@ -119,84 +97,55 @@ Building cloud-native infrastructure, automation platforms, and reliable distrib
 
 ---
 
-## 🚀 Featured Work
+## Tooling
 
-<table>
-<tr>
-<td width="50%">
-
-### aws-platform-blueprint
-
-Enterprise AWS architecture built using Terraform.
-
-</td>
-
-<td width="50%">
-
-### terraform-eks-platform
-
-Production-ready Kubernetes platform.
-
-</td>
-</tr>
-
-<tr>
-<td width="50%">
-
-### gitops-platform
-
-GitOps workflows with ArgoCD.
-
-</td>
-
-<td width="50%">
-
-### cloud-observability-stack
-
-Monitoring and observability toolkit.
-
-</td>
-</tr>
-</table>
+```text
+AWS
+Kubernetes
+Terraform
+Docker
+GitHub Actions
+Jenkins
+Python
+Go
+Bash
+Prometheus
+Grafana
+PostgreSQL
+```
 
 ---
 
-## 🏆 Certifications
+## Current Work
 
-<div align="center">
-
-| Certification                     | Status |
-| --------------------------------- | ------ |
-| AWS Certified Developer Associate | ✅      |
-| Docker Certified Associate        | ✅      |
-| HashiCorp Terraform Associate     | ✅      |
-
-</div>
+```text
+aws-platform-blueprint
+terraform-eks-platform
+gitops-platform
+cloud-observability-stack
+platform-automation-toolkit
+```
 
 ---
 
-## 📐 Engineering Philosophy
+## Philosophy
 
 ```text
 Automate repetitive work.
 
 Design for failure.
 
-Measure everything.
-
 Prefer simplicity.
 
-Build systems that scale.
+Measure everything.
 
-Reliability over complexity.
+Build systems that scale.
 ```
 
 ---
 
 <div align="center">
 
-### Infrastructure • Automation • Reliability
-
-Building platforms, not servers.
+Infrastructure • Automation • Reliability
 
 </div>
