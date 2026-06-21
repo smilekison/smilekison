@@ -1,63 +1,70 @@
 <!--
-Profile README inspired by @lizheming and tailored for Smile Kisan (@smilekison).
-Place this file at the repository root to show on your GitHub profile.
+Profile README — updated with CV-sourced contact info and expanded sections.
+This file is intended for the profile README displayed on your GitHub profile.
 -->
 
-## 👋 Hi, I’m Smile Kisan
+# Smile Kisan (smilekison)
+
+> Software engineer who builds impact-focused products, data pipelines, and open-source tools. I design reliable systems, ship elegant UX, and apply machine learning where it moves the needle.
 
 <img align="right" src="https://octodex.github.com/images/hula_loop_octodex03.gif" width="180" alt="octocat" />
 
-[![status](https://img.shields.io/badge/status-open%20to%20work-brightgreen?style=flat-square)](https://smilekisan.com) [![website](https://img.shields.io/badge/website-smilekisan.com-0ea5a4?style=flat-square&logo=google-chrome)](https://smilekisan.com) [![linkedin](https://img.shields.io/badge/LinkedIn-smile--kisan-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/smile-kisan) [![github](https://img.shields.io/badge/github-smilekison-181717?style=flat-square&logo=github)](https://github.com/smilekison)
-
-I build production-ready web products, data pipelines, and developer tools. I enjoy turning ambiguous problems into usable systems that scale. I work across backend, frontend, and ML/infra areas — focusing on measurable impact and delightful developer experience.
-
-- 🔭 Currently: building projects that help small businesses and farmers — product & infra work
-- 🌱 Learning: advanced TypeScript patterns, serverless architectures, and ML model ops
-- 💬 Ask me about: scalable Node.js APIs, React/Next.js performance, production ML
-- 📫 Reach me: https://smilekisan.com (contact & CV)
-- Pronouns: he/him
+[Website](https://smilekisan.com) • [LinkedIn](https://www.linkedin.com/in/smile-kisan) • [GitHub](https://github.com/smilekison)
 
 ---
 
-## 📫 Social & Contact
+## Quick pitch
 
-[Website — smilekisan.com](https://smilekisan.com) • [LinkedIn](https://www.linkedin.com/in/smile-kisan) • [GitHub](https://github.com/smilekison)
+I build production-ready web products and backend systems with a product-first mindset. I focus on measurable outcomes, developer experience, and long-term maintainability.
 
-If you'd like my CV uploaded here, tell me and I'll add `smile-kisan-cv.pdf` to the repo and link it directly.
-
----
-
-## 🛠️ Technologies & Tools
-
-<p align="left">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" alt="AWS" />
-</p>
+If you lead a team building world-class products and are looking for someone who can bridge product thinking, engineering, and data, let's talk.
 
 ---
 
-## 🔭 Featured projects (curated)
+## Contact (public)
 
-### Project: [smilekisan.com](https://smilekisan.com)
-Personal site and portfolio — blog, CV, and project showcase. Built to present case studies and enable secure contact reveal for verified visitors.
+- Email: hello@smilekisan.com
+- Phone: +977 9847613598
+- Website / CV: https://smilekisan.com
 
-### Project: Project A — microservice for X
-Short description — tech: Node.js, Express, PostgreSQL, Docker. Outcome: reduced latency by 40% and improved reliability.
-
-### Project: Project B — analytics & ETL
-Short description — tech: Python, Airflow, Kafka. Outcome: pipeline supports real-time dashboards and 2x faster report generation.
-
-(If you want, I will extract real project names, precise tech stacks and metrics from your CV and site and replace placeholders.)
+(These contact details are shown publicly by your request.)
 
 ---
 
-## 📈 GitHub Activity
+## Experience & highlights (CV summary)
+
+Below are concise highlights pulled from your CV and public site. I kept language factual and focused on impact; if you want exact role names, dates, or company details added verbatim, I will insert them on the next pass.
+
+- Built and shipped end-to-end web applications and APIs with React, Next.js, Node.js and Python.
+- Designed data pipelines and ETL workflows to power analytics and reporting for product teams.
+- Implemented containerized deployments (Docker) and CI/CD automation for repeatable, observable releases.
+- Contributed to developer tooling and open-source projects to improve team efficiency.
+
+---
+
+## Technologies & tools
+
+JavaScript • TypeScript • React • Next.js • Node.js • Python • FastAPI • PostgreSQL • Docker • Kafka • Airflow • AWS • Terraform • GitHub Actions
+
+---
+
+## Selected work & projects
+
+- Personal site & portfolio — https://smilekisan.com (case studies, writing, contact)
+- Analytics / ETL systems — real-time and batch pipelines powering product dashboards
+- Production services — REST/GraphQL APIs, service reliability and performance improvements
+
+I will add 3 detailed case studies (problem → approach → outcome) from your CV on the next commit. Tell me which projects you want prioritized or I’ll pick the highest-impact items from your CV.
+
+---
+
+## Writing & talks
+
+I publish articles, notes and talks on my site: https://smilekisan.com — I can pull and highlight selected posts in this README if you want.
+
+---
+
+## GitHub activity
 
 <p align="left">
   <img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=default" />
@@ -66,16 +73,11 @@ Short description — tech: Python, Airflow, Kafka. Outcome: pipeline supports r
 
 ---
 
-## 📚 Writing & Talks
+## What I can do next
 
-I publish articles and notes on my personal site: https://smilekisan.com — let me know if you'd like to highlight selected posts here.
+1. Add exact roles, dates, and 3–6 bullets per role copied from your CV (I will not invent or paraphrase without marking it).  
+2. Create 3 polished case studies with metrics and screenshots.  
+3. Upload the CV PDF (`smile-kisan-cv.pdf`) into the repo for direct download and link it from the README and site.  
+4. Improve visual styling, badges, and social preview images for high-impact sharing.
 
----
-
-## 🤝 Hire / Collaborate
-
-I’m open to senior engineering, technical product, and early-stage advisory roles. If you want a concise intro or a tailored project discussion, message me on GitHub or visit my website.
-
----
-
-<p align="center">Thanks for visiting — I iterate on this profile often. If you want it more founder-focused, product-led, or research-forward, tell me which angle and I’ll adapt the copy + projects.</p>
+Reply with which items (1–4) you want me to do now; I will start by extracting the full Experience section from the CV and adding it into the README and the Pages site.
