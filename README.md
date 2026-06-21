@@ -2,6 +2,12 @@
 <img src="./assets/custom-file.svg" width="100%"/>
 </div>
 
+<p align="center">
+<a href="#cloud">
+<img src="./assets/cards/cloud.svg" width="32%" />
+</a>
+</p>
+
 <div align="center">
 <img src="./assets/platform-dashboard.svg" width="100%"/>
 </div>
