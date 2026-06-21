@@ -1,47 +1,64 @@
-# 👋 Hi, I'm Smile Kisan
+<div align="center">
 
-### Cloud Engineer • DevOps Engineer • Platform Engineer
+# Smile Kisan
 
-Building scalable cloud infrastructure, automation platforms, and cloud-native systems.
+### ☁️ Cloud Engineer • DevOps Engineer • Platform Engineer
+
+**AWS • Kubernetes • Terraform • Docker • GitHub Actions • Observability**
+
+<br>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&duration=3500&pause=1000&center=true&vCenter=true&width=750&lines=Building+Cloud-Native+Systems;Infrastructure+as+Code;Automation+%7C+Reliability+%7C+Scale;Platform+Engineering+%26+DevOps" />
+
+</div>
+
+---
+
+## 📊 GitHub Overview
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=22&duration=3500&pause=1000&center=true&vCenter=true&width=700&lines=Cloud+Engineer;DevOps+Engineer;Platform+Engineer;Infrastructure+as+Code;Automation+%7C+Reliability+%7C+Scale" />
+
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=transparent&hide_border=true&rank_icon=github" />
+
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=transparent&hide_border=true" />
+
+</p>
+
+<p align="center">
+
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=transparent&hide_border=true" />
+
 </p>
 
 ---
 
-## ⚡ Tech Stack
+## ⚡ Technology Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=aws,docker,kubernetes,terraform,githubactions,jenkins,python,go,linux,bash,postgres,mysql&perline=6" />
+
+<img src="https://skillicons.dev/icons?i=aws,kubernetes,docker,terraform,githubactions,jenkins,python,go,linux,bash,postgres,mysql&perline=6" />
+
 </p>
 
 ---
 
-## 📊 GitHub Analytics
+## 🚀 Current Focus
 
-<p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=github_dark&hide_border=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=github_dark&hide_border=true" />
-</p>
+```text
+☁️ Cloud Infrastructure
 
----
+🚀 Kubernetes Platforms
 
-## 🔥 Contribution Streak
+⚙️ Infrastructure as Code
 
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=github-dark-blue&hide_border=true" />
-</p>
+📦 GitOps Workflows
 
----
+📊 Observability & Monitoring
 
-## 🚀 About Me
+🔒 Cloud Security
 
-* 🎓 MSc Advanced Computer Science (Distinction)
-* ☁️ Cloud & DevOps Engineer
-* 🏗️ Infrastructure as Code enthusiast
-* 🚀 Building cloud-native systems and automation platforms
-* 🔍 Interested in Platform Engineering, Kubernetes and Site Reliability Engineering
+🛠️ Platform Engineering
+```
 
 ---
 
@@ -53,75 +70,32 @@ Building scalable cloud infrastructure, automation platforms, and cloud-native s
 
 ---
 
-## 🎯 Current Focus
+## 🎓 Education
 
-```text
-Platform Engineering
-Kubernetes
-GitOps
-Cloud Security
-Observability
-Site Reliability Engineering
-```
+**MSc Advanced Computer Science**
+Cardiff Metropolitan University
+
+**BSc Computing**
+The British College
 
 ---
 
-## 🛠️ Featured Repositories
+## 📌 What You'll Find Here
 
-### ☁️ AWS Enterprise Landing Zone
-
-Production-ready AWS infrastructure built with Terraform.
-
-### 🚀 Production Kubernetes Platform
-
-Cloud-native platform powered by Kubernetes, Helm, Prometheus and Grafana.
-
-### 🔐 Enterprise DevSecOps Pipeline
-
-Secure CI/CD pipelines using GitHub Actions, Jenkins and container security scanning.
-
-### ⚙️ Terraform AWS Modules
-
-Reusable Infrastructure as Code modules for AWS.
-
-### 🌐 Portfolio Website
-
-Personal portfolio showcasing projects, experience and certifications.
+* Cloud Infrastructure Projects
+* Kubernetes Deployments
+* Terraform Modules
+* CI/CD Pipelines
+* Automation Scripts
+* Platform Engineering Experiments
+* DevOps Learning Projects
 
 ---
 
-## 📈 Engineering Principles
-
-```text
-Infrastructure as Code
-
-Automation First
-
-Reliability Matters
-
-Security by Default
-
-Observability Everywhere
-
-Continuous Improvement
-```
-
----
-
-## 🌍 Open To
-
-* Cloud Engineer
-* DevOps Engineer
-* Platform Engineer
-* Site Reliability Engineer (SRE)
-* Infrastructure Engineer
-
----
-
-<p align="center">
+<div align="center">
 
 ### Infrastructure • Automation • Reliability
 
-Building systems that scale.
+*Designing systems that scale, automate, and endure.*
 
-</p>
+</div>
