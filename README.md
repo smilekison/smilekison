@@ -1,240 +1,268 @@
 <div align="center">
 
-<img src="YOUR_BANNER_URL" alt="Banner" width="100%" />
-
 # 👋 Hi, I'm Smile Kisan
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&center=true&vCenter=true&width=800&lines=Cloud+Engineer;DevOps+Engineer;Platform+Engineer;AWS+%7C+Kubernetes+%7C+Terraform;Building+Scalable+Cloud+Infrastructure" />
+### Cloud Engineer • DevOps Engineer • Platform Engineer
 
-<br>
+<p>
+Building scalable cloud infrastructure, automation platforms, and cloud-native systems.
+</p>
 
-<a href="YOUR_LINKEDIN_URL">
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
+<p>
+AWS • Kubernetes • Terraform • Docker • CI/CD • Observability
+</p>
 
-<a href="mailto:smilekisan.dev@gmail.com">
-<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-</a>
-
-<a href="YOUR_PORTFOLIO_URL">
-<img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" />
-</a>
-
-<img src="https://komarev.com/ghpvc/?username=smilekison&style=for-the-badge" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=22&duration=4000&pause=1200&center=true&vCenter=true&width=850&lines=Cloud+Engineer;DevOps+Engineer;Platform+Engineer;Infrastructure+as+Code+Advocate;Building+Reliable+Systems;Automating+Everything+Possible" />
 
 </div>
 
 ---
 
-# 🚀 About Me
+# About Me
 
 ```yaml
-Name: Smile Kisan
+name: Smile Kisan
 
-Location: Nepal 🇳🇵
+location: Nepal
 
-Education:
-  - MSc Advanced Computer Science (Distinction)
-  - Cardiff Metropolitan University
+education:
+  degree: MSc Advanced Computer Science
+  university: Cardiff Metropolitan University
+  classification: Distinction
 
-Role:
-  - Cloud Engineer
-  - DevOps Engineer
-  - Platform Engineer
-
-Interests:
-  - Cloud Architecture
-  - Kubernetes
-  - Infrastructure as Code
-  - CI/CD Automation
-  - Site Reliability Engineering
+specialization:
+  - Cloud Engineering
+  - DevOps Engineering
   - Platform Engineering
 
-Currently Learning:
-  - Advanced Kubernetes
+experience:
+  - Cloud Infrastructure
+  - Container Platforms
+  - CI/CD Automation
+  - Infrastructure as Code
+  - Monitoring & Observability
+
+currently_learning:
   - GitOps
   - Platform Engineering
+  - Advanced Kubernetes
+  - Site Reliability Engineering
 ```
 
 ---
 
-# ⚡ Tech Stack
+# Core Technologies
 
-### ☁️ Cloud & Infrastructure
+<div align="center">
 
-<p>
-<img src="https://skillicons.dev/icons?i=aws,docker,kubernetes,terraform" />
-</p>
+<img src="https://skillicons.dev/icons?i=aws,docker,kubernetes,terraform,githubactions,jenkins,linux,bash,python,go,nodejs,postgres,mysql&perline=7" />
 
-### 🚀 CI/CD & DevOps
-
-<p>
-<img src="https://skillicons.dev/icons?i=githubactions,jenkins,git,linux,bash" />
-</p>
-
-### 💻 Languages
-
-<p>
-<img src="https://skillicons.dev/icons?i=python,go,nodejs" />
-</p>
-
-### 🗄 Databases
-
-<p>
-<img src="https://skillicons.dev/icons?i=postgres,mysql,mongodb" />
-</p>
-
-### 📊 Monitoring & Observability
-
-```text
-Prometheus
-Grafana
-ELK Stack
-CloudWatch
-```
+</div>
 
 ---
 
-# 🏗 Featured Projects
+# What I Build
 
-## ☁️ AWS Enterprise Landing Zone
+### ☁️ Cloud Infrastructure
 
-Production-ready AWS environment built with Terraform.
+* AWS Architecture
+* Infrastructure as Code
+* Networking & Security
+* Terraform Automation
+* Container Platforms
+
+### 🚀 DevOps & Automation
+
+* CI/CD Pipelines
+* Deployment Automation
+* GitHub Actions
+* Jenkins
+* DevSecOps Practices
+
+### 📦 Container Platforms
+
+* Docker
+* Kubernetes
+* Helm
+* GitOps Workflows
+* Production Deployments
+
+### 📊 Monitoring & Reliability
+
+* Prometheus
+* Grafana
+* CloudWatch
+* Logging & Observability
+* Performance Monitoring
+
+---
+
+# Featured Projects
+
+## AWS Enterprise Landing Zone
+
+Production-grade AWS environment built with Terraform.
+
+### Highlights
+
+* Multi-AZ Architecture
+* Secure VPC Design
+* IAM Best Practices
+* EKS Integration
+* RDS Provisioning
+* Monitoring Stack
+
+---
+
+## Production Kubernetes Platform
+
+Cloud-native platform built on Kubernetes.
+
+### Components
+
+* Kubernetes
+* Helm
+* ArgoCD
+* Prometheus
+* Grafana
+* Loki
+* Ingress Controllers
+
+---
+
+## Enterprise DevSecOps Pipeline
+
+Secure CI/CD pipeline for cloud-native applications.
 
 ### Features
 
-- Multi-AZ Architecture
-- Secure Networking
-- IAM Best Practices
-- EKS Cluster
-- RDS Deployment
-- Monitoring Stack
+* GitHub Actions
+* Jenkins
+* SonarQube
+* Trivy
+* Docker
+* Kubernetes
 
 ---
 
-## 🚀 Production Kubernetes Platform
+## Terraform Module Collection
 
-Container orchestration platform with:
+Reusable Infrastructure as Code modules.
 
-- Kubernetes
-- Helm
-- ArgoCD
-- Prometheus
-- Grafana
-- Loki
-- Ingress Controller
+### Modules
 
----
-
-## 🔐 Enterprise DevSecOps Pipeline
-
-Automated CI/CD workflow integrating:
-
-- Jenkins
-- SonarQube
-- Trivy
-- Docker
-- Kubernetes
-- Security Scanning
+* VPC
+* IAM
+* EKS
+* RDS
+* Security Groups
+* Monitoring
 
 ---
 
-## ⚙️ Terraform AWS Modules
-
-Reusable Infrastructure as Code modules for:
-
-- VPC
-- EKS
-- RDS
-- IAM
-- Security Groups
-
----
-
-# 📈 GitHub Analytics
-
-<div align="center">
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=tokyonight&hide_border=true" />
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=tokyonight&hide_border=true" />
-
-</div>
-
----
-
-# 🔥 GitHub Streak
-
-<div align="center">
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=tokyonight&hide_border=true" />
-
-</div>
-
----
-
-# 📊 Contribution Graph
-
-<div align="center">
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=smilekison&theme=tokyo-night" />
-
-</div>
-
----
-
-# 🏆 Certifications
-
-✅ AWS Certified Developer Associate
-
-✅ Docker Certified Associate
-
-✅ HashiCorp Terraform Associate
-
----
-
-# 🎯 Professional Highlights
-
-- Led a team of 5 engineers
-- Progressed from Intern to Infrastructure Team Lead
-- Experience supporting cloud-based production environments
-- Built CI/CD pipelines and deployment automation
-- Worked with AWS infrastructure and containerized workloads
-- Implemented monitoring and observability solutions
-
----
-
-# 🌍 Open To
+# Architecture Philosophy
 
 ```text
-Cloud Engineering Roles
-DevOps Engineering Roles
-Platform Engineering Roles
-Site Reliability Engineering (SRE)
-Kubernetes Engineering
-Infrastructure Automation
+                   Users
+                     │
+                     ▼
+              Load Balancer
+                     │
+                     ▼
+             Kubernetes Cluster
+                     │
+      ┌──────────────┼──────────────┐
+      ▼              ▼              ▼
+  Services      Monitoring      Databases
+
+                   │
+       Prometheus • Grafana
 ```
 
 ---
 
-# 📫 Let's Connect
+# Certifications
+
+🏆 AWS Certified Developer Associate
+
+🏆 Docker Certified Associate
+
+🏆 HashiCorp Terraform Associate
+
+---
+
+# GitHub Analytics
 
 <div align="center">
 
-<a href="YOUR_LINKEDIN_URL">
-<img src="https://skillicons.dev/icons?i=linkedin" />
-</a>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&hide_border=true&theme=github_dark" />
 
-<a href="mailto:smilekisan.dev@gmail.com">
-<img src="https://skillicons.dev/icons?i=gmail" />
-</a>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&hide_border=true&theme=github_dark" />
 
 </div>
 
 ---
 
+# Contribution Streak
+
 <div align="center">
 
-### 🚀 Automate Everything • Monitor Everything • Improve Continuously
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=github-dark-blue&hide_border=true" />
+
+</div>
+
+---
+
+# Engineering Principles
+
+```text
+Infrastructure as Code
+
+Automation First
+
+Reliability Matters
+
+Security by Default
+
+Observability Everywhere
+
+Continuous Improvement
+```
+
+---
+
+# Current Focus
+
+* Platform Engineering
+* Kubernetes Operations
+* GitOps
+* Cloud Security
+* Observability
+* Infrastructure Automation
+* Site Reliability Engineering
+
+---
+
+# Open To
+
+```text
+Cloud Engineer
+
+DevOps Engineer
+
+Platform Engineer
+
+Site Reliability Engineer
+
+Infrastructure Engineer
+```
+
+---
+
+<div align="center">
+
+### Infrastructure • Automation • Reliability
+
+Building cloud-native systems that scale.
 
 </div>
