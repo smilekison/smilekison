@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/custom-file.svg" width="100%" />
+<img src="./assets/custom-file.svg" width="100%" /> 
 
 # Smile Kisan
 
