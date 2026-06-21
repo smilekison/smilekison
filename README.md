@@ -2,102 +2,17 @@
 
 # Smile Kisan
 
-### Cloud Engineer · Platform Engineer · DevOps
+### Cloud Engineer · Platform Engineer
 
-Building cloud-native infrastructure, automation systems, and scalable platforms.
+Building cloud-native infrastructure and automation systems.
 
-AWS · Kubernetes · Terraform · Docker · GitOps
+AWS · Kubernetes · Terraform
 
 </div>
 
-<br>
-
-<table>
-<tr>
-<td width="50%">
-
-<img src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&hide_border=true&theme=transparent&rank_icon=github" />
-
-</td>
-<td width="50%">
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&hide_border=true&theme=transparent" />
-
-</td>
-</tr>
-</table>
-
 ---
 
-## Technology Stack
-
-<table>
-<tr>
-<td width="33%">
-
-### Cloud
-
-* AWS
-* Docker
-* Linux
-
-</td>
-
-<td width="33%">
-
-### Platform
-
-* Kubernetes
-* GitOps
-* Helm
-
-</td>
-
-<td width="33%">
-
-### Automation
-
-* Terraform
-* GitHub Actions
-* Jenkins
-
-</td>
-</tr>
-</table>
-
----
-
-## Engineering Focus
-
-<table>
-<tr>
-<td width="50%">
-
-### Building
-
-* Cloud Infrastructure
-* Kubernetes Platforms
-* Terraform Modules
-* CI/CD Pipelines
-
-</td>
-
-<td width="50%">
-
-### Interested In
-
-* Platform Engineering
-* Observability
-* Cloud Security
-* Site Reliability Engineering
-
-</td>
-</tr>
-</table>
-
----
-
-## Tooling
+## Stack
 
 ```text
 AWS
@@ -105,41 +20,28 @@ Kubernetes
 Terraform
 Docker
 GitHub Actions
-Jenkins
+Linux
 Python
 Go
-Bash
+PostgreSQL
 Prometheus
 Grafana
-PostgreSQL
 ```
 
 ---
 
-## Current Work
+## Experience
 
 ```text
-aws-platform-blueprint
-terraform-eks-platform
-gitops-platform
-cloud-observability-stack
-platform-automation-toolkit
-```
+MSc Advanced Computer Science
 
----
+Cloud Infrastructure
+Platform Engineering
+DevOps Automation
 
-## Philosophy
-
-```text
-Automate repetitive work.
-
-Design for failure.
-
-Prefer simplicity.
-
-Measure everything.
-
-Build systems that scale.
+AWS Certified
+Docker Certified
+Terraform Certified
 ```
 
 ---
