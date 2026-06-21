@@ -1,83 +1,27 @@
-<!--
-Profile README — updated with CV-sourced contact info and expanded sections.
-This file is intended for the profile README displayed on your GitHub profile.
--->
+# Smile Kisan — Full‑Stack / Web Developer
 
-# Smile Kisan (smilekison)
+Welcome — I'm Smile Kisan. This repo now includes a lightweight personal UI (index.html + CSS) that presents my skills, experience highlights, and contact details in a recruiter-friendly format. The webpage is intended for GitHub Pages (publish the update/profile-ui branch or merge to main and enable Pages on the default branch).
 
-> Software engineer who builds impact-focused products, data pipelines, and open-source tools. I design reliable systems, ship elegant UX, and apply machine learning where it moves the needle.
+## What I added
 
-<img align="right" src="https://octodex.github.com/images/hula_loop_octodex03.gif" width="180" alt="octocat" />
+- index.html — a responsive, descriptive one-page profile optimized for recruiters.
+- styles/style.css — minimal, professional styling with a clear hierarchy.
+- This README (this file) — quick notes and links.
 
-[Website](https://smilekisan.com) • [LinkedIn](https://www.linkedin.com/in/smile-kisan) • [GitHub](https://github.com/smilekison)
+## Quick links
 
----
+- View the profile page: `index.html` (open in browser or enable GitHub Pages)
+- CV: [smile-kisan-cv.pdf](./smile-kisan-cv.pdf)
+- LinkedIn: https://www.linkedin.com/in/smile-kisan
+- Personal site: https://smilekisan.com/
+- GitHub: https://github.com/smilekison
 
-## Quick pitch
+## Next steps (recommendations)
 
-I build production-ready web products and backend systems with a product-first mindset. I focus on measurable outcomes, developer experience, and long-term maintainability.
-
-If you lead a team building world-class products and are looking for someone who can bridge product thinking, engineering, and data, let's talk.
-
----
-
-## Contact (public)
-
-- Email: hello@smilekisan.com
-- Phone: +977 9847613598
-- Website / CV: https://smilekisan.com
-
-(These contact details are shown publicly by your request.)
+1. Preview `index.html` locally or merge this branch to `main` and enable GitHub Pages.
+2. If you'd like a different color palette, photo, or sections (projects, testimonials), tell me and I will update the page.
+3. I can also open a PR for you with the branch so teammates can review and merge.
 
 ---
 
-## Experience & highlights (CV summary)
-
-Below are concise highlights pulled from your CV and public site. I kept language factual and focused on impact; if you want exact role names, dates, or company details added verbatim, I will insert them on the next pass.
-
-- Built and shipped end-to-end web applications and APIs with React, Next.js, Node.js and Python.
-- Designed data pipelines and ETL workflows to power analytics and reporting for product teams.
-- Implemented containerized deployments (Docker) and CI/CD automation for repeatable, observable releases.
-- Contributed to developer tooling and open-source projects to improve team efficiency.
-
----
-
-## Technologies & tools
-
-JavaScript • TypeScript • React • Next.js • Node.js • Python • FastAPI • PostgreSQL • Docker • Kafka • Airflow • AWS • Terraform • GitHub Actions
-
----
-
-## Selected work & projects
-
-- Personal site & portfolio — https://smilekisan.com (case studies, writing, contact)
-- Analytics / ETL systems — real-time and batch pipelines powering product dashboards
-- Production services — REST/GraphQL APIs, service reliability and performance improvements
-
-I will add 3 detailed case studies (problem → approach → outcome) from your CV on the next commit. Tell me which projects you want prioritized or I’ll pick the highest-impact items from your CV.
-
----
-
-## Writing & talks
-
-I publish articles, notes and talks on my site: https://smilekisan.com — I can pull and highlight selected posts in this README if you want.
-
----
-
-## GitHub activity
-
-<p align="left">
-  <img alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=default" />
-  <img alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=default" />
-</p>
-
----
-
-## What I can do next
-
-1. Add exact roles, dates, and 3–6 bullets per role copied from your CV (I will not invent or paraphrase without marking it).  
-2. Create 3 polished case studies with metrics and screenshots.  
-3. Upload the CV PDF (`smile-kisan-cv.pdf`) into the repo for direct download and link it from the README and site.  
-4. Improve visual styling, badges, and social preview images for high-impact sharing.
-
-Reply with which items (1–4) you want me to do now; I will start by extracting the full Experience section from the CV and adding it into the README and the Pages site.
+If you'd like, I can now open a pull request from `update/profile-ui` into your default branch, or I can update the content (tone, more details, add project cards) before creating the PR.

@@ -1,80 +1,66 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Smile Kisan — Software Engineer</title>
-  <meta name="description" content="Smile Kisan — Product-focused software engineer (backend, ML, infra). Visit my portfolio at smilekisan.com">
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#7c3aed;color-scheme:dark}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,#071024 0%,var(--bg) 100%);color:#e6eef8;display:flex;align-items:center;justify-content:center;padding:32px}
-    .container{max-width:900px;width:100%}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.04);padding:36px;border-radius:12px}
-    h1{margin:0;font-size:28px}
-    p.lead{color:var(--muted);margin:8px 0 24px}
-    .links a{color:#c7d2fe;text-decoration:none;margin-right:18px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
-    .meta{background:rgba(255,255,255,0.02);padding:18px;border-radius:10px}
-    .muted{color:var(--muted);font-size:14px}
-    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),#4f46e5);color:white;padding:10px 14px;border-radius:8px;text-decoration:none}
-    footer{margin-top:20px;color:var(--muted);font-size:13px}
-    @media(max-width:800px){.grid{grid-template-columns:1fr;}.meta{order:-1}}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smile Kisan — Developer Portfolio</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <h1>Smile Kisan — Software Engineer</h1>
-          <p class="lead">Building product-led systems, data pipelines, and delightful developer experiences. I ship reliable production software and open-source tools.</p>
-          <div class="links">
-            <a href="https://smilekisan.com" target="_blank" rel="noopener">Website</a>
-            <a href="https://github.com/smilekison" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/smile-kisan" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div class="muted">Open to senior roles & collaboration</div>
-          <div style="margin-top:12px"><a class="cta" href="https://smilekisan.com" target="_blank">See portfolio / Contact</a></div>
-        </div>
+  <header class="hero">
+    <div class="container">
+      <img class="avatar" src="https://github.com/smilekison.png" alt="Smile Kisan" />
+      <div class="intro">
+        <h1>Smile Kisan</h1>
+        <p class="tagline">Web & Full‑Stack Developer — making accessible, maintainable, recruiter-ready products</p>
+        <p class="contact">
+          <a href="https://github.com/smilekison" class="btn">GitHub</a>
+          <a href="https://www.linkedin.com/in/smile-kisan" class="btn outline">LinkedIn</a>
+          <a href="./smile-kisan-cv.pdf" class="btn outline">Download CV</a>
+        </p>
       </div>
-
-      <div style="margin-top:28px" class="grid">
-        <div>
-          <h3 style="margin-top:0">Selected work</h3>
-          <p class="muted">A curated list of my most impactful projects and case studies lives on my website. Below are quick entry points.</p>
-          <ul>
-            <li><strong>Product analytics pipeline</strong> — real-time event processing and dashboards for product growth (Python, Kafka, Airflow).</li>
-            <li><strong>ML prototyping</strong> — rapid experiments and reliable model serving for recommendation features (Pytorch, FastAPI).</li>
-            <li><strong>Open-source tooling</strong> — developer-focused libraries and CLI tools that reduce onboarding time.</li>
-          </ul>
-
-          <h3>Focus</h3>
-          <p class="muted">Systems design, product thinking, ML prototyping, and developer experience.</p>
-
-          <h3>Tech</h3>
-          <p class="muted">Python · TypeScript · React · FastAPI · Docker · Terraform · CI/CD · PostgreSQL · Kafka</p>
-        </div>
-        <div class="meta">
-          <div style="font-weight:600">Contact</div>
-          <div class="muted" style="margin-top:6px">Website / Contact form</div>
-          <div style="margin-top:10px"><a href="https://smilekisan.com" target="_blank" rel="noopener">smilekisan.com</a></div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0">
-          <div style="font-weight:600">Location</div>
-          <div class="muted">Based remotely — available worldwide</div>
-
-          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0">
-          <div style="font-weight:600">CV</div>
-          <div class="muted">Download a PDF CV</div>
-          <div style="margin-top:8px"><a class="cta" href="https://smilekisan.com" target="_blank">Download CV</a></div>
-        </div>
-      </div>
-
-      <footer>Built by Smile Kisan — <span class="muted">I iterate on this profile — tell me the tone and I'll refine copy, design, and case studies.</span></footer>
     </div>
-  </div>
+  </header>
+
+  <main class="container">
+    <section class="about">
+      <h2>About me</h2>
+      <p>I design and build web experiences that are clear, fast and maintainable. I focus on clean HTML, accessible interfaces, and pragmatic engineering that helps teams move faster. I enjoy turning ideas into production-ready applications and I document and test my work so others can pick it up easily.</p>
+    </section>
+
+    <section class="skills">
+      <h2>Skills & Strengths</h2>
+      <ul class="skill-grid">
+        <li>HTML / Semantic Markup</li>
+        <li>CSS / Responsive Design</li>
+        <li>JavaScript / Frontend frameworks</li>
+        <li>Web performance & accessibility</li>
+        <li>REST APIs & integration</li>
+        <li>Version control (Git/GitHub)</li>
+        <li>Technical communication & documentation</li>
+        <li>Problem solving & teamwork</li>
+      </ul>
+    </section>
+
+    <section class="projects">
+      <h2>Selected projects</h2>
+      <p>See the <a href="https://github.com/smilekison?tab=repositories">GitHub repositories</a> for sample work. If you'd like, I can include highlights here (links, short descriptions, tech stack).</p>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact</h2>
+      <p>I'm open to new opportunities. Recruiters: the best ways to reach me:</p>
+      <ul>
+        <li>Email: <a href="mailto:hello@smilekisan.com">hello@smilekisan.com</a></li>
+        <li>Phone: <a href="tel:+9779847613598">+977 9847613598</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/smile-kisan">linkedin.com/in/smile-kisan</a></li>
+        <li>Website: <a href="https://smilekisan.com/">smilekisan.com</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Find my full CV here: <a href="./smile-kisan-cv.pdf">smile-kisan-cv.pdf</a> — Thank you for visiting.</p>
+    </footer>
+  </main>
 </body>
 </html>
