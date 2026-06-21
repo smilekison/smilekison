@@ -1,54 +1,67 @@
-# Smile Kisan (@smilekison)
+# Smile Kisan (smilekison)
 
-[Website](https://smilekisan.com) • [LinkedIn](https://www.linkedin.com/in/smile-kisan) • [GitHub](https://github.com/smilekison)
+> Software engineer who builds impact-focused products and open-source tools. I design reliable systems, ship elegant UX, and apply machine learning where it moves the needle.
 
----
+Website • LinkedIn • GitHub
 
-## Hello — I’m Smile
-
-I build software and systems that turn ideas into measurable impact. I combine engineering, data, and design thinking to ship products and tools that people and teams love to use.
-
-This repo is the canonical home for my public profile. For my full CV and detailed background, visit my website (linked above) or check the CV link in the projects section below.
-
----
-
-## What I do
-
-- Architect and build full-stack web applications and APIs
-- Explore data to uncover insights and ship ML-backed features
-- Design pragmatic systems that scale and are delightfully maintainable
-- Lead cross-functional collaboration between product, design, and engineering
-
----
-
-## Highlights & What I'm Looking For
-
-I’m open to senior engineering, technical product, or research-engineering roles where I can: lead technically, mentor others, and ship high-leverage work. I’m especially interested in opportunities at the intersection of AI, infrastructure, and product.
-
-If you’re building something ambitious and want a pragmatic engineer who cares about outcomes — let’s talk.
-
----
-
-## Quick Links
-
-- Website / CV: https://smilekisan.com
+- Website: https://smilekisan.com
 - LinkedIn: https://www.linkedin.com/in/smile-kisan
 - GitHub: https://github.com/smilekison
 
 ---
 
-## Selected Projects (placeholder)
+## Quick pitch
 
-I will add curated, high-impact project summaries here (with metrics and short explanations) — these are the items people ask about most when evaluating candidates: product shipped, scale, technical depth, and measurable outcomes.
+I craft production-ready systems and data-driven products. I focus on simplicity, measurable results, and developer experience — turning ambiguous problems into reliable, maintainable solutions.
 
-(If you want, I can pull projects from this GitHub account or your CV and craft sharp one-paragraph highlights for each.)
-
----
-
-## Contact
-
-Open to messages on GitHub or LinkedIn. If you prefer email or phone, I can add a preferred contact method here.
+If you lead a team building world-class products and are looking for someone who can bridge product thinking, engineering, and data, let's talk.
 
 ---
 
-Thanks for visiting — more coming soon. I will iterate on this README and the GitHub Pages landing page to make it world-class and tailored to opportunities you want to attract.
+## Areas I work in
+
+- Product engineering: product-first architecture, end-to-end ownership
+- Backend & APIs: Python, Node.js, FastAPI, REST/GraphQL
+- Frontend: React, TypeScript
+- Machine learning & data: prototyping ML, data pipelines, model ops
+- Infrastructure: Docker, CI/CD, IaC, observability
+- Open source: building reusable libraries and developer tools
+
+---
+
+## What I bring
+
+- Clear ownership: from discovery to production
+- Product sensibility: shipping features that users actually use
+- Engineering rigor: automated tests, monitoring and reproducible builds
+- Collaboration: clear documentation and reliable cross-team delivery
+
+---
+
+## Selected projects & portfolio
+
+- Portfolio & website — https://smilekisan.com
+- GitHub profile — https://github.com/smilekison
+
+(If you'd like, I can add a curated list of repositories with short case studies and links.)
+
+---
+
+## Hire / collaborate / connect
+
+I am open to conversations about senior engineering roles, early-stage startups, advisory, and open-source collaboration.
+
+- Contact / website: https://smilekisan.com
+- LinkedIn: https://www.linkedin.com/in/smile-kisan
+
+---
+
+## Next steps I can implement for you (iterative plan)
+
+1. Add a clean GitHub Pages landing page with a short portfolio and downloadable CV.
+2. Add 3 curated case studies (short problem → approach → outcome writeups).
+3. Add README badges, repository topics, and pin important projects.
+4. Add a small CI workflow to auto-deploy the Pages site.
+5. Polish copy and design iteratively until it’s exceptional.
+
+Tell me which tone you prefer (founder-focused, formal, research-forward, or product-led). I’ll continue by adding the Pages site and one curated case study.
