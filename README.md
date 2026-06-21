@@ -1,109 +1,202 @@
 <div align="center">
 
-# Smile Kisan
+# 👋 Smile Kisan
 
-### Cloud Engineer · Platform Engineer · DevOps
+### Cloud Engineer • Platform Engineer • DevOps
 
 Building cloud-native infrastructure, automation platforms, and reliable distributed systems.
 
-**AWS · Kubernetes · Terraform · GitOps · Observability**
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&duration=3000&pause=1000&center=true&vCenter=true&width=800&lines=AWS+%7C+Kubernetes+%7C+Terraform;Platform+Engineering;Infrastructure+as+Code;Cloud-Native+Systems;Automation+%7C+Reliability+%7C+Scale" />
 
 <br>
 
-<img src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&hide_border=true&theme=transparent&rank_icon=github" height="165" />
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&hide_border=true&theme=transparent" height="165" />
+<img src="https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazonaws" />
+<img src="https://img.shields.io/badge/Kubernetes-Orchestration-blue?style=for-the-badge&logo=kubernetes" />
+<img src="https://img.shields.io/badge/Terraform-IaC-purple?style=for-the-badge&logo=terraform" />
 
 </div>
 
 ---
 
-## Technology Stack
+<div align="center">
 
-```text
-Cloud
-├── AWS
-├── Kubernetes
-├── Docker
-└── Linux
+<img height="170" src="https://github-readme-stats.vercel.app/api?username=smilekison&show_icons=true&theme=tokyonight&hide_border=true" />
 
-Infrastructure as Code
-├── Terraform
-├── GitHub Actions
-└── Jenkins
+<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=smilekison&layout=compact&theme=tokyonight&hide_border=true" />
 
-Programming
-├── Go
-├── Python
-└── Bash
+</div>
 
-Data
-├── PostgreSQL
-└── MySQL
+<div align="center">
 
-Observability
-├── Prometheus
-├── Grafana
-└── CloudWatch
-```
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=smilekison&theme=tokyonight&hide_border=true" />
+
+</div>
 
 ---
 
-## Focus Areas
+## ⚡ Technology Stack
+
+<table>
+<tr>
+<td width="50%">
+
+### ☁️ Cloud & Platform
+
+* AWS
+* Kubernetes
+* Docker
+* Linux
+* GitOps
+
+</td>
+<td width="50%">
+
+### 🏗 Infrastructure
+
+* Terraform
+* GitHub Actions
+* Jenkins
+* CI/CD
+* Automation
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 💻 Development
+
+* Go
+* Python
+* Bash
+* Node.js
+
+</td>
+<td width="50%">
+
+### 📊 Observability
+
+* Prometheus
+* Grafana
+* CloudWatch
+* Logging
+* Monitoring
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🎯 Focus Areas
+
+<table>
+<tr>
+<td width="50%">
+
+### Current Focus
 
 * Platform Engineering
-* Cloud Infrastructure
-* Kubernetes Operations
-* Infrastructure as Code
-* GitOps Workflows
-* CI/CD Automation
+* Kubernetes
 * Cloud Security
-* Site Reliability Engineering
+* GitOps
+
+</td>
+
+<td width="50%">
+
+### Engineering Interests
+
+* Distributed Systems
+* SRE
+* Automation
+* Reliability
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Current Projects
+## 🚀 Featured Work
 
-```text
-aws-platform-blueprint
-terraform-eks-platform
-gitops-kubernetes-platform
-cloud-observability-stack
-platform-automation-toolkit
-```
+<table>
+<tr>
+<td width="50%">
+
+### aws-platform-blueprint
+
+Enterprise AWS architecture built using Terraform.
+
+</td>
+
+<td width="50%">
+
+### terraform-eks-platform
+
+Production-ready Kubernetes platform.
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### gitops-platform
+
+GitOps workflows with ArgoCD.
+
+</td>
+
+<td width="50%">
+
+### cloud-observability-stack
+
+Monitoring and observability toolkit.
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Engineering Philosophy
+## 🏆 Certifications
+
+<div align="center">
+
+| Certification                     | Status |
+| --------------------------------- | ------ |
+| AWS Certified Developer Associate | ✅      |
+| Docker Certified Associate        | ✅      |
+| HashiCorp Terraform Associate     | ✅      |
+
+</div>
+
+---
+
+## 📐 Engineering Philosophy
 
 ```text
 Automate repetitive work.
 
 Design for failure.
 
-Prefer simplicity.
-
 Measure everything.
 
-Document decisions.
+Prefer simplicity.
 
 Build systems that scale.
+
+Reliability over complexity.
 ```
-
----
-
-## Background
-
-* MSc Advanced Computer Science
-* Cardiff Metropolitan University
-* Cloud & Infrastructure Engineering
-* AWS / Kubernetes / Terraform
-* Backend & Platform Development
 
 ---
 
 <div align="center">
 
-Infrastructure • Automation • Reliability
+### Infrastructure • Automation • Reliability
+
+Building platforms, not servers.
 
 </div>
