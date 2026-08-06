@@ -18,7 +18,7 @@
 
 ### FEATURED ENGINEERING DOMAINS
 
-`Cloud Infrastructure` • `Kubernetes` • `DevOps` • `Platform Engineering` • `Observability` • `Automation`
+`Cloud Infrastructure` • `DevOps` • `Platform Engineering` • `Observability` • `Automation`
 
 </div>
 
