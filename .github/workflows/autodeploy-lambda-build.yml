@@ -1,0 +1,20 @@
+name: AutoDeploy Lambda Build
+on:
+  workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::654654338380:role/AutoDeployLambdaProvision
+          aws-region: us-east-1
+      - uses: aws-actions/amazon-ecr-login@v2
+      - name: Build and push image
+        run: |
+          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/newfunctiontest:${{ github.sha }} .
+          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/newfunctiontest:${{ github.sha }}
