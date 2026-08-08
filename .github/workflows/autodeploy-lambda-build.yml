@@ -9,6 +9,68 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Generate a Lambda-ready Dockerfile if this repo doesn't have one
+        run: |
+          if [ -f Dockerfile ]; then
+            echo "Using this repo's own Dockerfile."
+            if ! grep -q "lambda-adapter" Dockerfile; then
+              echo "::warning::Dockerfile exists but doesn't reference the Lambda Web Adapter — the image will build and push, but the function likely won't answer requests. See https://github.com/awslabs/aws-lambda-web-adapter"
+            fi
+            exit 0
+          fi
+
+          if [ -f package.json ] && grep -q '"start"' package.json; then
+            echo "No Dockerfile found — auto-detected Node.js, generating one with the Lambda Web Adapter."
+            cat > Dockerfile << 'EOF'
+          FROM node:20-alpine
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+          ENV AWS_LWA_PORT=8080
+          WORKDIR /app
+          COPY package*.json ./
+          RUN npm install --omit=dev || npm install
+          COPY . .
+          CMD ["npm", "start"]
+          EOF
+          elif [ -f requirements.txt ] || [ -f pyproject.toml ]; then
+            echo "No Dockerfile found — auto-detected Python, generating one with the Lambda Web Adapter."
+            ENTRYPOINT=$(ls app.py main.py manage.py 2>/dev/null | head -1)
+            ENTRYPOINT=${ENTRYPOINT:-app.py}
+            cat > Dockerfile << EOF
+          FROM python:3.12-slim
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+          ENV AWS_LWA_PORT=8080
+          WORKDIR /app
+          COPY . .
+          RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; elif [ -f pyproject.toml ]; then pip install --no-cache-dir .; fi
+          CMD ["python", "$ENTRYPOINT"]
+          EOF
+          elif [ -f go.mod ]; then
+            echo "No Dockerfile found — auto-detected Go, generating one with the Lambda Web Adapter."
+            cat > Dockerfile << 'EOF'
+          FROM golang:1.22-alpine AS build
+          WORKDIR /app
+          COPY . .
+          RUN go build -o /app/server .
+
+          FROM alpine:3.20
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+          ENV AWS_LWA_PORT=8080
+          WORKDIR /app
+          COPY --from=build /app/server /app/server
+          CMD ["./server"]
+          EOF
+          elif [ -f index.html ]; then
+            echo "No Dockerfile found — auto-detected a static site, generating one with the Lambda Web Adapter (served via nginx)."
+            cat > Dockerfile << 'EOF'
+          FROM nginx:alpine
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+          ENV AWS_LWA_PORT=80
+          COPY . /usr/share/nginx/html
+          EOF
+          else
+            echo "::error::Could not auto-detect a language/stack for this repo, and it has no Dockerfile. Add one yourself with the Lambda Web Adapter included — see https://github.com/awslabs/aws-lambda-web-adapter"
+            exit 1
+          fi
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::654654338380:role/AutoDeployLambdaProvision
@@ -16,5 +78,5 @@ jobs:
       - uses: aws-actions/amazon-ecr-login@v2
       - name: Build and push image
         run: |
-          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }} .
-          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }}
+          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/lambda-staging:${{ github.sha }} .
+          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/lambda-staging:${{ github.sha }}
