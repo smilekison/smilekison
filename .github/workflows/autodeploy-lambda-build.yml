@@ -1,263 +1,82 @@
 name: AutoDeploy Lambda Build
-
 on:
   workflow_dispatch:
-
 permissions:
   id-token: write
   contents: read
-
-env:
-  AWS_REGION: us-east-1
-  AWS_ACCOUNT_ID: "654654338380"
-  ECR_REPOSITORY: lambda-staging
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # ---------------------------------------------------------
-      # 1. Checkout repository
-      # ---------------------------------------------------------
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # ---------------------------------------------------------
-      # 2. Generate Lambda-compatible Dockerfile if needed
-      # ---------------------------------------------------------
-      - name: Generate Lambda-ready Dockerfile
-        shell: bash
+      - uses: actions/checkout@v4
+      - name: Generate a Lambda-ready Dockerfile if this repo doesn't have one
         run: |
-          set -e
-
           if [ -f Dockerfile ]; then
-            echo "Using this repository's existing Dockerfile."
-
-            if ! grep -qi "lambda-adapter" Dockerfile; then
-              echo "::warning::Dockerfile does not reference the AWS Lambda Web Adapter."
-              echo "The image may build successfully, but Lambda may not be able to serve HTTP requests."
-              echo "See: https://github.com/awslabs/aws-lambda-web-adapter"
+            echo "Using this repo's own Dockerfile."
+            if ! grep -q "lambda-adapter" Dockerfile; then
+              echo "::warning::Dockerfile exists but doesn't reference the Lambda Web Adapter — the image will build and push, but the function likely won't answer requests. See https://github.com/awslabs/aws-lambda-web-adapter"
             fi
-
             exit 0
           fi
 
-          # -----------------------------------------------------
-          # Node.js
-          # -----------------------------------------------------
           if [ -f package.json ] && grep -q '"start"' package.json; then
-
-            echo "No Dockerfile found."
-            echo "Detected Node.js application."
-            echo "Generating Lambda Web Adapter Dockerfile."
-
+            echo "No Dockerfile found — auto-detected Node.js, generating one with the Lambda Web Adapter."
             cat > Dockerfile << 'EOF'
           FROM node:20-alpine
-
-          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 \
-            /lambda-adapter \
-            /opt/extensions/lambda-adapter
-
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
           ENV AWS_LWA_PORT=8080
-
           WORKDIR /app
-
           COPY package*.json ./
-
           RUN npm install --omit=dev || npm install
-
           COPY . .
-
-          EXPOSE 8080
-
           CMD ["npm", "start"]
           EOF
-
-          # -----------------------------------------------------
-          # Python
-          # -----------------------------------------------------
           elif [ -f requirements.txt ] || [ -f pyproject.toml ]; then
-
-            echo "No Dockerfile found."
-            echo "Detected Python application."
-            echo "Generating Lambda Web Adapter Dockerfile."
-
-            ENTRYPOINT_FILE=$(ls app.py main.py manage.py 2>/dev/null | head -1)
-            ENTRYPOINT_FILE=${ENTRYPOINT_FILE:-app.py}
-
-            echo "Detected Python entrypoint: ${ENTRYPOINT_FILE}"
-
+            echo "No Dockerfile found — auto-detected Python, generating one with the Lambda Web Adapter."
+            ENTRYPOINT=$(ls app.py main.py manage.py 2>/dev/null | head -1)
+            ENTRYPOINT=${ENTRYPOINT:-app.py}
             cat > Dockerfile << EOF
           FROM python:3.12-slim
-
-          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 \
-            /lambda-adapter \
-            /opt/extensions/lambda-adapter
-
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
           ENV AWS_LWA_PORT=8080
-
           WORKDIR /app
-
           COPY . .
-
-          RUN if [ -f requirements.txt ]; then \
-                pip install --no-cache-dir -r requirements.txt; \
-              elif [ -f pyproject.toml ]; then \
-                pip install --no-cache-dir .; \
-              fi
-
-          EXPOSE 8080
-
-          CMD ["python", "${ENTRYPOINT_FILE}"]
+          RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; elif [ -f pyproject.toml ]; then pip install --no-cache-dir .; fi
+          CMD ["python", "$ENTRYPOINT"]
           EOF
-
-          # -----------------------------------------------------
-          # Go
-          # -----------------------------------------------------
           elif [ -f go.mod ]; then
-
-            echo "No Dockerfile found."
-            echo "Detected Go application."
-            echo "Generating Lambda Web Adapter Dockerfile."
-
+            echo "No Dockerfile found — auto-detected Go, generating one with the Lambda Web Adapter."
             cat > Dockerfile << 'EOF'
           FROM golang:1.22-alpine AS build
-
           WORKDIR /app
-
           COPY . .
-
           RUN go build -o /app/server .
 
           FROM alpine:3.20
-
-          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 \
-            /lambda-adapter \
-            /opt/extensions/lambda-adapter
-
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
           ENV AWS_LWA_PORT=8080
-
           WORKDIR /app
-
           COPY --from=build /app/server /app/server
-
-          EXPOSE 8080
-
           CMD ["./server"]
           EOF
-
-          # -----------------------------------------------------
-          # Static website
-          # -----------------------------------------------------
           elif [ -f index.html ]; then
-
-            echo "No Dockerfile found."
-            echo "Detected static website."
-            echo "Generating nginx + Lambda Web Adapter Dockerfile."
-
+            echo "No Dockerfile found — auto-detected a static site, generating one with the Lambda Web Adapter (served via nginx)."
             cat > Dockerfile << 'EOF'
           FROM nginx:alpine
-
-          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 \
-            /lambda-adapter \
-            /opt/extensions/lambda-adapter
-
+          COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
           ENV AWS_LWA_PORT=80
-
           COPY . /usr/share/nginx/html
           EOF
-
-          # -----------------------------------------------------
-          # Unknown project
-          # -----------------------------------------------------
           else
-
-            echo "::error::Could not automatically detect the application."
-
-            echo "No Dockerfile, package.json, requirements.txt, pyproject.toml, go.mod, or index.html was found."
-
+            echo "::error::Could not auto-detect a language/stack for this repo, and it has no Dockerfile. Add one yourself with the Lambda Web Adapter included — see https://github.com/awslabs/aws-lambda-web-adapter"
             exit 1
-
           fi
-
-          echo ""
-          echo "================================================="
-          echo "Generated Dockerfile"
-          echo "================================================="
-
-          cat Dockerfile
-
-      # ---------------------------------------------------------
-      # 3. Configure AWS using GitHub OIDC
-      # ---------------------------------------------------------
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::654654338380:role/AutoDeployLambdaProvision
-          aws-region: ${{ env.AWS_REGION }}
-
-      # ---------------------------------------------------------
-      # 4. Verify AWS authentication
-      # ---------------------------------------------------------
-      - name: Verify AWS authentication
+          aws-region: us-east-1
+      - uses: aws-actions/amazon-ecr-login@v2
+      - name: Build and push image
         run: |
-          aws sts get-caller-identity
-
-      # ---------------------------------------------------------
-      # 5. Ensure ECR repository exists
-      # ---------------------------------------------------------
-      - name: Ensure ECR repository exists
-        shell: bash
-        run: |
-          set -e
-
-          if aws ecr describe-repositories \
-            --repository-names "$ECR_REPOSITORY" \
-            --region "$AWS_REGION" >/dev/null 2>&1; then
-
-            echo "ECR repository already exists: $ECR_REPOSITORY"
-
-          else
-
-            echo "Creating ECR repository: $ECR_REPOSITORY"
-
-            aws ecr create-repository \
-              --repository-name "$ECR_REPOSITORY" \
-              --region "$AWS_REGION"
-
-          fi
-
-      # ---------------------------------------------------------
-      # 6. Login to Amazon ECR
-      # ---------------------------------------------------------
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v2
-
-      # ---------------------------------------------------------
-      # 7. Build Docker image
-      # ---------------------------------------------------------
-      - name: Build Docker image
-        run: |
-          docker build \
-            -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }} \
-            .
-
-      # ---------------------------------------------------------
-      # 8. Push image to ECR
-      # ---------------------------------------------------------
-      - name: Push image to ECR
-        run: |
-          docker push \
-            $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }}
-
-      # ---------------------------------------------------------
-      # 9. Display image URI
-      # ---------------------------------------------------------
-      - name: Display image URI
-        run: |
-          echo "================================================="
-          echo "Docker image successfully pushed"
-          echo "================================================="
-          echo ""
-          echo "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }}"
+          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }} .
+          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }}
