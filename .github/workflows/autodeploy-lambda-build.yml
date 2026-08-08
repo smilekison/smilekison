@@ -16,5 +16,5 @@ jobs:
       - uses: aws-actions/amazon-ecr-login@v2
       - name: Build and push image
         run: |
-          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/firstfunction:${{ github.sha }} .
-          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/firstfunction:${{ github.sha }}
+          docker build -t 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }} .
+          docker push 654654338380.dkr.ecr.us-east-1.amazonaws.com/portfolio:${{ github.sha }}
