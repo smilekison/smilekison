@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Instrument panel palette ---------------------------------------- */
+  /* ---- Dark mode (default) ------------------------------------------------ */
   --color-ink: #0b0e13;
   --color-panel: #11151c;
   --color-raise: #161b24;
@@ -24,6 +24,47 @@
   --dur-micro: 180ms;
   --dur-std: 340ms;
   --dur-section: 520ms;
+}
+
+/* ---- Light mode ----------------------------------------------------------
+   Same instrument-panel structure, inverted: paper ground, ink text, a darker
+   signal so it still passes contrast on white.
+
+   Precedence (low to high):
+   1. System preference — applies automatically when no explicit choice is
+      stored and the OS is set to light.
+   2. Explicit [data-theme="light"] — always wins, regardless of OS.
+   [data-theme="dark"] needs no rule: dark is already the :root default above. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-ink: #f7f7f5;
+    --color-panel: #ececea;
+    --color-raise: #e4e4e1;
+    --color-line: #d6d6d2;
+    --color-line-bright: #b8b8b3;
+    --color-muted: #6e6e68;
+    --color-dim: #4a4a42;
+    --color-text: #26261f;
+    --color-bright: #0a0a08;
+    --color-signal: #0d8f7f;
+    --color-signal-dim: #bfe8e2;
+    --color-amber: #b5651d;
+  }
+}
+
+:root[data-theme="light"] {
+  --color-ink: #f7f7f5;
+  --color-panel: #ececea;
+  --color-raise: #e4e4e1;
+  --color-line: #d6d6d2;
+  --color-line-bright: #b8b8b3;
+  --color-muted: #6e6e68;
+  --color-dim: #4a4a42;
+  --color-text: #26261f;
+  --color-bright: #0a0a08;
+  --color-signal: #0d8f7f;
+  --color-signal-dim: #bfe8e2;
+  --color-amber: #b5651d;
 }
 
 /* --- Base ---------------------------------------------------------------- */

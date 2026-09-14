@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { profile, sections } from "@/lib/content";
 import { EASE_OUT, springTight } from "@/lib/motion";
 import { useActiveSection } from "@/lib/hooks";
+import { ThemeToggle } from "./theme-toggle";
 
 const ids = sections.map((s) => s.id);
 
@@ -113,10 +114,11 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
               })}
             </ul>
 
-            <div className="hidden md:block">
+            <div className="hidden items-center gap-1 md:flex">
+              <ThemeToggle />
               <a
                 href={`mailto:${profile.email}`}
-                className="group inline-flex items-center gap-2 border border-line-bright px-4 py-2 text-[0.8125rem] text-text transition-colors duration-200 hover:border-signal hover:text-bright"
+                className="group ml-2 inline-flex items-center gap-2 border border-line-bright px-4 py-2 text-[0.8125rem] text-text transition-colors duration-200 hover:border-signal hover:text-bright"
               >
                 Email me
                 <span className="transition-transform duration-200 group-hover:translate-x-0.5">
@@ -125,16 +127,19 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
               </a>
             </div>
 
-            {/* Mobile trigger — 44px target */}
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              aria-expanded={open}
-              className="-mr-2 grid h-11 w-11 place-items-center text-bright md:hidden"
-            >
-              <Menu size={20} strokeWidth={1.75} aria-hidden />
-            </button>
+            {/* Mobile: theme toggle + menu trigger, both 44px targets */}
+            <div className="flex items-center gap-1 md:hidden">
+              <ThemeToggle />
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={open}
+                className="-mr-2 grid h-11 w-11 place-items-center text-bright"
+              >
+                <Menu size={20} strokeWidth={1.75} aria-hidden />
+              </button>
+            </div>
           </nav>
         </div>
       </motion.header>
@@ -158,14 +163,17 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
             <div className="relative flex h-[100dvh] flex-col">
               <div className="shell flex h-20 shrink-0 items-center justify-between">
                 <span className="font-mono text-sm text-bright">smilekisan</span>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  aria-label="Close menu"
-                  className="-mr-2 grid h-11 w-11 place-items-center text-bright"
-                >
-                  <X size={20} strokeWidth={1.75} aria-hidden />
-                </button>
+                <div className="flex items-center gap-1">
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close menu"
+                    className="-mr-2 grid h-11 w-11 place-items-center text-bright"
+                  >
+                    <X size={20} strokeWidth={1.75} aria-hidden />
+                  </button>
+                </div>
               </div>
 
               <motion.ul
