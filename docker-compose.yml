@@ -5,13 +5,19 @@ services:
     build: .
     container_name: smile-portfolio
     ports:
-      - "443:443"
+      - "443:8443"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "https://localhost:443/"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "https://localhost:8443/"]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 5s
     environment:
       - NODE_ENV=production
+    # For production with a real domain: mount real certs over the
+    # container's cert dir and the entrypoint will use them instead of
+    # generating a self-signed pair. See DOCKER.md.
+    # volumes:
+    #   - /path/to/cert.pem:/app/certs/cert.pem:ro
+    #   - /path/to/key.pem:/app/certs/key.pem:ro

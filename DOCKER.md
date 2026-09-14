@@ -9,8 +9,8 @@ docker-compose up -d
 
 This will:
 - Build the portfolio from source
-- Generate self-signed HTTPS certificates
-- Start the service on port 443 (HTTPS)
+- Generate self-signed HTTPS certificates at container startup
+- Start the service, reachable on host port 443 (HTTPS)
 - Automatically restart unless manually stopped
 - Run health checks every 30s
 
@@ -25,15 +25,17 @@ docker build -t smile-portfolio .
 ```bash
 docker run -d \
   --name smile-portfolio \
-  -p 443:443 \
+  -p 443:8443 \
   --restart unless-stopped \
   smile-portfolio
 ```
 
 ## What's Included
 
-- **Multi-stage build**: Minimal final image (Node 18 Alpine)
-- **HTTPS by default**: Self-signed certificates generated at runtime
+- **Multi-stage build**: Minimal final image (Node 20 Alpine)
+- **HTTPS by default**: Self-signed certificate generated when the container
+  starts, not baked into the image (see Security notes below)
+- **Non-root**: The app runs as the `node` user, not root
 - **Automatic restart**: Policy `unless-stopped` — container restarts on failure, survives reboot, only stops on manual `docker stop`
 - **Health checks**: Verifies HTTPS endpoint every 30s
 - **Static export**: Serves the prebuilt Next.js static output
@@ -66,27 +68,53 @@ docker image rm smile-portfolio
 
 ## SSL Certificates
 
-The Dockerfile automatically generates self-signed certificates at build time:
-- **Certificate**: `/etc/ssl/certs/cert.pem`
-- **Key**: `/etc/ssl/certs/key.pem`
+`docker-entrypoint.sh` generates a self-signed certificate the first time the
+container starts, into the container's own writable filesystem:
+- **Certificate**: `/app/certs/cert.pem`
+- **Key**: `/app/certs/key.pem`
 - **Valid for**: 365 days
 
-For production with a real domain, replace these with certificates from Let's Encrypt or your CA.
+The key is never written during `docker build`, so it never lands in an image
+layer — anyone who pulls or inspects the image gets no key material. Each
+container gets its own freshly generated cert unless you mount your own.
 
-## Port Mapping
-
-- Container: `443` (HTTPS inside)
-- Host: `443` (map to any port with `-p <host>:443`)
-
-Example: Run on port 8443 instead of 443
+**For production with a real domain**, mount certificates from Let's Encrypt
+or your CA over the same path — the entrypoint skips generation when a cert
+already exists at that path:
 ```bash
 docker run -d \
   --name smile-portfolio \
-  -p 8443:443 \
+  -p 443:8443 \
+  -v /path/to/cert.pem:/app/certs/cert.pem:ro \
+  -v /path/to/key.pem:/app/certs/key.pem:ro \
   --restart unless-stopped \
   smile-portfolio
 ```
-Then access at `https://localhost:8443`
+Or uncomment the `volumes:` block in `docker-compose.yml`.
+
+## Port Mapping
+
+- Container: `8443` (unprivileged — lets the process run as a non-root user)
+- Host: `443` (or any port you choose)
+
+```bash
+docker run -d \
+  --name smile-portfolio \
+  -p 443:8443 \
+  --restart unless-stopped \
+  smile-portfolio
+```
+Access at `https://localhost` (or `https://localhost:<host-port>` if you mapped a different one).
+
+## Security notes
+
+- **No baked-in private key** — certs are generated at container start into
+  ephemeral storage, not during `docker build`. Nothing sensitive is
+  committed to an image layer.
+- **Runs as non-root** — the final `USER node` means a compromised process
+  doesn't get root inside the container.
+- **Self-signed certs are for local/preview use.** Browsers will warn about
+  them. Use real certificates (mounted as above) for anything public-facing.
 
 ## Environment
 
