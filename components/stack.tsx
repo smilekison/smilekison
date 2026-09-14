@@ -15,8 +15,9 @@ const categories = [
   "Languages",
 ] as const;
 
-/** The ecosystem, grouped by role. Selecting one technology lights the ones it
- *  actually works with — no skill percentages (pre.txt §16). */
+/** A grid of category cards — matching smilekisan.com's Skills section
+ *  layout. Selecting a technology still lights the ones it actually works
+ *  with, and there are no fabricated skill percentages (pre.txt §16). */
 export function Stack() {
   const [active, setActive] = useState<string | null>(null);
 
@@ -33,21 +34,28 @@ export function Stack() {
 
   return (
     <div className="mt-14" onPointerLeave={() => setActive(null)}>
-      <div className="space-y-8">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat, ci) => {
           const items = stack.filter((t) => t.category === cat);
           if (items.length === 0) return null;
           return (
             <motion.div
               key={cat}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.45, ease: EASE_OUT, delay: ci * 0.05 }}
-              className="grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8 lg:grid-cols-[12rem_1fr]"
+              className="card-surface p-6"
             >
-              <p className="type-data pt-2.5 text-muted">{cat}</p>
-              <ul className="flex flex-wrap gap-2">
+              <p className="flex items-center gap-2 text-[0.9375rem] font-medium text-bright">
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ backgroundImage: "var(--gradient-brand)" }}
+                  aria-hidden
+                />
+                {cat}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
                 {items.map((t) => (
                   <TechChip
                     key={t.name}
@@ -66,7 +74,7 @@ export function Stack() {
       </div>
 
       {/* Explanation panel with reserved height — no layout jump on selection. */}
-      <div className="mt-10 min-h-[5rem] border-t border-line pt-5">
+      <div className="card-surface mt-8 min-h-[5.5rem] p-6">
         <AnimatePresence mode="wait" initial={false}>
           {current ? (
             <motion.div
@@ -77,7 +85,7 @@ export function Stack() {
               transition={micro}
             >
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="text-ink font-medium text-bright">{current.name}</p>
+                <p className="font-medium text-bright">{current.name}</p>
                 <p className="type-data text-signal">{current.category}</p>
               </div>
               <p className="measure mt-2 text-[0.9375rem] leading-relaxed text-dim">{current.use}</p>
@@ -123,12 +131,12 @@ function TechChip({
         animate={{ opacity: state === "dim" ? 0.35 : 1 }}
         transition={micro}
         style={state === "active" ? { backgroundImage: "var(--gradient-brand)" } : undefined}
-        className={`flex min-h-11 items-center rounded-full border px-4 text-sm font-medium transition-colors duration-200 ${
+        className={`flex min-h-9 items-center rounded-full border px-3.5 text-[0.8125rem] font-medium transition-colors duration-200 ${
           state === "active"
             ? "border-transparent text-white shadow-sm shadow-black/10"
             : state === "lit"
               ? "border-transparent bg-signal-dim text-signal"
-              : "border-line bg-panel/40 text-dim hover:border-signal hover:text-text"
+              : "border-transparent bg-signal-dim/60 text-dim hover:bg-signal-dim hover:text-signal"
         }`}
       >
         {tech.name}

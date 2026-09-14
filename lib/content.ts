@@ -98,7 +98,11 @@ export type TimelineEntry = {
   year: string;
   title: string;
   org: string;
+  location?: string;
   body: string;
+  // Itemized achievements, matching smilekisan.com's per-role bullet lists.
+  // Omitted for non-job entries (education, the "Now" summary).
+  bullets?: string[];
   tags: string[];
 };
 
@@ -114,28 +118,46 @@ export const timeline: TimelineEntry[] = [
   {
     year: "2024–25",
     title: "Junior DevOps Engineer (Intern, Hybrid)",
-    org: "Fortray Global Services Limited, UK",
-    body: "Managed the GitLab/Nexus toolchain across critical infrastructure, automated monitoring and alerting with PowerShell and Bash, and led root-cause troubleshooting for production issues alongside developers and security engineers.",
+    org: "Fortray Global Services Limited",
+    location: "United Kingdom",
+    body: "Managed the GitLab/Nexus toolchain across critical infrastructure and led troubleshooting for production issues alongside developers and security engineers.",
+    bullets: [
+      "Managed the enterprise-wide DevOps toolchain (GitLab, Nexus) across varied deployment strategies, sustaining 99.9% uptime on critical infrastructure.",
+      "Automated monitoring and alerting with PowerShell and Bash, cutting manual intervention by 80% and improving incident response time.",
+      "Led root-cause troubleshooting for production issues, implementing proactive measures to improve system resilience.",
+      "Built monitoring dashboards and automated alerting in Prometheus and Grafana for latency-sensitive applications.",
+      "Implemented DevSecOps practices to keep security compliance built into the deployment pipeline, not bolted on after.",
+    ],
     tags: ["GitLab CI", "PowerShell", "Prometheus", "Grafana"],
   },
   {
     year: "2022–23",
     title: "Relocated to the UK for a Master's",
     org: "M.Sc. Advanced Computer Science — Distinction, Cardiff Metropolitan University",
+    location: "Cardiff, United Kingdom",
     body: "Moved to Cardiff to study cloud computing and distributed systems, completing a dissertation on infrastructure automation. Worked part-time as restaurant crew to support the move while studying.",
     tags: ["Cloud Computing", "Distributed Systems"],
   },
   {
     year: "2020–22",
     title: "Software Engineer → DevOps Engineer",
-    org: "Terakoya Academia, Nepal",
-    body: "Progressed from intern to Infrastructure Team Lead, taking ownership of AWS infrastructure (EC2, VPC, IAM, S3, RDS, ECS, ECR, Lambda), Terraform and Ansible automation, and CI/CD migration to Jenkins with SonarQube security scanning built in.",
+    org: "Terakoya Academia",
+    location: "Nepal",
+    body: "Progressed from intern to Infrastructure Team Lead, taking ownership of AWS infrastructure, automation and deployment workflows.",
+    bullets: [
+      "Progressed from intern to Infrastructure Team Lead / DevOps Engineer, owning cloud infrastructure and deployment workflows.",
+      "Designed and automated AWS infrastructure across EC2, VPC, IAM, S3, RDS, ECS, ECR, Lambda and API Gateway.",
+      "Automated infrastructure provisioning with Terraform and Ansible, improving environment consistency and cutting manual deployment effort.",
+      "Migrated CI/CD to Jenkins with SonarQube vulnerability scanning built into every build — a 75% faster release cycle.",
+      "Containerized applications with Docker and ran Kubernetes workloads: scheduling, deployments, services, cluster-level troubleshooting.",
+    ],
     tags: ["AWS", "Terraform", "Jenkins", "Docker", "Kubernetes"],
   },
   {
     year: "2015–19",
     title: "Academic foundation",
     org: "Computing diplomas, then a B.Sc. (Hons)",
+    location: "Nepal",
     body: "Level 4 and 5 Diplomas in Computing through NCC Education at Softwarica College, followed by a B.Sc. (Hons) in Computing — First Class — through Leeds Beckett University at The British College, Nepal.",
     tags: ["Computing", "Programming Fundamentals"],
   },
