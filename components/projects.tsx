@@ -10,7 +10,7 @@ import { useRichMotion } from "@/lib/hooks";
 
 export function Projects() {
   return (
-    <div className="mt-14 space-y-px border-y border-line bg-line">
+    <div className="mt-14 space-y-5">
       {projects.map((p, i) => (
         <ProjectCard key={p.slug} project={p} index={i} />
       ))}
@@ -37,7 +37,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewportOnce}
       transition={{ duration: 0.55, ease: EASE_OUT, delay: index * 0.06 }}
-      className="bg-ink"
     >
       <motion.div
         ref={ref}
@@ -54,12 +53,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           mx.set(0.5);
           my.set(0.5);
         }}
-        className="group relative"
+        className="card-surface group relative overflow-hidden"
       >
         <Link
           href={`/projects/${project.slug}`}
           data-cursor="open"
-          className="block px-1 py-10 sm:px-2 sm:py-12 lg:py-14"
+          className="block p-6 sm:p-8 lg:p-10"
           aria-label={`Open case study: ${project.title}`}
         >
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
@@ -83,7 +82,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 {project.stack.map((t) => (
                   <li
                     key={t}
-                    className="border border-line px-2.5 py-1 font-mono text-[0.6875rem] text-muted transition-colors duration-300 group-hover:border-line-bright group-hover:text-dim"
+                    className="rounded-full bg-signal-dim px-3 py-1 font-mono text-[0.6875rem] text-signal"
                   >
                     {t}
                   </li>
@@ -102,16 +101,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
 
             {/* Schematic — the parallax layer */}
-            <div className="overflow-hidden border border-line bg-panel/40 lg:col-span-4">
+            <div
+              className="overflow-hidden rounded-2xl border-l-4 border-signal bg-signal-dim/60 lg:col-span-4"
+            >
               <motion.div style={rich ? { x: artX, y: artY } : undefined} className="p-5">
-                <p className="type-data mb-4 text-muted">Impact</p>
+                <p className="type-data mb-4 text-signal">Impact</p>
                 <ul className="space-y-3.5">
                   {project.outcomes.map((o) => (
                     <li key={o.label} className="flex items-baseline gap-3">
                       <span className="min-w-[3.5rem] font-medium tabular-nums text-bright">
                         {o.value}
                       </span>
-                      <span className="text-[0.8125rem] leading-snug text-muted">{o.label}</span>
+                      <span className="text-[0.8125rem] leading-snug text-dim">{o.label}</span>
                     </li>
                   ))}
                 </ul>

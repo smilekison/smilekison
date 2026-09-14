@@ -64,10 +64,10 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
               <Reveal>
                 <h2 className="type-data text-signal">Outcome</h2>
-                <ul className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3">
+                <ul className="mt-6 grid gap-4 sm:grid-cols-3">
                   {project.outcomes.map((o) => (
-                    <li key={o.label} className="bg-ink p-5">
-                      <p className="text-2xl font-medium tracking-tight text-bright">{o.value}</p>
+                    <li key={o.label} className="card-surface p-5">
+                      <p className="text-gradient text-2xl font-semibold tracking-tight">{o.value}</p>
                       <p className="mt-1.5 text-sm leading-snug text-muted">{o.label}</p>
                     </li>
                   ))}
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                     {project.stack.map((t) => (
                       <li
                         key={t}
-                        className="border border-line bg-panel/40 px-2.5 py-1.5 font-mono text-[0.6875rem] text-dim"
+                        className="rounded-full bg-signal-dim px-3 py-1.5 font-mono text-[0.6875rem] text-signal"
                       >
                         {t}
                       </li>
@@ -105,7 +105,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                           href={project.repo}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex min-h-11 items-center gap-2 border border-line-bright px-4 text-sm text-text transition-colors duration-200 hover:border-signal hover:text-bright"
+                          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line-bright px-4 text-sm text-text transition-colors duration-200 hover:border-signal hover:text-bright"
                         >
                           Repository
                           <ArrowUpRight size={15} strokeWidth={1.75} aria-hidden />
@@ -116,7 +116,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                           href={project.live}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="inline-flex min-h-11 items-center gap-2 border border-line-bright px-4 text-sm text-text transition-colors duration-200 hover:border-signal hover:text-bright"
+                          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line-bright px-4 text-sm text-text transition-colors duration-200 hover:border-signal hover:text-bright"
                         >
                           Live
                           <ArrowUpRight size={15} strokeWidth={1.75} aria-hidden />

@@ -11,7 +11,8 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="group mt-9 inline-flex min-h-12 items-center gap-2.5 bg-signal px-6 font-medium text-ink"
+          style={{ backgroundImage: "var(--gradient-brand)" }}
+          className="group mt-9 inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 font-medium text-white shadow-md shadow-black/10"
         >
           Back to the start
           <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden>

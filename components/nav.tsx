@@ -52,96 +52,87 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: EASE_OUT }}
-        className="fixed inset-x-0 top-0 z-50"
+        className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-5"
       >
-        <div
-          className={`transition-all duration-300 ${
-            scrolled
-              ? "border-b border-line bg-ink/80 backdrop-blur-xl supports-[backdrop-filter]:bg-ink/70"
-              : "border-b border-transparent bg-transparent"
+        {/* Floating pill — smilekisan.com's own nav chrome: a rounded,
+            glass container that never touches the viewport edge. */}
+        <nav
+          aria-label="Primary"
+          className={`flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-line-bright bg-panel/80 py-2.5 pl-5 pr-2.5 shadow-lg shadow-black/[0.08] backdrop-blur-xl transition-shadow duration-300 supports-[backdrop-filter]:bg-panel/70 ${
+            scrolled ? "shadow-black/[0.14]" : ""
           }`}
         >
-          <nav
-            aria-label="Primary"
-            className={`shell flex items-center justify-between transition-all duration-300 ${
-              scrolled ? "h-14" : "h-20"
-            }`}
+          <Link
+            href="/"
+            className="group flex shrink-0 items-baseline gap-2"
+            aria-label="smilekisan — home"
           >
-            <Link
-              href="/"
-              className="group flex items-baseline gap-2"
-              aria-label="smilekisan — home"
+            <span className="font-mono text-sm font-medium tracking-tight text-bright">
+              smilekisan
+            </span>
+          </Link>
+
+          {/* Desktop */}
+          <ul className="hidden items-center gap-0.5 md:flex">
+            {sections.map((s) => {
+              const isActive = variant === "home" && active === s.id;
+              return (
+                <li key={s.id} className="relative">
+                  <a
+                    href={href(s.id)}
+                    onClick={(e) => {
+                      if (variant !== "home") return;
+                      e.preventDefault();
+                      go(s.id);
+                      history.replaceState(null, "", `#${s.id}`);
+                    }}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`relative block rounded-full px-3.5 py-2 text-[0.8125rem] transition-colors duration-200 ${
+                      isActive ? "text-bright" : "text-muted hover:text-text"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-indicator"
+                        transition={springTight}
+                        className="absolute inset-0 rounded-full bg-signal-dim"
+                      />
+                    )}
+                    <span className="relative">{s.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="hidden items-center gap-1.5 md:flex">
+            <ThemeToggle />
+            <a
+              href={`mailto:${profile.email}`}
+              className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.8125rem] font-medium text-white shadow-sm transition-transform duration-200 hover:scale-[1.03]"
+              style={{ backgroundImage: "var(--gradient-brand)" }}
             >
-              <span className="font-mono text-sm font-medium tracking-tight text-bright">
-                smilekisan
+              Email me
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                →
               </span>
-              <span
-                className="h-1.5 w-1.5 shrink-0 bg-signal transition-transform duration-200 group-hover:scale-125"
-                aria-hidden
-              />
-            </Link>
+            </a>
+          </div>
 
-            {/* Desktop */}
-            <ul className="hidden items-center gap-1 md:flex">
-              {sections.map((s) => {
-                const isActive = variant === "home" && active === s.id;
-                return (
-                  <li key={s.id} className="relative">
-                    <a
-                      href={href(s.id)}
-                      onClick={(e) => {
-                        if (variant !== "home") return;
-                        e.preventDefault();
-                        go(s.id);
-                        history.replaceState(null, "", `#${s.id}`);
-                      }}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`relative block px-3 py-2 text-[0.8125rem] transition-colors duration-200 ${
-                        isActive ? "text-bright" : "text-muted hover:text-text"
-                      }`}
-                    >
-                      {s.label}
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-indicator"
-                          transition={springTight}
-                          className="absolute inset-x-3 -bottom-0.5 h-px bg-signal"
-                        />
-                      )}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className="hidden items-center gap-1 md:flex">
-              <ThemeToggle />
-              <a
-                href={`mailto:${profile.email}`}
-                className="group ml-2 inline-flex items-center gap-2 border border-line-bright px-4 py-2 text-[0.8125rem] text-text transition-colors duration-200 hover:border-signal hover:text-bright"
-              >
-                Email me
-                <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-                  →
-                </span>
-              </a>
-            </div>
-
-            {/* Mobile: theme toggle + menu trigger, both 44px targets */}
-            <div className="flex items-center gap-1 md:hidden">
-              <ThemeToggle />
-              <button
-                type="button"
-                onClick={() => setOpen(true)}
-                aria-label="Open menu"
-                aria-expanded={open}
-                className="-mr-2 grid h-11 w-11 place-items-center text-bright"
-              >
-                <Menu size={20} strokeWidth={1.75} aria-hidden />
-              </button>
-            </div>
-          </nav>
-        </div>
+          {/* Mobile: theme toggle + menu trigger, both 44px targets */}
+          <div className="flex items-center gap-0.5 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={open}
+              className="grid h-11 w-11 place-items-center rounded-full text-bright"
+            >
+              <Menu size={20} strokeWidth={1.75} aria-hidden />
+            </button>
+          </div>
+        </nav>
       </motion.header>
 
       {/* Mobile sheet — designed for touch, not a shrunken desktop bar */}
@@ -169,7 +160,7 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close menu"
-                    className="-mr-2 grid h-11 w-11 place-items-center text-bright"
+                    className="-mr-2 grid h-11 w-11 place-items-center rounded-full text-bright hover:bg-signal-dim"
                   >
                     <X size={20} strokeWidth={1.75} aria-hidden />
                   </button>
@@ -200,7 +191,7 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
                         e.preventDefault();
                         go(s.id);
                       }}
-                      className="flex items-baseline gap-4 border-b border-line py-4 active:bg-panel"
+                      className="flex items-baseline gap-4 rounded-2xl px-3 py-4 active:bg-signal-dim"
                     >
                       <span className="type-data w-6 shrink-0 text-signal">{s.index}</span>
                       <span className="text-2xl tracking-tight text-bright">{s.label}</span>
@@ -217,7 +208,8 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
                 >
                   <a
                     href={`mailto:${profile.email}`}
-                    className="flex min-h-12 items-center justify-center gap-2 bg-signal px-5 font-medium text-ink"
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-full px-5 font-medium text-white"
+                    style={{ backgroundImage: "var(--gradient-brand)" }}
                   >
                     Email me <span aria-hidden>→</span>
                   </a>

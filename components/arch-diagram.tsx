@@ -24,7 +24,7 @@ export function ArchDiagram({ nodes, label }: { nodes: ArchNode[]; label: string
   const current = nodes.find((n) => n.id === active);
 
   return (
-    <figure className="border border-line bg-panel/50">
+    <figure className="card-surface overflow-hidden bg-panel/50">
       <figcaption className="flex items-center justify-between gap-4 border-b border-line px-4 py-3 sm:px-5">
         <span className="type-data text-muted">{label}</span>
         <span className="type-data text-muted">
@@ -57,12 +57,13 @@ export function ArchDiagram({ nodes, label }: { nodes: ArchNode[]; label: string
                   onClick={() => setActive(isActive ? null : node.id)}
                   aria-pressed={isActive}
                   animate={{ opacity: dimmed ? 0.38 : 1 }}
-                  className={`flex min-h-12 w-full items-center justify-center border px-4 py-2.5 text-sm transition-colors duration-200 md:w-auto ${
+                  style={isActive ? { backgroundImage: "var(--gradient-brand)" } : undefined}
+                  className={`flex min-h-12 w-full items-center justify-center rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-200 md:w-auto ${
                     isActive
-                      ? "border-signal bg-raise text-bright"
+                      ? "border-transparent text-white shadow-sm shadow-black/10"
                       : isRelated
-                        ? "border-signal-dim bg-raise text-text"
-                        : "border-line-bright bg-ink text-dim hover:border-muted hover:text-text"
+                        ? "border-transparent bg-signal-dim text-signal"
+                        : "border-line-bright bg-ink text-dim hover:border-signal hover:text-text"
                   }`}
                 >
                   {node.label}

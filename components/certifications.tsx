@@ -1,43 +1,48 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Award, CheckCircle2, Clock } from "lucide-react";
 import { certifications } from "@/lib/content";
 import { EASE_OUT, viewportOnce } from "@/lib/motion";
 
 export function Certifications() {
   return (
-    <ul className="mt-14 border-t border-line">
+    <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {certifications.map((c, i) => (
         <motion.li
           key={c.name}
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.42, ease: EASE_OUT, delay: i * 0.05 }}
-          className="group flex flex-col gap-2 border-b border-line py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+          className="card-surface group flex flex-col items-center p-6 text-center"
         >
-          <div className="flex min-w-0 items-baseline gap-4">
-            <span className="type-data shrink-0 text-muted tabular-nums">{c.year}</span>
-            <div className="min-w-0">
-              <p className="text-[0.9375rem] leading-snug text-text transition-colors duration-200 group-hover:text-bright">
-                {c.name}
-              </p>
-              <p className="mt-0.5 text-sm text-muted">{c.issuer}</p>
-            </div>
-          </div>
-
-          {/* Status is text, never colour alone (pre.txt §40). */}
           <span
-            className={`inline-flex shrink-0 items-center gap-2 self-start border px-2.5 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] sm:self-auto ${
-              c.status === "Certified"
-                ? "border-signal-dim text-signal"
-                : "border-line-bright text-muted"
+            className="grid h-14 w-14 place-items-center rounded-full text-white shadow-md shadow-black/10"
+            style={{
+              backgroundImage:
+                c.status === "Certified" ? "var(--gradient-brand)" : "var(--gradient-rose)",
+            }}
+            aria-hidden
+          >
+            <Award size={22} strokeWidth={1.75} />
+          </span>
+
+          <p className="mt-4 text-[0.9375rem] font-medium leading-snug text-bright">{c.name}</p>
+          <p className="mt-1 text-sm text-signal">{c.issuer}</p>
+          <p className="mt-0.5 text-xs text-muted">{c.year}</p>
+
+          {/* Status is text + icon, never colour alone (pre.txt §40). */}
+          <span
+            className={`mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-white ${
+              c.status === "Certified" ? "bg-emerald-600" : "bg-amber-500"
             }`}
           >
-            <span
-              className={`h-1.5 w-1.5 ${c.status === "Certified" ? "bg-signal" : "bg-muted"}`}
-              aria-hidden
-            />
+            {c.status === "Certified" ? (
+              <CheckCircle2 size={12} strokeWidth={2} aria-hidden />
+            ) : (
+              <Clock size={12} strokeWidth={2} aria-hidden />
+            )}
             {c.status}
           </span>
         </motion.li>

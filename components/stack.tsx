@@ -122,12 +122,13 @@ function TechChip({
         aria-pressed={state === "active"}
         animate={{ opacity: state === "dim" ? 0.35 : 1 }}
         transition={micro}
-        className={`flex min-h-11 items-center border px-3.5 text-sm transition-colors duration-200 ${
+        style={state === "active" ? { backgroundImage: "var(--gradient-brand)" } : undefined}
+        className={`flex min-h-11 items-center rounded-full border px-4 text-sm font-medium transition-colors duration-200 ${
           state === "active"
-            ? "border-signal bg-raise text-bright"
+            ? "border-transparent text-white shadow-sm shadow-black/10"
             : state === "lit"
-              ? "border-signal-dim bg-raise text-text"
-              : "border-line bg-panel/40 text-dim hover:border-line-bright hover:text-text"
+              ? "border-transparent bg-signal-dim text-signal"
+              : "border-line bg-panel/40 text-dim hover:border-signal hover:text-text"
         }`}
       >
         {tech.name}

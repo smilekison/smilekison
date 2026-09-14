@@ -26,6 +26,11 @@
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
 
+  /* Fixed brand gradient — same in both themes, straight from
+     smilekisan.com's own --primary-gradient. */
+  --gradient-brand: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-rose: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
   /* ---- Motion system (pre.txt §3) -------------------------------------- */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
@@ -184,6 +189,26 @@
 
 @utility hairline {
   border-top: 1px solid var(--color-line);
+}
+
+/* ---- Brand surface language ------------------------------------------------
+   Rounded cards, pill chips, gradient text/buttons — smilekisan.com's own
+   visual system, reapplied consistently across every section. */
+
+@utility text-gradient {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility card-surface {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 2px color-mix(in oklab, black 12%, transparent),
+    0 12px 32px -12px color-mix(in oklab, #667eea 22%, transparent);
 }
 
 /* The background language: a faint measurement grid, never above 4% alpha. */

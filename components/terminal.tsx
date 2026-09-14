@@ -45,7 +45,7 @@ export function Terminal() {
   const done = shown >= total;
 
   return (
-    <div ref={ref} className="border border-line bg-panel">
+    <div ref={ref} className="card-surface overflow-hidden bg-panel">
       <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-line-bright" aria-hidden />

@@ -25,7 +25,17 @@ export function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* ---- Left: the statement ---- */}
           <div className="lg:col-span-7">
-            <motion.div {...step(0.1)} className="flex items-center gap-3">
+            <motion.div {...step(0.05)} className="flex items-center">
+              <span
+                className="grid h-14 w-14 shrink-0 place-items-center rounded-full text-base font-semibold text-white shadow-lg shadow-black/10 ring-4 ring-signal-dim sm:h-16 sm:w-16"
+                style={{ backgroundImage: "var(--gradient-brand)" }}
+                aria-hidden
+              >
+                SK
+              </span>
+            </motion.div>
+
+            <motion.div {...step(0.16)} className="mt-5 flex items-center gap-3">
               <span className="relative flex h-1.5 w-1.5" aria-hidden>
                 <span className="absolute inset-0 animate-pulse bg-signal" />
               </span>
@@ -33,7 +43,7 @@ export function Hero() {
             </motion.div>
 
             <h1 className="mt-6">
-              <motion.span {...step(0.2)} className="block type-hero text-bright">
+              <motion.span {...step(0.24)} className="text-gradient block type-hero">
                 {profile.name}
               </motion.span>
               <motion.span
@@ -60,7 +70,8 @@ export function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.18, ease: EASE_OUT }}
-                  className="group inline-flex min-h-12 items-center gap-2.5 bg-signal px-6 font-medium text-ink"
+                  className="group inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 font-medium text-white shadow-md shadow-black/10"
+                  style={{ backgroundImage: "var(--gradient-brand)" }}
                 >
                   See the work
                   <span className="transition-transform duration-200 group-hover:translate-x-1">
@@ -76,7 +87,7 @@ export function Hero() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.18, ease: EASE_OUT }}
-                  className="group inline-flex min-h-12 items-center gap-2.5 border border-line-bright px-6 text-text transition-colors duration-200 hover:border-muted hover:text-bright"
+                  className="group inline-flex min-h-12 items-center gap-2.5 rounded-full border border-line-bright px-6 text-text transition-colors duration-200 hover:border-signal hover:text-bright"
                 >
                   Résumé
                   <ArrowUpRight
@@ -95,7 +106,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.55 }}
-            className="border border-line bg-panel/60 p-5 backdrop-blur-sm sm:p-6 lg:col-span-5"
+            className="card-surface bg-panel/70 p-5 backdrop-blur-sm sm:p-6 lg:col-span-5"
           >
             <Pipeline />
           </motion.div>

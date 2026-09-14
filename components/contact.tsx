@@ -13,7 +13,12 @@ export function Contact() {
   return (
     <footer id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-line">
       <div className="grid-field pointer-events-none absolute inset-0 opacity-[0.4]" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.1]"
+        style={{ backgroundImage: "var(--gradient-brand)" }}
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink" />
 
       <div className="shell relative py-24 sm:py-32">
         <motion.div
@@ -38,7 +43,7 @@ export function Contact() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="border border-line-bright bg-panel/40 p-6">
+            <div className="card-surface p-6">
               <p className="type-data text-muted">Prefer a direct line?</p>
 
               <Magnetic className="mt-5 inline-block" strength={5}>
@@ -47,7 +52,8 @@ export function Contact() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ duration: 0.18, ease: EASE_OUT }}
-                  className="group inline-flex min-h-12 items-center gap-2.5 bg-signal px-6 font-medium text-ink"
+                  className="group inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 font-medium text-white shadow-md shadow-black/10"
+                  style={{ backgroundImage: "var(--gradient-brand)" }}
                 >
                   {contact.cta}
                   <span
@@ -118,7 +124,7 @@ function IconLink({
       href={href}
       aria-label={label}
       {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-      className="grid h-11 w-11 place-items-center text-muted transition-colors duration-200 hover:text-signal"
+      className="grid h-11 w-11 place-items-center rounded-full text-muted transition-colors duration-200 hover:bg-signal-dim hover:text-signal"
     >
       {children}
     </a>

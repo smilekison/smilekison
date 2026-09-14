@@ -37,9 +37,14 @@ export default function Home() {
                 <p className="measure type-body text-dim">{about.body[1]}</p>
               </Reveal>
 
-              <ul className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-3">
+              <ul className="mt-12 grid gap-4 sm:grid-cols-3">
                 {about.principles.map((p, i) => (
-                  <Reveal as="li" key={p.title} delay={i * 0.07} className="bg-ink p-5">
+                  <Reveal as="li" key={p.title} delay={i * 0.07} className="card-surface p-5">
+                    <span
+                      className="mb-3 block h-1.5 w-8 rounded-full"
+                      style={{ backgroundImage: "var(--gradient-brand)" }}
+                      aria-hidden
+                    />
                     <p className="text-[0.9375rem] font-medium text-bright">{p.title}</p>
                     <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
                   </Reveal>

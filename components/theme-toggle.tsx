@@ -43,7 +43,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={!isDark}
-      className={`relative grid h-11 w-11 shrink-0 place-items-center text-muted transition-colors duration-200 hover:text-bright ${className ?? ""}`}
+      className={`relative grid h-11 w-11 shrink-0 place-items-center rounded-full text-muted transition-colors duration-200 hover:bg-signal-dim hover:text-signal ${className ?? ""}`}
     >
       {/* Avoid rendering an icon that might not match the real theme before
           hydration settles — reserve the space instead of flashing wrong. */}

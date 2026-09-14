@@ -9,7 +9,7 @@ import { EASE_OUT, micro } from "@/lib/motion";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const fieldClass =
-  "w-full border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
+  "w-full rounded-2xl border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
 
 /** Sends straight to Web3Forms from the browser — no backend, so this stays
  *  a true static export. Requires contact.web3formsAccessKey (see
@@ -64,9 +64,15 @@ export function ContactForm() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: EASE_OUT }}
-        className="flex min-h-[21rem] flex-col items-center justify-center gap-3 border border-line-bright bg-panel/60 px-6 text-center"
+        className="card-surface flex min-h-[21rem] flex-col items-center justify-center gap-3 bg-panel/60 px-6 text-center"
       >
-        <CheckCircle2 size={28} strokeWidth={1.5} className="text-signal" aria-hidden />
+        <span
+          className="grid h-14 w-14 place-items-center rounded-full text-white shadow-md shadow-black/10"
+          style={{ backgroundImage: "var(--gradient-brand)" }}
+          aria-hidden
+        >
+          <CheckCircle2 size={26} strokeWidth={1.75} />
+        </span>
         <p className="text-base font-medium text-bright">Message sent.</p>
         <p className="max-w-xs text-sm text-dim">
           Thanks — I read every message and reply from {profile.email}.
@@ -145,7 +151,8 @@ export function ContactForm() {
           whileHover={status !== "sending" ? { scale: 1.02 } : undefined}
           whileTap={status !== "sending" ? { scale: 0.97 } : undefined}
           transition={{ duration: 0.18, ease: EASE_OUT }}
-          className="inline-flex min-h-12 items-center gap-2.5 bg-signal px-6 font-medium text-ink disabled:opacity-60"
+          style={{ backgroundImage: "var(--gradient-brand)" }}
+          className="inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 font-medium text-white shadow-md shadow-black/10 disabled:opacity-60"
         >
           {status === "sending" ? (
             <>

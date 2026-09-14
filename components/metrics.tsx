@@ -8,9 +8,9 @@ import { EASE_OUT } from "@/lib/motion";
 
 export function Metrics() {
   return (
-    <ul className="grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {metrics.map((m) => (
-        <li key={m.label} className="bg-ink p-5 sm:p-6">
+        <li key={m.label} className="card-surface p-5 sm:p-6">
           <Counter metric={m} />
           <p className="mt-2 text-sm font-medium text-text">{m.label}</p>
           <p className="mt-1 text-[0.8125rem] leading-snug text-muted">{m.note}</p>

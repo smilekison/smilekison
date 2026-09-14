@@ -169,10 +169,11 @@ function Flow({
                     opacity: dimmed ? 0.42 : 1,
                   }}
                   transition={micro}
-                  className={`grid h-12 w-12 place-items-center border transition-colors duration-200 lg:h-14 lg:w-14 ${
+                  style={isActive ? { backgroundImage: "var(--gradient-brand)" } : undefined}
+                  className={`grid h-12 w-12 place-items-center rounded-full border transition-colors duration-200 lg:h-14 lg:w-14 ${
                     isActive
-                      ? "border-signal bg-raise text-signal"
-                      : "border-line-bright bg-panel text-dim group-hover:border-muted group-hover:text-text"
+                      ? "border-transparent text-white shadow-md shadow-black/10"
+                      : "border-line-bright bg-panel text-dim group-hover:border-signal group-hover:text-text"
                   }`}
                 >
                   <s.Icon size={18} strokeWidth={1.6} aria-hidden />
@@ -227,9 +228,10 @@ function FlowCompact({
               className="flex min-h-12 w-full items-center gap-4 py-1.5 text-left"
             >
               <span
-                className={`relative z-10 grid h-12 w-12 shrink-0 place-items-center border transition-colors duration-200 ${
+                style={isActive ? { backgroundImage: "var(--gradient-brand)" } : undefined}
+                className={`relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full border transition-colors duration-200 ${
                   isActive
-                    ? "border-signal bg-raise text-signal"
+                    ? "border-transparent text-white shadow-md shadow-black/10"
                     : "border-line-bright bg-panel text-dim"
                 }`}
               >
