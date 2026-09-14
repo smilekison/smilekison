@@ -20,7 +20,7 @@ export const profile = {
   email: "smilekisan.dev@gmail.com",
   domain: "smilekisan.com",
   links: {
-    github: "https://github.com/smile-kisan",
+    github: "https://github.com/smilekison",
     linkedin: "https://www.linkedin.com/in/smile-kisan/",
     resume: "/Smile_Kisan_CV.pdf",
   },
@@ -405,7 +405,8 @@ export const sections = [
   { id: "about", label: "About", index: "01" },
   { id: "experience", label: "Experience", index: "02" },
   { id: "projects", label: "Projects", index: "03" },
-  { id: "stack", label: "Stack", index: "04" },
-  { id: "certifications", label: "Certifications", index: "05" },
-  { id: "contact", label: "Contact", index: "06" },
+  { id: "github", label: "GitHub", index: "04" },
+  { id: "stack", label: "Stack", index: "05" },
+  { id: "certifications", label: "Certifications", index: "06" },
+  { id: "contact", label: "Contact", index: "07" },
 ] as const;

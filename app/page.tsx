@@ -8,6 +8,7 @@ import { Terminal } from "@/components/terminal";
 import { Metrics } from "@/components/metrics";
 import { Timeline } from "@/components/timeline";
 import { Projects } from "@/components/projects";
+import { GithubActivity } from "@/components/github-activity";
 import { Stack } from "@/components/stack";
 import { Certifications } from "@/components/certifications";
 import { Contact } from "@/components/contact";
@@ -84,10 +85,21 @@ export default function Home() {
           <Projects />
         </section>
 
-        {/* ---- 04 Stack ---- */}
-        <section id="stack" className="shell scroll-mt-24 border-t border-line py-24 sm:py-32">
+        {/* ---- 04 GitHub ---- */}
+        <section id="github" className="shell scroll-mt-24 border-t border-line py-24 sm:py-32">
           <SectionHeading
             index="04"
+            label="GitHub"
+            title="What's actually shipping."
+            description="Pulled live from the GitHub API — real repositories, real activity, not a static list that goes stale."
+          />
+          <GithubActivity />
+        </section>
+
+        {/* ---- 05 Stack ---- */}
+        <section id="stack" className="shell scroll-mt-24 border-t border-line py-24 sm:py-32">
+          <SectionHeading
+            index="05"
             label="Stack"
             title="The tools, and how they connect."
             description="Grouped by the job they do rather than ranked by confidence. Selecting one highlights the tools it genuinely works alongside."
@@ -95,13 +107,13 @@ export default function Home() {
           <Stack />
         </section>
 
-        {/* ---- 05 Certifications ---- */}
+        {/* ---- 06 Certifications ---- */}
         <section
           id="certifications"
           className="shell scroll-mt-24 border-t border-line py-24 sm:py-32"
         >
           <SectionHeading
-            index="05"
+            index="06"
             label="Certifications"
             title="Verified, and in progress."
             description="Certification is a floor, not a ceiling — but it is a useful, checkable floor."
