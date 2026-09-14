@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { profile } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
 import { HeroField } from "./hero-field";
@@ -25,12 +26,15 @@ export function Hero() {
         {/* ---- Centered statement — matches smilekisan.com's hero layout ---- */}
         <div className="mx-auto max-w-3xl text-center">
           <motion.div {...step(0.05)} className="flex justify-center">
-            <span
-              className="grid h-20 w-20 shrink-0 place-items-center rounded-full text-2xl font-semibold text-white shadow-lg shadow-black/10 ring-4 ring-signal-dim sm:h-24 sm:w-24 sm:text-3xl"
-              style={{ backgroundImage: "var(--gradient-brand)" }}
-              aria-hidden
-            >
-              SK
+            <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full shadow-lg shadow-black/10 ring-4 ring-signal-dim sm:h-24 sm:w-24">
+              <Image
+                src={profile.photo}
+                alt={profile.name}
+                fill
+                sizes="96px"
+                className="object-cover"
+                priority
+              />
             </span>
           </motion.div>
 
@@ -79,25 +83,6 @@ export function Hero() {
                 <span className="transition-transform duration-200 group-hover:translate-x-1">
                   →
                 </span>
-              </motion.a>
-            </Magnetic>
-
-            <Magnetic>
-              <motion.a
-                href={profile.links.resume}
-                download
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.18, ease: EASE_OUT }}
-                className="group inline-flex min-h-12 items-center gap-2.5 rounded-full border border-line-bright px-6 text-text transition-colors duration-200 hover:border-signal hover:text-bright"
-              >
-                Résumé
-                <ArrowUpRight
-                  size={16}
-                  strokeWidth={1.75}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden
-                />
               </motion.a>
             </Magnetic>
           </motion.div>

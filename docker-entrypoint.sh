@@ -14,4 +14,8 @@ if [ ! -f "$CERT" ] || [ ! -f "$KEY" ]; then
     -days 365 -nodes -subj "/CN=localhost"
 fi
 
-exec serve -s out -l 8443 --ssl-cert="$CERT" --ssl-key="$KEY"
+# -s (SPA fallback: rewrite every unmatched path to index.html) is wrong
+# here — this is a real multi-page static export, not a single-page app.
+# With -s, every project case-study URL silently served the homepage
+# instead of 404ing or, correctly, its own page.
+exec serve out -l 8443 --ssl-cert="$CERT" --ssl-key="$KEY"

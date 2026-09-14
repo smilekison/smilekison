@@ -56,9 +56,11 @@ export function GithubActivity() {
 
         const user: GithubUser = await userRes.json();
         const allRepos: Repo[] = await reposRes.json();
+        // Most recently pushed first — this is meant to show what's actually
+        // active right now, not a lifetime-stars leaderboard.
         const repos = allRepos
           .filter((r) => !r.fork)
-          .sort((a, b) => b.stargazers_count - a.stargazers_count || +new Date(b.pushed_at) - +new Date(a.pushed_at))
+          .sort((a, b) => +new Date(b.pushed_at) - +new Date(a.pushed_at))
           .slice(0, 6);
 
         setState({ status: "ready", repos, user });
@@ -140,12 +142,21 @@ export function GithubActivity() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="truncate font-medium text-bright">{repo.name}</p>
-                  <ExternalLink
-                    size={14}
-                    strokeWidth={2}
-                    className="mt-1 shrink-0 text-muted transition-colors duration-200 group-hover:text-signal"
-                    aria-hidden
-                  />
+                  {i === 0 ? (
+                    <span
+                      className="shrink-0 rounded-full px-2.5 py-0.5 text-[0.625rem] font-medium uppercase tracking-[0.06em] text-white"
+                      style={{ backgroundImage: "var(--gradient-brand)" }}
+                    >
+                      Latest
+                    </span>
+                  ) : (
+                    <ExternalLink
+                      size={14}
+                      strokeWidth={2}
+                      className="mt-1 shrink-0 text-muted transition-colors duration-200 group-hover:text-signal"
+                      aria-hidden
+                    />
+                  )}
                 </div>
                 <p className="mt-2 line-clamp-2 flex-1 text-[0.8125rem] leading-relaxed text-dim">
                   {repo.description || "No description provided."}

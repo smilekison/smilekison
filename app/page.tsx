@@ -79,8 +79,8 @@ export default function Home() {
           <SectionHeading
             index="03"
             label="Projects"
-            title="Three systems, and what changed after."
-            description="Each case study covers the problem as the team experienced it, the architecture that replaced it, and what measurably improved."
+            title="Selected projects."
+            description="Real problems, the systems built to fix them, and what changed as a result."
           />
           <Projects />
         </section>
@@ -115,7 +115,7 @@ export default function Home() {
           <SectionHeading
             index="06"
             label="Certifications"
-            title="Verified, and in progress."
+            title="Verified, not just claimed."
             description="Certification is a floor, not a ceiling — but it is a useful, checkable floor."
           />
           <Certifications />

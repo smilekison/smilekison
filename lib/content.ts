@@ -15,14 +15,14 @@ export const profile = {
   statement: "Engineering reliable systems from code to cloud.",
   // Hero paragraph. 2 sentences max — the page moves on quickly.
   summary:
-    "DevOps engineer with 2.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Currently building two platforms end-to-end while open to new roles.",
+    "DevOps engineer with 1.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Currently building two platforms end-to-end while open to new roles.",
   availability: "Open to DevOps, Platform & SRE roles — UK and Lithuania",
   email: "smilekisan.dev@gmail.com",
   domain: "smilekisan.com",
+  photo: "/pp.jpg",
   links: {
     github: "https://github.com/smilekison",
     linkedin: "https://www.linkedin.com/in/smile-kisan/",
-    resume: "/Smile_Kisan_CV.pdf",
   },
 };
 
@@ -76,7 +76,7 @@ export const metrics: Metric[] = [
     note: "Sustained across critical infrastructure at Fortray Global Services",
   },
   {
-    value: 2.5,
+    value: 1.5,
     suffix: "+",
     decimals: 1,
     label: "Years in infrastructure",
@@ -358,20 +358,6 @@ export const certifications: Certification[] = [
     year: "2022",
     status: "Certified",
     description: "Foundational AWS cloud concepts, core services, security and billing.",
-  },
-  {
-    name: "Certified Kubernetes Administrator (CKA)",
-    issuer: "The Linux Foundation",
-    year: "2025",
-    status: "In progress",
-    description: "Cluster administration: installation, networking, storage, security and troubleshooting.",
-  },
-  {
-    name: "Google Cloud Professional Cloud Architect",
-    issuer: "Google Cloud",
-    year: "2025",
-    status: "In progress",
-    description: "Designing, developing and managing secure, scalable solutions on Google Cloud.",
   },
 ];
 

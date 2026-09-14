@@ -8,6 +8,7 @@ import { profile, sections } from "@/lib/content";
 import { EASE_OUT, springTight } from "@/lib/motion";
 import { useActiveSection } from "@/lib/hooks";
 import { ThemeToggle } from "./theme-toggle";
+import { Logo } from "./logo";
 
 const ids = sections.map((s) => s.id);
 
@@ -58,16 +59,17 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
             glass container that never touches the viewport edge. */}
         <nav
           aria-label="Primary"
-          className={`flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-line-bright bg-panel/80 py-2.5 pl-5 pr-2.5 shadow-lg shadow-black/[0.08] backdrop-blur-xl transition-shadow duration-300 supports-[backdrop-filter]:bg-panel/70 ${
+          className={`flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-line-bright bg-panel/80 py-2 pl-3 pr-2.5 shadow-lg shadow-black/[0.08] backdrop-blur-xl transition-shadow duration-300 supports-[backdrop-filter]:bg-panel/70 ${
             scrolled ? "shadow-black/[0.14]" : ""
           }`}
         >
           <Link
             href="/"
-            className="group flex shrink-0 items-baseline gap-2"
+            className="group flex shrink-0 items-center gap-2.5"
             aria-label="smilekisan — home"
           >
-            <span className="font-mono text-sm font-medium tracking-tight text-bright">
+            <Logo size={30} />
+            <span className="hidden font-mono text-sm font-medium tracking-tight text-bright sm:inline">
               smilekisan
             </span>
           </Link>
@@ -153,7 +155,10 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
 
             <div className="relative flex h-[100dvh] flex-col">
               <div className="shell flex h-20 shrink-0 items-center justify-between">
-                <span className="font-mono text-sm text-bright">smilekisan</span>
+                <span className="flex items-center gap-2.5">
+                  <Logo size={30} />
+                  <span className="font-mono text-sm text-bright">smilekisan</span>
+                </span>
                 <div className="flex items-center gap-1">
                   <ThemeToggle />
                   <button
