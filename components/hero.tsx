@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { profile } from "@/lib/content";
 import { EASE_OUT } from "@/lib/motion";
 import { HeroField } from "./hero-field";
@@ -15,17 +15,6 @@ const step = (delay: number) => ({
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5, ease: EASE_OUT, delay },
 });
-
-const infoCards = [
-  { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: profile.phone,
-    href: `tel:${profile.phone.replace(/\s+/g, "")}`,
-  },
-  { icon: MapPin, label: "Location", value: profile.location },
-];
 
 export function Hero() {
   return (
@@ -114,33 +103,24 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* ---- Info cards — Email / Phone / Location, as on smilekisan.com ---- */}
-        <motion.div
-          {...step(0.56)}
-          className="mx-auto grid w-full max-w-3xl gap-4 sm:grid-cols-3"
-        >
-          {infoCards.map((c) => {
-            const Tag = c.href ? "a" : "div";
-            return (
-              <Tag
-                key={c.label}
-                {...(c.href ? { href: c.href } : {})}
-                className="card-surface flex items-center gap-3 bg-panel/70 p-4 backdrop-blur-sm transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                <span
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white"
-                  style={{ backgroundImage: "var(--gradient-brand)" }}
-                  aria-hidden
-                >
-                  <c.icon size={17} strokeWidth={1.75} />
-                </span>
-                <span className="min-w-0">
-                  <span className="type-data block text-muted">{c.label}</span>
-                  <span className="block truncate text-sm font-medium text-bright">{c.value}</span>
-                </span>
-              </Tag>
-            );
-          })}
+        {/* ---- Direct contact — email only; no phone or location published. ---- */}
+        <motion.div {...step(0.56)} className="mx-auto w-full max-w-xs">
+          <a
+            href={`mailto:${profile.email}`}
+            className="card-surface flex items-center gap-3 bg-panel/70 p-4 backdrop-blur-sm transition-transform duration-200 hover:-translate-y-0.5"
+          >
+            <span
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white"
+              style={{ backgroundImage: "var(--gradient-brand)" }}
+              aria-hidden
+            >
+              <Mail size={17} strokeWidth={1.75} />
+            </span>
+            <span className="min-w-0">
+              <span className="type-data block text-muted">Email</span>
+              <span className="block truncate text-sm font-medium text-bright">{profile.email}</span>
+            </span>
+          </a>
         </motion.div>
 
         {/* ---- Delivery path — kept as its own band beneath the fold rather

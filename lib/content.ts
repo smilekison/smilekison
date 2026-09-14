@@ -16,10 +16,8 @@ export const profile = {
   // Hero paragraph. 2 sentences max — the page moves on quickly.
   summary:
     "DevOps engineer with 2.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Currently building two platforms end-to-end while open to new roles.",
-  location: "Cardiff, Wales, UK",
   availability: "Open to DevOps, Platform & SRE roles — UK and Lithuania",
   email: "smilekisan.dev@gmail.com",
-  phone: "+977 984 761 3598",
   domain: "smilekisan.com",
   links: {
     github: "https://github.com/smile-kisan",
@@ -325,23 +323,63 @@ export type Certification = {
   issuer: string;
   year: string;
   status: "Certified" | "In progress";
+  // What the certification actually validates — public, factual scope of
+  // the exam, not a personal claim. Optional url shows a "View credential"
+  // link when set; left unset here since no public verify links exist yet.
+  description: string;
   url?: string;
 };
 
 export const certifications: Certification[] = [
-  { name: "Docker Certified Associate", issuer: "Docker", year: "2024", status: "Certified" },
-  { name: "HashiCorp Certified: Terraform Associate", issuer: "HashiCorp", year: "2024", status: "Certified" },
-  { name: "AWS Certified Developer — Associate", issuer: "Amazon Web Services", year: "2023", status: "Certified" },
-  { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", year: "2022", status: "Certified" },
-  { name: "Certified Kubernetes Administrator (CKA)", issuer: "The Linux Foundation", year: "2025", status: "In progress" },
-  { name: "Google Cloud Professional Cloud Architect", issuer: "Google Cloud", year: "2025", status: "In progress" },
+  {
+    name: "Docker Certified Associate",
+    issuer: "Docker",
+    year: "2024",
+    status: "Certified",
+    description: "Container fundamentals, image lifecycle, orchestration, networking and security.",
+  },
+  {
+    name: "HashiCorp Certified: Terraform Associate",
+    issuer: "HashiCorp",
+    year: "2024",
+    status: "Certified",
+    description: "Infrastructure as code: workflow, state management, modules and provisioning.",
+  },
+  {
+    name: "AWS Certified Developer — Associate",
+    issuer: "Amazon Web Services",
+    year: "2023",
+    status: "Certified",
+    description: "Developing and deploying applications on AWS, plus core debugging and optimization.",
+  },
+  {
+    name: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    year: "2022",
+    status: "Certified",
+    description: "Foundational AWS cloud concepts, core services, security and billing.",
+  },
+  {
+    name: "Certified Kubernetes Administrator (CKA)",
+    issuer: "The Linux Foundation",
+    year: "2025",
+    status: "In progress",
+    description: "Cluster administration: installation, networking, storage, security and troubleshooting.",
+  },
+  {
+    name: "Google Cloud Professional Cloud Architect",
+    issuer: "Google Cloud",
+    year: "2025",
+    status: "In progress",
+    description: "Designing, developing and managing secure, scalable solutions on Google Cloud.",
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
 
 // Decorative terminal. These are not executed — they are a readable summary.
 export const terminal: { cmd: string; out: string[] }[] = [
-  { cmd: "whoami", out: ["smile-kisan — devops engineer, cardiff, uk"] },
+  { cmd: "whoami", out: ["smile-kisan — devops engineer"] },
   { cmd: "expertise --list", out: ["aws", "kubernetes", "ci/cd", "terraform", "observability"] },
   {
     cmd: "cat philosophy.txt",

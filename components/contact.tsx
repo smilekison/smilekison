@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { contact, profile } from "@/lib/content";
 import { EASE_OUT, viewportOnce } from "@/lib/motion";
 import { Magnetic } from "./magnetic";
@@ -65,27 +65,18 @@ export function Contact() {
                 </motion.a>
               </Magnetic>
 
-              <div className="mt-6 space-y-2 font-mono text-sm text-muted">
+              <div className="mt-6 font-mono text-sm text-muted">
                 <a
                   href={`mailto:${profile.email}`}
                   className="block transition-colors duration-200 hover:text-signal"
                 >
                   {profile.email}
                 </a>
-                <a
-                  href={`tel:${profile.phone.replace(/\s+/g, "")}`}
-                  className="block transition-colors duration-200 hover:text-signal"
-                >
-                  {profile.phone}
-                </a>
               </div>
 
               <div className="mt-6 flex items-center gap-1 border-t border-line pt-4">
                 <IconLink href={`mailto:${profile.email}`} label="Email">
                   <Mail size={17} strokeWidth={1.6} aria-hidden />
-                </IconLink>
-                <IconLink href={`tel:${profile.phone.replace(/\s+/g, "")}`} label="Phone">
-                  <Phone size={17} strokeWidth={1.6} aria-hidden />
                 </IconLink>
                 <IconLink href={profile.links.github} label="GitHub" external>
                   <Github size={17} strokeWidth={1.6} aria-hidden />
@@ -100,7 +91,7 @@ export function Contact() {
 
         <div className="mt-16 border-t border-line pt-8">
           <p className="font-mono text-[0.6875rem] tracking-wide text-muted">
-            © {year} {profile.name} · {profile.location}
+            © {year} {profile.name}
           </p>
         </div>
       </div>
