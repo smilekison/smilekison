@@ -90,7 +90,8 @@ const jsonLd = {
   description: profile.summary,
   url,
   email: `mailto:${profile.email}`,
-  address: { "@type": "PostalAddress", addressCountry: profile.location },
+  telephone: profile.phone,
+  address: { "@type": "PostalAddress", addressLocality: "Cardiff", addressRegion: "Wales", addressCountry: "GB" },
   sameAs: [profile.links.github, profile.links.linkedin],
 };
 

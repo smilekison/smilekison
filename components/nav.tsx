@@ -70,7 +70,7 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
             <Link
               href="/"
               className="group flex items-baseline gap-2"
-              aria-label={`${profile.name} — home`}
+              aria-label="smilekisan — home"
             >
               <span className="font-mono text-sm font-medium tracking-tight text-bright">
                 smilekisan

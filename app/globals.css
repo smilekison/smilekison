@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Dark mode (default) ------------------------------------------------ */
-  --color-ink: #0b0e13;
-  --color-panel: #11151c;
-  --color-raise: #161b24;
-  --color-line: #1c2129;
-  --color-line-bright: #2b323d;
-  --color-muted: #6b7685;
-  --color-dim: #8b95a3;
-  --color-text: #c8d0da;
-  --color-bright: #f0f4f8;
-  --color-signal: #3dd6c0;
-  --color-signal-dim: #1f6f66;
-  --color-amber: #e8a33d;
+  /* ---- Dark mode (default) ------------------------------------------------
+     Palette carried over from smilekisan.com's brand identity — the indigo
+     (#667eea), purple (#764ba2) and cyan (#4facfe) gradient family, and its
+     #0a0e1a dark background — reapplied through this site's existing
+     hairline/instrument-panel structure rather than the source's gradient-
+     heavy card styling. Every text-role token below is contrast-checked
+     against its background (WCAG AA, 4.5:1) for both themes. */
+  --color-ink: #0a0e1a;
+  --color-panel: #12172a;
+  --color-raise: #171d34;
+  --color-line: #212842;
+  --color-line-bright: #333c66;
+  --color-muted: #8890ab;
+  --color-dim: #a8aec7;
+  --color-text: #cdd2e6;
+  --color-bright: #f6f7fc;
+  --color-signal: #7c8cf0;
+  --color-signal-dim: #34406e;
+  --color-amber: #f59e0b;
+  --color-accent: #4facfe;
+  --color-purple: #764ba2;
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
@@ -27,8 +35,12 @@
 }
 
 /* ---- Light mode ----------------------------------------------------------
-   Same instrument-panel structure, inverted: paper ground, ink text, a darker
-   signal so it still passes contrast on white.
+   Matches smilekisan.com's own light theme exactly where it's already
+   accessible: white/#f8fafc grounds, #1a1a2e heading text, #6b7280 muted
+   text (all lifted straight from its stylesheet). Its raw brand indigo
+   (#667eea) fails AA for text on white (~3.7:1), so text-role signal uses a
+   deeper indigo (#4338ca, 7.9:1) — the same hue family, legible at small
+   sizes. Bright/bg roles keep the exact brand values.
 
    Precedence (low to high):
    1. System preference — applies automatically when no explicit choice is
@@ -37,34 +49,38 @@
    [data-theme="dark"] needs no rule: dark is already the :root default above. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --color-ink: #f7f7f5;
-    --color-panel: #ececea;
-    --color-raise: #e4e4e1;
-    --color-line: #d6d6d2;
-    --color-line-bright: #b8b8b3;
-    --color-muted: #6e6e68;
-    --color-dim: #4a4a42;
-    --color-text: #26261f;
-    --color-bright: #0a0a08;
-    --color-signal: #0d8f7f;
-    --color-signal-dim: #bfe8e2;
-    --color-amber: #b5651d;
+    --color-ink: #ffffff;
+    --color-panel: #f8fafc;
+    --color-raise: #eef1f6;
+    --color-line: #e2e8f0;
+    --color-line-bright: #cbd5e1;
+    --color-muted: #6b7280;
+    --color-dim: #4b5566;
+    --color-text: #374151;
+    --color-bright: #1a1a2e;
+    --color-signal: #4338ca;
+    --color-signal-dim: #e0e4fb;
+    --color-amber: #b45309;
+    --color-accent: #0284c7;
+    --color-purple: #764ba2;
   }
 }
 
 :root[data-theme="light"] {
-  --color-ink: #f7f7f5;
-  --color-panel: #ececea;
-  --color-raise: #e4e4e1;
-  --color-line: #d6d6d2;
-  --color-line-bright: #b8b8b3;
-  --color-muted: #6e6e68;
-  --color-dim: #4a4a42;
-  --color-text: #26261f;
-  --color-bright: #0a0a08;
-  --color-signal: #0d8f7f;
-  --color-signal-dim: #bfe8e2;
-  --color-amber: #b5651d;
+  --color-ink: #ffffff;
+  --color-panel: #f8fafc;
+  --color-raise: #eef1f6;
+  --color-line: #e2e8f0;
+  --color-line-bright: #cbd5e1;
+  --color-muted: #6b7280;
+  --color-dim: #4b5566;
+  --color-text: #374151;
+  --color-bright: #1a1a2e;
+  --color-signal: #4338ca;
+  --color-signal-dim: #e0e4fb;
+  --color-amber: #b45309;
+  --color-accent: #0284c7;
+  --color-purple: #764ba2;
 }
 
 /* --- Base ---------------------------------------------------------------- */

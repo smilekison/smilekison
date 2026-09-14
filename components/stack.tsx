@@ -11,6 +11,7 @@ const categories = [
   "Infrastructure as code",
   "Delivery",
   "Observability",
+  "Databases",
   "Languages",
 ] as const;
 
