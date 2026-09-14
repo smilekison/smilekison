@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Instrument panel palette ---------------------------------------- */
+  --color-ink: #0b0e13;
+  --color-panel: #11151c;
+  --color-raise: #161b24;
+  --color-line: #1c2129;
+  --color-line-bright: #2b323d;
+  --color-muted: #6b7685;
+  --color-dim: #8b95a3;
+  --color-text: #c8d0da;
+  --color-bright: #f0f4f8;
+  --color-signal: #3dd6c0;
+  --color-signal-dim: #1f6f66;
+  --color-amber: #e8a33d;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  /* ---- Motion system (pre.txt §3) -------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 180ms;
+  --dur-std: 340ms;
+  --dur-section: 520ms;
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* the sticky nav must never cover an anchored heading */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* nothing may push the page sideways (pre.txt §27) */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-bright);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* --- Fluid type scale ---------------------------------------------------- */
+
+@utility type-hero {
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+@utility type-section {
+  font-size: clamp(1.875rem, 5.5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+@utility type-sub {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@utility type-body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.65;
+}
+
+/* Data / label voice — the mono face carries measurement, not decoration. */
+@utility type-data {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@utility measure {
+  max-width: 68ch;
+}
+
+/* --- Structure ----------------------------------------------------------- */
+
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: clamp(1.25rem, 5vw, 5rem);
+}
+
+@utility hairline {
+  border-top: 1px solid var(--color-line);
+}
+
+/* The background language: a faint measurement grid, never above 4% alpha. */
+@utility grid-field {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-line-bright) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-line-bright) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+}
+
+/* --- Hover capability gate (pre.txt §22) --------------------------------- */
+
+@custom-variant hover-device (@media (hover: hover) and (pointer: fine));
+
+/* --- Reduced motion (pre.txt §30) ---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Scrollbar ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-bright);
+    border: 3px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+  }
+}
