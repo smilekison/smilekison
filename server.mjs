@@ -14,6 +14,12 @@ const ses = new SESClient({
   region: process.env.AWS_REGION || "us-east-1",
 });
 
+// Small in-memory rate limiter: enough protection for a personal portfolio
+// without adding Redis, a database, or another AWS service.
+const rateLimit = new Map();
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+
 const sendJson = (res, status, body) => {
   const data = JSON.stringify(body);
   res.writeHead(status, {
@@ -22,6 +28,27 @@ const sendJson = (res, status, body) => {
     "Content-Length": Buffer.byteLength(data),
   });
   res.end(data);
+};
+
+const getClientIp = (req) => {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string" && forwarded.length > 0) {
+    return forwarded.split(",")[0].trim();
+  }
+  return req.socket.remoteAddress || "unknown";
+};
+
+const isRateLimited = (ip) => {
+  const now = Date.now();
+  const entry = rateLimit.get(ip);
+
+  if (!entry || now - entry.startedAt >= RATE_LIMIT_WINDOW_MS) {
+    rateLimit.set(ip, { startedAt: now, count: 1 });
+    return false;
+  }
+
+  entry.count += 1;
+  return entry.count > RATE_LIMIT_MAX;
 };
 
 const readBody = (req) =>
@@ -106,8 +133,22 @@ const serveStatic = (req, res) => {
 
 const handleContact = async (req, res) => {
   try {
+    const ip = getClientIp(req);
+    if (isRateLimited(ip)) {
+      return sendJson(res, 429, {
+        success: false,
+        message: "Too many messages from this address. Please try again later.",
+      });
+    }
+
     const raw = await readBody(req);
-    const body = JSON.parse(raw);
+    let body;
+    try {
+      body = JSON.parse(raw);
+    } catch {
+      return sendJson(res, 400, { success: false, message: "Invalid request." });
+    }
+
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const message = typeof body.message === "string" ? body.message.trim() : "";
@@ -116,7 +157,7 @@ const handleContact = async (req, res) => {
       return sendJson(res, 400, { success: false, message: "Please complete all fields." });
     }
 
-    if (name.length > 120 || email.length > 320 || message.length > 10000) {
+    if (name.length > 120 || email.length > 254 || message.length > 10000) {
       return sendJson(res, 400, { success: false, message: "One or more fields are too long." });
     }
 
@@ -131,7 +172,7 @@ const handleContact = async (req, res) => {
       return sendJson(res, 500, { success: false, message: "Email service is not configured yet." });
     }
 
-    await ses.send(new SendEmailCommand({
+    const notification = new SendEmailCommand({
       Source: from,
       Destination: { ToAddresses: [to] },
       ReplyToAddresses: [email],
@@ -144,7 +185,25 @@ const handleContact = async (req, res) => {
           },
         },
       },
-    }));
+    });
+
+    const confirmation = new SendEmailCommand({
+      Source: from,
+      Destination: { ToAddresses: [email] },
+      Message: {
+        Subject: { Charset: "UTF-8", Data: "Thanks for contacting Smile Kisan" },
+        Body: {
+          Text: {
+            Charset: "UTF-8",
+            Data: `Hi ${name},\n\nThank you for contacting me through my website.\n\nI have received your message and will contact you soon.\n\nFor your reference, here is the message you submitted:\n\n${message}\n\nBest regards,\nSmile Kisan\nhttps://smilekisan.com`,
+          },
+        },
+      },
+    });
+
+    // Send the notification and visitor confirmation together. The endpoint
+    // reports success only when both SES requests are accepted.
+    await Promise.all([ses.send(notification), ses.send(confirmation)]);
 
     return sendJson(res, 200, { success: true });
   } catch (error) {
