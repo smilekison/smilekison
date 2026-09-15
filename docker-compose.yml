@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   portfolio:
+    env_file:
+      - /opt/smilekisan/.env
     build: .
     container_name: smile-portfolio
     ports:

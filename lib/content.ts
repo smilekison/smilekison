@@ -461,11 +461,6 @@ export const contact = {
   heading: "Have a system that needs to scale?",
   body: "I am open to remote DevOps, platform and cloud infrastructure roles worldwide, or relocation, and to consulting on delivery pipelines and cloud platforms. Send a message directly, or email me.",
   cta: "Start a conversation",
-  // ▲ VERIFY — get a free access key at https://web3forms.com (30 seconds,
-  // just your email). Paste it here; the form won't send mail without it.
-  // The key is public-by-design (Web3Forms validates the destination
-  // server-side), so it's fine to ship in client code.
-  web3formsAccessKey: "",
 };
 
 export const sections = [
