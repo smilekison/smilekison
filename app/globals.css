@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Dark mode (default) ------------------------------------------------
+     Palette carried over from smilekisan.com's brand identity — the indigo
+     (#667eea), purple (#764ba2) and cyan (#4facfe) gradient family, and its
+     #0a0e1a dark background — reapplied through this site's existing
+     hairline/instrument-panel structure rather than the source's gradient-
+     heavy card styling. Every text-role token below is contrast-checked
+     against its background (WCAG AA, 4.5:1) for both themes. */
+  --color-ink: #0a0e1a;
+  --color-panel: #12172a;
+  --color-raise: #171d34;
+  --color-line: #212842;
+  --color-line-bright: #333c66;
+  --color-muted: #8890ab;
+  --color-dim: #a8aec7;
+  --color-text: #cdd2e6;
+  --color-bright: #f6f7fc;
+  --color-signal: #7c8cf0;
+  --color-signal-dim: #34406e;
+  --color-amber: #f59e0b;
+  --color-accent: #4facfe;
+  --color-purple: #764ba2;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Fixed brand gradient — same in both themes, straight from
+     smilekisan.com's own --primary-gradient. */
+  --gradient-brand: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-rose: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+
+  /* ---- Motion system (pre.txt §3) -------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 180ms;
+  --dur-std: 340ms;
+  --dur-section: 520ms;
+}
+
+/* ---- Light mode ----------------------------------------------------------
+   Matches smilekisan.com's own light theme exactly where it's already
+   accessible: white/#f8fafc grounds, #1a1a2e heading text, #6b7280 muted
+   text (all lifted straight from its stylesheet). Its raw brand indigo
+   (#667eea) fails AA for text on white (~3.7:1), so text-role signal uses a
+   deeper indigo (#4338ca, 7.9:1) — the same hue family, legible at small
+   sizes. Bright/bg roles keep the exact brand values.
+
+   Precedence (low to high):
+   1. System preference — applies automatically when no explicit choice is
+      stored and the OS is set to light.
+   2. Explicit [data-theme="light"] — always wins, regardless of OS.
+   [data-theme="dark"] needs no rule: dark is already the :root default above. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-ink: #ffffff;
+    --color-panel: #f8fafc;
+    --color-raise: #eef1f6;
+    --color-line: #e2e8f0;
+    --color-line-bright: #cbd5e1;
+    --color-muted: #6b7280;
+    --color-dim: #4b5566;
+    --color-text: #374151;
+    --color-bright: #1a1a2e;
+    --color-signal: #4338ca;
+    --color-signal-dim: #e0e4fb;
+    --color-amber: #b45309;
+    --color-accent: #0284c7;
+    --color-purple: #764ba2;
+  }
+}
+
+:root[data-theme="light"] {
+  --color-ink: #ffffff;
+  --color-panel: #f8fafc;
+  --color-raise: #eef1f6;
+  --color-line: #e2e8f0;
+  --color-line-bright: #cbd5e1;
+  --color-muted: #6b7280;
+  --color-dim: #4b5566;
+  --color-text: #374151;
+  --color-bright: #1a1a2e;
+  --color-signal: #4338ca;
+  --color-signal-dim: #e0e4fb;
+  --color-amber: #b45309;
+  --color-accent: #0284c7;
+  --color-purple: #764ba2;
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* the sticky nav must never cover an anchored heading */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* nothing may push the page sideways (pre.txt §27) */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-bright);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* --- Fluid type scale ---------------------------------------------------- */
+
+@utility type-hero {
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+@utility type-section {
+  font-size: clamp(1.875rem, 5.5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+@utility type-sub {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@utility type-body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.65;
+}
+
+/* Data / label voice — the mono face carries measurement, not decoration. */
+@utility type-data {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@utility measure {
+  max-width: 68ch;
+}
+
+/* --- Structure ----------------------------------------------------------- */
+
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: clamp(1.25rem, 5vw, 5rem);
+}
+
+@utility hairline {
+  border-top: 1px solid var(--color-line);
+}
+
+/* ---- Brand surface language ------------------------------------------------
+   Rounded cards, pill chips, gradient text/buttons — smilekisan.com's own
+   visual system, reapplied consistently across every section. */
+
+@utility text-gradient {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility card-surface {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 1px 2px color-mix(in oklab, black 12%, transparent),
+    0 12px 32px -12px color-mix(in oklab, #667eea 22%, transparent);
+}
+
+/* The background language: a faint measurement grid, never above 4% alpha. */
+@utility grid-field {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-line-bright) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-line-bright) 55%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+}
+
+/* --- Hover capability gate (pre.txt §22) --------------------------------- */
+
+@custom-variant hover-device (@media (hover: hover) and (pointer: fine));
+
+/* --- Reduced motion (pre.txt §30) ---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Scrollbar ----------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-bright);
+    border: 3px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+  }
+}

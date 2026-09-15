@@ -1,0 +1,1405 @@
+# INTERACTION, MOTION & RESPONSIVE DESIGN — CRITICAL REQUIREMENTS
+
+The portfolio must not be a static website with animations randomly added on top.
+
+Motion, interaction, responsiveness, and visual feedback must be designed as part of the core user experience.
+
+The website should feel:
+
+* alive
+* responsive
+* tactile
+* technically sophisticated
+* fast
+* intentional
+* premium
+
+However, the interaction design must NEVER become distracting or gimmicky.
+
+The user should feel that the interface responds to them.
+
+==================================================
+
+1. CORE TECHNOLOGY
+   ==================================================
+
+Use:
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* Motion for React / Framer Motion
+* Lucide React
+* CSS transforms and transitions where they are more efficient
+* SVG for technical diagrams and visualizations
+* Intersection Observer / Motion's viewport APIs for scroll-triggered effects
+
+Use additional libraries only when there is a strong UX reason.
+
+Do NOT add libraries simply because they are popular.
+
+Prioritize:
+
+performance
+accessibility
+maintainability
+mobile compatibility
+
+==================================================
+2. MOTION PHILOSOPHY
+====================
+
+Every animation must have a purpose.
+
+Motion should communicate one or more of:
+
+* hierarchy
+* state
+* direction
+* relationship
+* interaction
+* progress
+* continuity
+* feedback
+
+Do NOT animate everything.
+
+The website should still look excellent when all animations are disabled.
+
+Use animation to enhance the interface, not compensate for weak design.
+
+==================================================
+3. GLOBAL MOTION SYSTEM
+=======================
+
+Create a consistent motion system.
+
+Micro interactions:
+
+150–250ms
+
+Standard transitions:
+
+250–450ms
+
+Complex section transitions:
+
+400–700ms
+
+Large hero transitions:
+
+500–900ms
+
+Use smooth easing.
+
+Prefer:
+
+easeOut
+easeInOut
+spring
+
+Avoid:
+
+excessive bouncing
+elastic animations
+continuous spinning
+random floating
+long cinematic transitions
+
+Animations should generally use:
+
+transform
+opacity
+scale
+clip-path
+
+Avoid animating expensive layout properties such as:
+
+width
+height
+top
+left
+
+when transform can achieve the same effect.
+
+==================================================
+4. PAGE LOAD EXPERIENCE
+=======================
+
+Create a polished initial page entrance.
+
+The page should NOT show a giant loading animation.
+
+Instead:
+
+1. Navigation appears
+2. Hero eyebrow/status fades in
+3. Hero headline reveals
+4. Supporting text appears
+5. CTA buttons appear
+6. Hero visualization becomes active
+
+Use staggered animation.
+
+Example timing:
+
+Navigation:
+0ms
+
+Eyebrow:
+100ms
+
+Headline:
+200ms
+
+Description:
+350ms
+
+CTA:
+450ms
+
+Hero visualization:
+550ms
+
+Keep it fast.
+
+Do not delay useful content.
+
+==================================================
+5. HERO REACTIVE BACKGROUND
+===========================
+
+Create a subtle interactive background.
+
+Desktop:
+
+The background should respond slightly to mouse movement.
+
+Possible elements:
+
+* grid
+* particles
+* infrastructure nodes
+* connection lines
+* radial light
+* subtle gradient field
+
+The response should be extremely subtle.
+
+For example:
+
+mouse moves right
+→ background shifts slightly right
+
+mouse moves left
+→ background shifts slightly left
+
+Do NOT make the entire background move dramatically.
+
+Use motion values and transforms rather than triggering React state on every mouse movement.
+
+IMPORTANT:
+
+Disable or simplify this interaction on mobile.
+
+Touch devices should NOT attempt to simulate mouse movement.
+
+==================================================
+6. HERO INFRASTRUCTURE ANIMATION
+================================
+
+Create an animated technical infrastructure visualization.
+
+Example:
+
+Developer
+|
+v
+Git
+|
+v
+CI/CD
+|
+v
+Security
+|
+v
+Container
+|
+v
+Kubernetes
+|
+v
+Cloud
+|
+v
+Production
+
+Use SVG or HTML elements.
+
+Animate the connection paths.
+
+Use:
+
+pathLength
+opacity
+strokeDasharray
+strokeDashoffset
+
+or equivalent SVG animation techniques.
+
+Nodes should have subtle status indicators.
+
+When the user hovers a node:
+
+* node expands slightly
+* connection becomes more visible
+* description appears
+* surrounding nodes subtly dim
+
+Do not make this interaction necessary to understand the hero.
+
+==================================================
+7. SCROLL-TRIGGERED REVEALS
+===========================
+
+Every major section should enter naturally.
+
+Use:
+
+whileInView
+viewport={{ once: true }}
+
+for most sections.
+
+Avoid replaying the same large animation every time the user scrolls up and down.
+
+Use subtle:
+
+opacity: 0 → 1
+y: 20 → 0
+
+or:
+
+clip-path reveal
+
+or:
+
+scale: 0.98 → 1
+
+Do NOT use dramatic animations for every paragraph.
+
+==================================================
+8. SECTION HEADINGS
+===================
+
+Section headings should have subtle reveal animations.
+
+Example:
+
+01 / EXPERIENCE
+
+The number can appear first.
+
+Then the heading.
+
+Then the supporting description.
+
+Possible sequence:
+
+01:
+opacity + y
+
+Heading:
+clip-path reveal
+
+Description:
+fade + y
+
+Keep the animation under approximately 500ms.
+
+==================================================
+9. NAVIGATION INTERACTION
+=========================
+
+Navigation must react to scrolling.
+
+At page top:
+
+Transparent navigation.
+
+After scrolling:
+
+Semi-transparent dark background
+Backdrop blur
+Subtle border
+Slightly reduced height
+
+The active section should be indicated.
+
+Example:
+
+ABOUT
+EXPERIENCE
+PROJECTS
+STACK
+
+The active item gets a subtle indicator.
+
+Do NOT use large animated underlines.
+
+Use a small moving indicator.
+
+The indicator can use:
+
+layoutId
+
+to smoothly move between active navigation items.
+
+==================================================
+10. MOBILE NAVIGATION
+=====================
+
+Mobile navigation must be intentionally designed.
+
+Do NOT simply shrink desktop navigation.
+
+Use a menu button.
+
+When opened:
+
+* full-screen or near-full-screen navigation appears
+* background becomes opaque/dark
+* links stagger into view
+* close button appears
+* navigation links are large enough for touch
+
+Example:
+
+HOME
+
+ABOUT
+
+EXPERIENCE
+
+PROJECTS
+
+STACK
+
+CERTIFICATIONS
+
+CONTACT
+
+Each link should have a large touch target.
+
+Menu animation:
+
+closed:
+opacity 0
+scale 0.98
+
+open:
+opacity 1
+scale 1
+
+Links:
+
+staggerChildren: 0.05–0.08 seconds
+
+When a link is selected:
+
+close menu first
+then scroll/navigate
+
+==================================================
+11. BUTTON INTERACTIONS
+=======================
+
+Buttons should feel tactile.
+
+Primary button hover:
+
+scale:
+1 → 1.02
+
+Arrow:
+translateX(0 → 4px)
+
+Background:
+subtle transition
+
+Primary button tap:
+
+scale:
+1 → 0.97
+
+Secondary buttons should have equally polished feedback.
+
+Never use excessive glow.
+
+==================================================
+12. PROJECT CARDS
+=================
+
+Projects should be highly interactive.
+
+On desktop:
+
+Hovering a project should cause:
+
+* subtle card movement
+* project image/diagram movement
+* title movement
+* arrow movement
+* technology labels to become slightly more prominent
+
+Use:
+
+whileHover
+
+with:
+
+y: -4 to -8px
+
+NOT:
+
+y: -30px
+
+The interaction should feel premium.
+
+==================================================
+13. PROJECT IMAGE / ARCHITECTURE PARALLAX
+=========================================
+
+For large project case studies:
+
+Create subtle internal parallax.
+
+Example:
+
+Card remains stationary.
+
+Architecture graphic moves slightly according to cursor position.
+
+Text remains stable.
+
+This creates depth without making the whole page move.
+
+Use motion values.
+
+Do NOT update React state continuously.
+
+On mobile:
+
+Disable cursor-based parallax.
+
+Instead use:
+
+scroll-triggered reveal
+
+or static presentation.
+
+==================================================
+14. PROJECT CASE STUDY TRANSITIONS
+==================================
+
+When opening a project:
+
+Use a smooth transition.
+
+Possible flow:
+
+Project card
+→ selected project expands
+→ page transition
+→ project hero appears
+
+Do not create a 2-second transition.
+
+Target:
+
+300–600ms.
+
+Project page should immediately feel related to the card the user clicked.
+
+==================================================
+15. ARCHITECTURE DIAGRAM INTERACTION
+====================================
+
+Architecture diagrams should be interactive.
+
+Example:
+
+USER
+↓
+LOAD BALANCER
+↓
+API
+↓
+WORKERS
+↓
+DATABASE
+
+Hovering a node:
+
+* node becomes highlighted
+* connection lines brighten
+* related nodes highlight
+* irrelevant nodes become slightly muted
+* explanatory tooltip/panel appears
+
+Clicking on mobile:
+
+Open the explanation.
+
+Do NOT rely on hover for essential information.
+
+Mobile interaction must use tap.
+
+==================================================
+16. TECH STACK INTERACTION
+==========================
+
+Create an interactive technology ecosystem.
+
+Technologies can be represented as nodes or grouped elements.
+
+Example:
+
+AWS
+KUBERNETES
+DOCKER
+TERRAFORM
+JENKINS
+GITLAB
+PROMETHEUS
+GRAFANA
+
+Hover:
+
+technology becomes active
+
+related technologies highlight.
+
+Example:
+
+Hover:
+
+KUBERNETES
+
+Highlight:
+
+Docker
+Helm
+AWS
+Prometheus
+Grafana
+
+On mobile:
+
+Tap technology.
+
+Show:
+
+Technology name
+Category
+How it fits into my workflow
+
+Do not show fake skill percentages.
+
+==================================================
+17. EXPERIENCE TIMELINE ANIMATION
+=================================
+
+Create a vertical timeline.
+
+As the user scrolls:
+
+timeline line progressively appears.
+
+Experience nodes activate.
+
+Example:
+
+2020
+●
+Software Engineering
+
+2022
+●
+UK Transition
+
+2024
+●
+DevOps Engineering
+
+2025
+●
+Cloud Infrastructure
+
+Present
+●
+Current Engineering Work
+
+The active timeline node should respond to scroll position.
+
+Use Intersection Observer / Motion viewport detection.
+
+Keep the implementation lightweight.
+
+==================================================
+18. IMPACT METRIC COUNTERS
+==========================
+
+Metrics should animate when entering the viewport.
+
+Example:
+
+75%
+
+Count:
+
+0 → 75
+
+2.5+
+
+Count:
+
+0 → 2.5+
+
+99.9%
+
+Count smoothly.
+
+IMPORTANT:
+
+Do not endlessly replay counters.
+
+Use once: true.
+
+Respect reduced-motion preferences.
+
+If reduced motion is enabled:
+
+Show final values immediately.
+
+==================================================
+19. TERMINAL INTERACTION
+========================
+
+Create a terminal-style interactive component.
+
+Example:
+
+$ whoami
+
+smile-kisan
+
+$ expertise
+
+cloud
+devops
+automation
+kubernetes
+infrastructure
+
+$ philosophy
+
+automate the repetitive.
+observe the important.
+secure the critical.
+
+Possible interaction:
+
+User can click:
+
+RUN
+
+Then terminal lines appear sequentially.
+
+This should be decorative/educational.
+
+Do NOT pretend to execute real shell commands on the user's computer.
+
+No fake security functionality.
+
+==================================================
+20. TERMINAL MOBILE VERSION
+===========================
+
+The terminal must work perfectly on small screens.
+
+Use:
+
+font-size:
+12–14px
+
+Proper line wrapping.
+
+Horizontal overflow must be avoided unless displaying intentionally scrollable code.
+
+Do NOT create a terminal wider than the viewport.
+
+==================================================
+21. SCROLL PROGRESS
+===================
+
+Optionally include a subtle scroll progress indicator.
+
+Desktop:
+
+thin vertical or horizontal indicator.
+
+Mobile:
+
+very subtle top progress bar.
+
+It should communicate where the user is.
+
+Do not make it visually dominant.
+
+==================================================
+22. HOVER EFFECTS
+=================
+
+Hover effects must ONLY apply to devices capable of hover.
+
+Use CSS media queries / pointer capability where appropriate.
+
+Do not rely on hover for mobile functionality.
+
+Desktop:
+
+hover
+
+Mobile:
+
+tap
+
+==================================================
+23. MOBILE-FIRST RESPONSIVE SYSTEM
+==================================
+
+Design from mobile upward.
+
+Breakpoints should be approximately:
+
+320px
+375px
+430px
+640px
+768px
+1024px
+1280px
+1440px+
+
+Do not assume only:
+
+mobile
+desktop
+
+There should be intermediate layouts.
+
+==================================================
+24. MOBILE HERO
+===============
+
+On mobile:
+
+Do NOT use enormous typography that consumes the entire screen.
+
+Hero should fit comfortably.
+
+Suggested hierarchy:
+
+SMILE KISAN
+
+DEVOPS ENGINEER
+
+Engineering reliable systems
+from code to cloud.
+
+Short description.
+
+CTA buttons.
+
+Then infrastructure visualization.
+
+The visualization should be simplified.
+
+Instead of:
+
+Developer → Git → CI → Security → Docker → Kubernetes → AWS → Production
+
+you can use a compact stacked flow.
+
+==================================================
+25. MOBILE TYPOGRAPHY
+=====================
+
+Use fluid typography.
+
+Use:
+
+clamp()
+
+where appropriate.
+
+Example conceptual range:
+
+Hero:
+
+clamp(2.5rem, 10vw, 7rem)
+
+Section headings:
+
+clamp(2rem, 6vw, 4rem)
+
+Body:
+
+16–18px
+
+Never allow text to overflow.
+
+Avoid extremely long lines.
+
+Target:
+
+45–80 characters per line for readable body text.
+
+==================================================
+26. MOBILE PROJECTS
+===================
+
+Desktop:
+
+Large horizontal case-study layouts.
+
+Mobile:
+
+Stack vertically.
+
+Example:
+
+PROJECT 01
+
+Enterprise CI/CD Transformation
+
+[Architecture / visual]
+
+Problem
+
+...
+
+Solution
+
+...
+
+Impact
+
+75% faster deployment
+
+Stack
+
+AWS
+Jenkins
+Docker
+Terraform
+
+View Case Study →
+
+Do not compress desktop layouts until they become unreadable.
+
+Redesign them for mobile.
+
+==================================================
+27. MOBILE ARCHITECTURE DIAGRAMS
+================================
+
+Complex diagrams must adapt.
+
+If a diagram is too wide:
+
+Option 1:
+Reflow it vertically.
+
+Option 2:
+Create a simplified mobile architecture.
+
+Option 3:
+Allow controlled horizontal scrolling.
+
+Do NOT allow the entire webpage to horizontally overflow.
+
+The user must never see:
+
+horizontal page scrolling caused by a diagram.
+
+==================================================
+28. MOBILE TOUCH INTERACTIONS
+=============================
+
+All interactive elements must have comfortable touch targets.
+
+Minimum target:
+
+approximately 44 × 44px.
+
+Avoid interactions that require:
+
+hover
+tiny buttons
+precise mouse movement
+
+Everything important must work through tap.
+
+==================================================
+29. MOBILE PERFORMANCE
+======================
+
+Mobile performance is extremely important.
+
+Do not load desktop-only effects on mobile.
+
+For example:
+
+Desktop:
+cursor tracking
+complex parallax
+large particle system
+
+Mobile:
+simplified background
+simple reveal animations
+
+Use responsive conditional rendering only when it materially improves performance.
+
+Prefer CSS/media-query solutions where possible.
+
+==================================================
+30. REDUCED MOTION
+==================
+
+Implement:
+
+prefers-reduced-motion
+
+When enabled:
+
+Disable:
+
+cursor effects
+parallax
+large transforms
+continuous animations
+complex SVG animation
+
+Keep:
+
+simple opacity transitions
+instant counters
+functional interactions
+
+Accessibility takes priority over visual effects.
+
+==================================================
+31. GPU PERFORMANCE
+===================
+
+Prefer:
+
+transform
+opacity
+
+Avoid excessive:
+
+box-shadow animation
+filter animation
+blur animation
+layout animation
+
+Do not animate hundreds of DOM elements simultaneously.
+
+If using particles or canvas:
+
+keep particle count low
+pause when not visible
+disable on mobile when necessary
+
+==================================================
+32. REACTIVE CURSOR
+===================
+
+Desktop only.
+
+Create:
+
+small cursor dot
+
+When hovering a link:
+
+cursor expands
+
+When hovering a project:
+
+cursor becomes:
+
+VIEW
+
+or:
+
+OPEN
+
+When hovering an external link:
+
+cursor can show:
+
+↗
+
+Do not use custom cursor if it negatively impacts accessibility.
+
+Native cursor should remain available where appropriate.
+
+==================================================
+33. MAGNETIC BUTTONS
+====================
+
+Use very subtle magnetic interaction for major desktop CTAs only.
+
+Example:
+
+Cursor approaches button.
+
+Button moves 2–5px toward cursor.
+
+Cursor leaves.
+
+Button returns smoothly.
+
+Do NOT apply this to every button.
+
+Disable on touch devices.
+
+==================================================
+34. SECTION TRANSITIONS
+=======================
+
+Sections should visually flow into one another.
+
+Use subtle:
+
+grid transitions
+lines
+dividers
+background shifts
+SVG paths
+
+Do not put every section inside a separate giant rounded card.
+
+The page should feel like one continuous system.
+
+==================================================
+35. BACKGROUND SYSTEM
+=====================
+
+Create a consistent background language.
+
+Possible elements:
+
+technical grid
+fine noise texture
+subtle radial gradients
+thin borders
+faint lines
+
+Use extremely low opacity.
+
+The background must never reduce readability.
+
+Avoid:
+
+huge blobs
+bright gradients
+excessive neon
+random floating shapes
+
+==================================================
+36. INTERACTIVE GRID
+====================
+
+Optional:
+
+Create a subtle grid in the hero.
+
+Grid intersections can react slightly to pointer position.
+
+Only a small local area should respond.
+
+Example:
+
+Cursor near grid intersection
+
+→ nearby intersections brighten slightly
+
+→ surrounding lines become visible
+
+This should feel like an infrastructure/network visualization.
+
+Disable on mobile.
+
+==================================================
+37. PAGE FOOTER INTERACTION
+===========================
+
+Footer CTA should have a final interaction.
+
+Example:
+
+"Have a system that needs to scale?"
+
+Hover:
+
+"Let's build it →"
+
+The arrow moves slightly.
+
+The final CTA should feel like the natural conclusion of the entire page.
+
+==================================================
+38. RESPONSIVE TESTING
+======================
+
+Before considering the implementation complete, test:
+
+320px
+375px
+390px
+414px
+430px
+768px
+820px
+1024px
+1280px
+1440px
+1920px
+
+Check:
+
+* no horizontal overflow
+* no clipped text
+* no overlapping elements
+* no inaccessible buttons
+* no broken diagrams
+* no oversized animations
+* no navigation issues
+* no sticky elements covering content
+* no layout jumps
+
+==================================================
+39. BROWSER TESTING
+===================
+
+Test modern versions of:
+
+Chrome
+Firefox
+Safari
+Edge
+
+Pay special attention to:
+
+Safari iOS
+
+because:
+
+* viewport behavior differs
+* fixed elements behave differently
+* backdrop filters can behave differently
+* touch interactions differ
+* dynamic viewport height can cause issues
+
+Use modern viewport units carefully:
+
+svh
+lvh
+dvh
+
+where appropriate.
+
+==================================================
+40. ACCESSIBILITY + MOTION
+==========================
+
+Motion must never communicate information exclusively.
+
+For example:
+
+Do NOT use:
+
+green animation = success
+
+without also providing:
+
+text/status/icon.
+
+All interactive elements must remain understandable without animation.
+
+==================================================
+41. LOADING STATES
+==================
+
+Create polished loading states for:
+
+GitHub data
+dynamic project content
+external content
+
+Do not show blank screens.
+
+Use lightweight skeletons where necessary.
+
+Avoid skeletons if content is static and can be rendered immediately.
+
+==================================================
+42. ERROR STATES
+================
+
+If GitHub/API/external data fails:
+
+Do not break the page.
+
+Show:
+
+"Unable to load live repository data."
+
+Then provide fallback static content if available.
+
+The portfolio must remain functional.
+
+==================================================
+43. NO MOTION OVERLOAD
+======================
+
+CRITICAL:
+
+Do not animate:
+
+every paragraph
+every icon
+every border
+every card
+every background
+every section simultaneously.
+
+Use moments of stillness.
+
+The contrast between static and animated elements creates sophistication.
+
+==================================================
+44. INTERACTION PRIORITY
+========================
+
+Prioritize interaction in this order:
+
+1. Hero
+2. Navigation
+3. Featured projects
+4. Architecture diagrams
+5. Technology ecosystem
+6. Experience timeline
+7. Metrics
+8. CTA
+9. Minor UI elements
+
+Do not spend excessive implementation time animating low-value elements.
+
+==================================================
+45. DESIGN FOR 60FPS
+====================
+
+Interactions should feel smooth.
+
+Avoid unnecessary React re-renders.
+
+Use:
+
+MotionValues
+useTransform
+useSpring
+CSS transforms
+requestAnimationFrame only when necessary
+
+Do not call setState continuously during mouse movement or scroll.
+
+==================================================
+46. FINAL EXPERIENCE
+====================
+
+The finished website should feel like an interactive technical product.
+
+A user should be able to:
+
+scroll
+hover
+tap
+explore
+open projects
+inspect architectures
+understand the technology ecosystem
+read the engineering story
+contact me
+
+without ever feeling lost.
+
+The interaction design should communicate:
+
+"Smile understands systems."
+
+Not:
+
+"Smile added lots of animations."
+
+==================================================
+47. FINAL QA CHECKLIST
+======================
+
+Before finishing, verify:
+
+[ ] Desktop looks premium
+[ ] Mobile looks intentionally designed
+[ ] Tablet layout works
+[ ] No horizontal overflow
+[ ] All buttons work
+[ ] All navigation links work
+[ ] Mobile menu works
+[ ] Project pages work
+[ ] Back navigation works
+[ ] Animations are smooth
+[ ] Reduced motion works
+[ ] Cursor effects only run on desktop
+[ ] Touch interactions work
+[ ] Architecture diagrams work on mobile
+[ ] Technology interactions work on mobile
+[ ] Counters work
+[ ] Timeline works
+[ ] Terminal works
+[ ] Contact CTA works
+[ ] External links work
+[ ] Resume download works
+[ ] SEO metadata exists
+[ ] OpenGraph metadata exists
+[ ] Keyboard navigation works
+[ ] Focus states work
+[ ] Images are optimized
+[ ] Lighthouse performance is strong
+[ ] No console errors
+[ ] No hydration errors
+[ ] No React warnings
+[ ] No unnecessary dependencies
+[ ] No fake information
+[ ] No placeholder lorem ipsum
+[ ] No fabricated statistics
+[ ] No broken links
+
+The final website must be production-ready.
