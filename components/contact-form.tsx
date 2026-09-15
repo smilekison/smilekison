@@ -11,16 +11,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 const fieldClass =
   "w-full rounded-2xl border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
 
-<<<<<<< HEAD
-/** Posts to /api/contact — a small endpoint served by the same container
- *  (server.js) that sends through AWS SES using the EC2 instance's IAM
- *  role. No API key lives in the client; SES_FROM/SES_TO are set as
- *  environment variables at `docker run` time (see DOCKER.md). If those
- *  aren't set, the endpoint reports that clearly rather than pretending
- *  to send. */
-=======
-/** Sends the contact form to the server-side endpoint used by SES. */
->>>>>>> cd84abb7974383e0475b69c95020d01b267de4f4
+/** Sends the contact form to the server-side SES endpoint. */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -30,10 +21,7 @@ export function ContactForm() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
-<<<<<<< HEAD
-=======
 
->>>>>>> cd84abb7974383e0475b69c95020d01b267de4f4
     // Honeypot: real users never fill a hidden field; bots often do.
     if (data.get("botcheck")) return;
 
@@ -43,23 +31,10 @@ export function ContactForm() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-<<<<<<< HEAD
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
-        }),
-      });
-      const result = await res.json();
-      if (result.ok) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-        setError(result.error || "Something went wrong sending that — try email instead.");
-=======
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
           name: String(data.get("name") ?? "").trim(),
           email: String(data.get("email") ?? "").trim(),
@@ -76,7 +51,6 @@ export function ContactForm() {
         setStatus("error");
         setError(result.message || "Something went wrong sending that — try email instead.");
         return;
->>>>>>> cd84abb7974383e0475b69c95020d01b267de4f4
       }
 
       setStatus("sent");
