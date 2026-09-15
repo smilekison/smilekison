@@ -69,8 +69,8 @@ export default function Home() {
           <SectionHeading
             index="02"
             label="Experience"
-            title="From an intern in Nepal to DevOps in the UK — and back."
-            description="A decade of study and two engineering roles across two countries, each one moving closer to the infrastructure — followed by a return to Nepal to build on my own terms."
+            title="A decade of learning, two engineering roles, one focus."
+            description="From application development to leading infrastructure for production systems — each role building toward deeper ownership of how software actually runs."
           />
           <Timeline />
         </section>

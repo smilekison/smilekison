@@ -15,7 +15,7 @@ export const profile = {
   statement: "Engineering reliable systems from code to cloud.",
   // Hero paragraph. 2 sentences max — the page moves on quickly.
   summary:
-    "DevOps engineer with 1.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Now based in Nepal, building AutoDeploy and LearnInclusive end-to-end.",
+    "DevOps engineer with 1.5+ years across AWS infrastructure, CI/CD automation and containerized platforms, with hands-on experience leading infrastructure work and supporting production systems. Currently building AutoDeploy and LearnInclusive end-to-end while open to new opportunities.",
   availability: "Open to remote DevOps roles worldwide, or relocation",
   email: "smilekisan.dev@gmail.com",
   domain: "smilekisan.com",
@@ -108,10 +108,9 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
   {
     year: "Now",
-    title: "Back in Nepal, building",
-    org: "AutoDeploy & LearnInclusive",
-    location: "Nepal",
-    body: "Based in Nepal after my UK visa ended, building two platforms end-to-end — AutoDeploy, a DevOps automation tool aimed at companies, and LearnInclusive, an accessibility-first LMS that's more personal: a social-impact project I care about independently of where it leads. Open to remote DevOps roles worldwide, or relocation.",
+    title: "Building AutoDeploy & LearnInclusive",
+    org: "Independent projects",
+    body: "Building two platforms end-to-end — AutoDeploy, a DevOps automation platform aimed at companies, and LearnInclusive, an accessibility-first LMS that's more personal: a social-impact project I care about independently of where it leads. Open to remote DevOps roles worldwide, or relocation.",
     tags: ["Terraform", "Docker", "Kubernetes", "Supabase"],
   },
   {
