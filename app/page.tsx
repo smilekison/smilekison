@@ -9,6 +9,7 @@ import { Metrics } from "@/components/metrics";
 import { Timeline } from "@/components/timeline";
 import { Projects } from "@/components/projects";
 import { GithubActivity } from "@/components/github-activity";
+import { GithubContributions } from "@/components/github-contributions";
 import { Stack } from "@/components/stack";
 import { Certifications } from "@/components/certifications";
 import { Contact } from "@/components/contact";
@@ -94,6 +95,7 @@ export default function Home() {
             description="Pulled live from the GitHub API — real repositories, real activity, not a static list that goes stale."
           />
           <GithubActivity />
+          <GithubContributions />
         </section>
 
         {/* ---- 05 Stack ---- */}

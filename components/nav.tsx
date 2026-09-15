@@ -66,7 +66,7 @@ export function Nav({ variant = "home" }: { variant?: "home" | "sub" }) {
           <Link
             href="/"
             className="group flex shrink-0 items-center gap-2.5"
-            aria-label="smilekisan — home"
+            aria-label="SK smilekisan — home"
           >
             <Logo size={30} />
             <span className="hidden font-mono text-sm font-medium tracking-tight text-bright sm:inline">

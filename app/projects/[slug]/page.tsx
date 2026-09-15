@@ -162,6 +162,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
             <Link
               href={`/projects/${next.slug}`}
+              prefetch={false}
               data-cursor="open"
               className="group inline-flex min-h-11 flex-col items-start gap-1 sm:items-end"
             >

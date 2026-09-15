@@ -57,6 +57,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       >
         <Link
           href={`/projects/${project.slug}`}
+          prefetch={false}
           data-cursor="open"
           className="block p-6 sm:p-8 lg:p-10"
           aria-label={`Open case study: ${project.title}`}

@@ -217,8 +217,85 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "autodeploy",
+    slug: "data-processing-platform",
     index: "02",
+    title: "Large-scale data processing platform",
+    tagline:
+      "A containerized annotation platform handling a million-word dataset, orchestrated across a distributed team.",
+    year: "2021",
+    role: "Software Engineer — pipeline architecture and Kubernetes orchestration",
+    problem:
+      "A Japanese corporate client needed over 1 million words of text annotated for machine learning, but manual annotation workflows couldn't scale to that volume or stay consistent across a distributed international team.",
+    solution:
+      "Architected and deployed a containerized data annotation platform, orchestrating processing workflows in Kubernetes so work could scale horizontally against the dataset. Docker-based packaging kept the annotation toolchain identical for every team member, regardless of where they worked from.",
+    outcomes: [
+      { value: "1M+", label: "Japanese words in the annotated dataset" },
+      { value: "Kubernetes", label: "Horizontal scaling for distributed processing" },
+      { value: "Global team", label: "Coordinated across international collaborators" },
+    ],
+    stack: ["Python", "Kubernetes", "Docker", "Machine Learning"],
+    architecture: [
+      { id: "dataset", label: "Raw dataset", detail: "1M+ Japanese words queued for annotation.", to: ["pipeline"] },
+      { id: "pipeline", label: "Containerized pipeline", detail: "Docker image packaging the annotation toolchain.", to: ["k8s"] },
+      { id: "k8s", label: "Kubernetes", detail: "Orchestrates annotation workers, scaling horizontally with load.", to: ["workers"] },
+      { id: "workers", label: "Annotation workers", detail: "Distributed processing across the international team.", to: ["output"] },
+      { id: "output", label: "Annotated dataset", detail: "Structured output ready for downstream ML use.", to: [] },
+    ],
+  },
+  {
+    slug: "realtime-analytics-platform",
+    index: "03",
+    title: "Real-time analytics platform",
+    tagline:
+      "A JavaScript analytics plugin giving a Japanese media client real-time video insights at four levels of granularity.",
+    year: "2021",
+    role: "Software Engineer — full-stack analytics plugin development",
+    problem:
+      "The client's video platform had no equivalent to Google Analytics — no way to see real-time engagement across videos, channels, playlists or users, which left content and strategic decisions running on guesswork.",
+    solution:
+      "Designed and built a JavaScript analytics plugin backed by PostgreSQL, tracking over a million monthly video views. Implemented real-time data retrieval and filtering so the client's team could inspect engagement at the video, channel, playlist or user level, across any time range.",
+    outcomes: [
+      { value: "1M+", label: "Monthly video metrics processed" },
+      { value: "4 levels", label: "Video, channel, playlist and user-level insights" },
+      { value: "Real-time", label: "Filtering across multiple time ranges" },
+    ],
+    stack: ["JavaScript", "PostgreSQL", "Real-time Analytics", "Data Visualization", "Performance Optimization"],
+    architecture: [
+      { id: "video", label: "Video platform", detail: "Source events: views, plays, channel and playlist activity.", to: ["plugin"] },
+      { id: "plugin", label: "Analytics plugin", detail: "JavaScript plugin capturing metrics in real time.", to: ["db"] },
+      { id: "db", label: "PostgreSQL", detail: "Stores and indexes 1M+ monthly video metrics.", to: ["query"] },
+      { id: "query", label: "Query layer", detail: "Real-time filtering by video, channel, playlist and user.", to: ["dashboard"] },
+      { id: "dashboard", label: "Insights dashboard", detail: "Granular, multi-range analytics for the client team.", to: [] },
+    ],
+  },
+  {
+    slug: "monitoring-alerting-system",
+    index: "04",
+    title: "Comprehensive monitoring & alerting system",
+    tagline: "Enterprise-wide monitoring and automated alerting that cut incident response time by 75%.",
+    year: "2025",
+    role: "Junior DevOps Engineer (Intern, Hybrid) — observability and alerting",
+    problem:
+      "Fortray's critical infrastructure had no proactive visibility — issues surfaced only after they'd already affected users, with no standard dashboards or alerting rules for latency-sensitive applications to rely on.",
+    solution:
+      "Designed and implemented enterprise-wide monitoring with Prometheus and Grafana, building custom dashboards and automated alerting rules tuned for latency-sensitive applications, so problems reach the right person before users notice them.",
+    outcomes: [
+      { value: "75%", label: "Faster incident response" },
+      { value: "99.9%", label: "Uptime sustained on critical infrastructure" },
+      { value: "Custom", label: "Dashboards and alerting rules built for the team" },
+    ],
+    stack: ["Prometheus", "Grafana", "PowerShell", "Bash", "Automated Alerting"],
+    architecture: [
+      { id: "apps", label: "Applications", detail: "Latency-sensitive services instrumented for monitoring.", to: ["prom"] },
+      { id: "prom", label: "Prometheus", detail: "Scrapes and stores metrics from every instrumented service.", to: ["grafana", "alert"] },
+      { id: "grafana", label: "Grafana", detail: "Custom dashboards for proactive system visibility.", to: [] },
+      { id: "alert", label: "Alerting rules", detail: "Automated alerts tuned for latency-sensitive thresholds.", to: ["oncall"] },
+      { id: "oncall", label: "On-call response", detail: "75% faster incident response, 99.9% uptime sustained.", to: [] },
+    ],
+  },
+  {
+    slug: "autodeploy",
+    index: "05",
     title: "AutoDeploy — multi-service DevOps automation platform",
     tagline:
       "A GitHub App that reads a repository and generates its Docker, CI/CD, Kubernetes, Terraform and Ansible configuration automatically.",
@@ -234,6 +311,8 @@ export const projects: Project[] = [
       { value: "AES-256-GCM", label: "Credential encryption, with org-scoped RBAC and audit logging" },
     ],
     stack: ["Docker", "Kubernetes", "Terraform", "Ansible", "Nginx", "GitHub Actions"],
+    // ▲ VERIFY — placeholder until the real deployment URL is ready.
+    live: "https://example.com",
     architecture: [
       { id: "app", label: "GitHub App", detail: "Analyses a connected repository's dependencies on install.", to: ["gen"] },
       { id: "gen", label: "Config generator", detail: "Produces tailored Docker, CI/CD, Kubernetes, Terraform and Ansible configuration.", to: ["stage"] },
@@ -245,7 +324,7 @@ export const projects: Project[] = [
   },
   {
     slug: "learninclusive",
-    index: "03",
+    index: "06",
     title: "LearnInclusive — accessibility-first cloud LMS",
     tagline:
       "A learning platform for schools designed around captions, voice navigation and dyslexia-friendly interfaces from day one.",
@@ -261,6 +340,8 @@ export const projects: Project[] = [
       { value: "Multilingual", label: "Accessibility and language support built in, not bolted on" },
     ],
     stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "Row Level Security"],
+    // ▲ VERIFY — placeholder until the real deployment URL is ready.
+    live: "https://example.com",
     architecture: [
       { id: "user", label: "User", detail: "Student, teacher, parent or administrator signs in.", to: ["auth"] },
       { id: "auth", label: "Supabase Auth", detail: "Authenticates and assigns the user's role.", to: ["rls"] },

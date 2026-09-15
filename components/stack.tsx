@@ -144,6 +144,7 @@ export function Stack() {
                     <Link
                       key={p.slug}
                       href={`/projects/${p.slug}`}
+                      prefetch={false}
                       className="inline-flex items-center gap-1 rounded-full bg-signal-dim px-3 py-1 text-[0.8125rem] font-medium text-signal transition-colors duration-200 hover:bg-signal hover:text-white"
                     >
                       {p.title}
