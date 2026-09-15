@@ -1,13 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
-import https from "node:https";
+import http from "node:http";
 import { fileURLToPath } from "node:url";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.join(__dirname, "out");
-const CERT_DIR = path.join(__dirname, "certs");
-const PORT = Number(process.env.PORT || 8443);
+// Plain HTTP by design: nginx on the host terminates TLS (real certs via
+// certbot) and reverse-proxies here over the loopback interface. Nothing in
+// this container ever touches a certificate or private key.
+const PORT = Number(process.env.PORT || 8080);
+// 0.0.0.0 *inside* the container's own network namespace — this is not the
+// same as being reachable from the internet. That's controlled entirely by
+// how the port is published (see docker-compose.yml: bound to 127.0.0.1 on
+// the host, so only nginx on the same machine can reach it).
 const HOST = "0.0.0.0";
 
 const ses = new SESClient({
@@ -201,9 +207,16 @@ const handleContact = async (req, res) => {
       },
     });
 
-    // Send the notification and visitor confirmation together. The endpoint
-    // reports success only when both SES requests are accepted.
-    await Promise.all([ses.send(notification), ses.send(confirmation)]);
+    // The notification (to you) is the one thing that must succeed — that's
+    // the actual point of the form. The visitor confirmation is a nice-to-
+    // have that fails in SES sandbox mode for any address you haven't
+    // individually verified, which is every real visitor; it must never be
+    // allowed to make the whole form look broken when the message you
+    // actually needed went through fine.
+    await ses.send(notification);
+    ses.send(confirmation).catch((err) => {
+      console.warn("Visitor confirmation email failed (notification still sent):", err.message);
+    });
 
     return sendJson(res, 200, { success: true });
   } catch (error) {
@@ -215,25 +228,19 @@ const handleContact = async (req, res) => {
   }
 };
 
-const server = https.createServer(
-  {
-    cert: fs.readFileSync(path.join(CERT_DIR, "cert.pem")),
-    key: fs.readFileSync(path.join(CERT_DIR, "key.pem")),
-  },
-  async (req, res) => {
-    if (req.method === "POST" && (req.url || "").split("?")[0] === "/api/contact") {
-      return handleContact(req, res);
-    }
+const server = http.createServer(async (req, res) => {
+  if (req.method === "POST" && (req.url || "").split("?")[0] === "/api/contact") {
+    return handleContact(req, res);
+  }
 
-    if (req.method !== "GET" && req.method !== "HEAD") {
-      res.writeHead(405, { Allow: "GET, HEAD, POST" });
-      return res.end("Method not allowed");
-    }
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.writeHead(405, { Allow: "GET, HEAD, POST" });
+    return res.end("Method not allowed");
+  }
 
-    return serveStatic(req, res);
-  },
-);
+  return serveStatic(req, res);
+});
 
 server.listen(PORT, HOST, () => {
-  console.log(`Portfolio server listening on https://${HOST}:${PORT}`);
+  console.log(`Portfolio server listening on http://${HOST}:${PORT} (behind nginx for TLS)`);
 });

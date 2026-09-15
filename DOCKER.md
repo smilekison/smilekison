@@ -1,135 +1,63 @@
-# Docker Setup for smilekisan.com
+# Deployment: Docker + nginx + AWS SES
 
-## Quick Start
+Architecture: **nginx on the host owns HTTPS.** The app container has no
+certificates, no `openssl`, no TLS code at all — it speaks plain HTTP on
+`127.0.0.1:8080`, reachable only from nginx on the same machine, never
+directly from the internet.
 
-### Option 1: Docker Compose (Recommended)
-```bash
-docker-compose up -d
+```
+Internet --443/80--> nginx (host, Let's Encrypt certs) --127.0.0.1:8080--> Docker container (plain HTTP)
 ```
 
-This will:
-- Build the portfolio from source
-- Generate self-signed HTTPS certificates at container startup
-- Start the service, reachable on host port 443 (HTTPS)
-- Automatically restart unless manually stopped
-- Run health checks every 30s
-
-### Option 2: Docker CLI
-
-**Build the image:**
-```bash
-docker build -t smile-portfolio .
-```
-
-**Run with auto-restart:**
-```bash
-docker run -d \
-  --name smile-portfolio \
-  -p 443:8443 \
-  --restart unless-stopped \
-  smile-portfolio
-```
-
-## What's Included
-
-- **Multi-stage build**: Minimal final image (Node 20 Alpine)
-- **HTTPS by default**: Self-signed certificate generated when the container
-  starts, not baked into the image (see Security notes below)
-- **Non-root**: The app runs as the `node` user, not root
-- **Automatic restart**: Policy `unless-stopped` — container restarts on failure, survives reboot, only stops on manual `docker stop`
-- **Health checks**: Verifies HTTPS endpoint every 30s
-- **Static export**: Serves the prebuilt Next.js static output
-
-## Managing the Container
-
-**View logs:**
-```bash
-docker logs -f smile-portfolio
-```
-
-**Stop the container:**
-```bash
-docker stop smile-portfolio
-```
-
-**Restart after manual stop:**
-```bash
-docker start smile-portfolio
-```
-
-**Remove everything:**
-```bash
-docker-compose down
-# or
-docker stop smile-portfolio
-docker rm smile-portfolio
-docker image rm smile-portfolio
-```
-
-## SSL Certificates
-
-`docker-entrypoint.sh` generates a self-signed certificate the first time the
-container starts, into the container's own writable filesystem:
-- **Certificate**: `/app/certs/cert.pem`
-- **Key**: `/app/certs/key.pem`
-- **Valid for**: 365 days
-
-The key is never written during `docker build`, so it never lands in an image
-layer — anyone who pulls or inspects the image gets no key material. Each
-container gets its own freshly generated cert unless you mount your own.
-
-**For production with a real domain**, mount certificates from Let's Encrypt
-or your CA over the same path — the entrypoint skips generation when a cert
-already exists at that path:
-```bash
-docker run -d \
-  --name smile-portfolio \
-  -p 443:8443 \
-  -v /path/to/cert.pem:/app/certs/cert.pem:ro \
-  -v /path/to/key.pem:/app/certs/key.pem:ro \
-  --restart unless-stopped \
-  smile-portfolio
-```
-Or uncomment the `volumes:` block in `docker-compose.yml`.
-
-## Port Mapping
-
-- Container: `8443` (unprivileged — lets the process run as a non-root user)
-- Host: `443` (or any port you choose)
+## Quick start (already-provisioned server)
 
 ```bash
-docker run -d \
-  --name smile-portfolio \
-  -p 443:8443 \
-  --restart unless-stopped \
-  smile-portfolio
+docker compose up -d --build
 ```
-Access at `https://localhost` (or `https://localhost:<host-port>` if you mapped a different one).
 
-## Security notes
+Needs a `.env` file first (see **Contact form (AWS SES)** below) and nginx
+already configured (see **Full setup** below, or run `deploy/setup-ec2.sh`
+for a fresh instance).
 
-- **No baked-in private key** — certs are generated at container start into
-  ephemeral storage, not during `docker build`. Nothing sensitive is
-  committed to an image layer.
-- **Runs as non-root** — the final `USER node` means a compromised process
-  doesn't get root inside the container.
-- **Self-signed certs are for local/preview use.** Browsers will warn about
-  them. Use real certificates (mounted as above) for anything public-facing.
+## Full setup on a fresh Ubuntu 24.04 EC2 instance
 
-## Environment
+Prerequisites, done once via the AWS/registrar consoles (not scriptable):
+1. Elastic IP associated with the instance
+2. `smilekisan.com` and `www.smilekisan.com` A records point at that IP
+3. Security group allows inbound **80** and **443** from `0.0.0.0/0`
+4. An **IAM role** attached to the instance with `ses:SendEmail` permission (see below — this is what lets the contact form send mail with zero credentials in the code or environment)
 
-The container runs with `NODE_ENV=production` and serves the optimized static export from `out/`.
+Then, on the instance:
+```bash
+git clone https://github.com/smilekison/smilekison.git ~/smilekison
+cd ~/smilekison
+DOMAIN=smilekisan.com EMAIL=you@example.com ./deploy/setup-ec2.sh
+```
+
+That one script: installs Docker, nginx and certbot; requests the real
+Let's Encrypt certificate; installs the maintained nginx reverse-proxy
+config (`nginx/smilekisan.conf`); writes a starter `.env`; builds and starts
+the container. Read it before running it — it's a normal bash script, not a
+black box.
+
+## Image size
+
+Multi-stage build: the `node:20-alpine` builder stage runs the Next.js
+build and is discarded entirely. The runtime stage is also
+`node:20-alpine` with exactly one runtime dependency
+(`@aws-sdk/client-ses` — `server.mjs` implements static file serving
+itself, no framework). Final image: **~265MB**. No TLS libraries, no
+`serve`/`serve-handler`, nothing beyond what the app actually runs.
 
 ## Contact form (AWS SES)
 
-The site serves itself via `server.js`, not the plain `serve` CLI — this adds
-one real endpoint, `POST /api/contact`, which sends mail through AWS SES.
-No API keys live in the code or the image: SES auth comes from whatever AWS
-credentials are available in the environment, which on EC2 means the
-**instance's attached IAM role** — nothing to configure inside the container
-beyond two environment variables.
+`server.mjs` is a small hand-rolled HTTP server: it serves the static
+export **and** handles `POST /api/contact`, which sends mail through AWS
+SES. No API key lives in the code — SES auth comes from whatever AWS
+credentials are in the environment, which on EC2 should be the **instance's
+IAM role** (not access keys in `.env`).
 
-**1. Attach an IAM role to the EC2 instance** with permission to send via SES:
+**1. Attach an IAM role to the EC2 instance:**
 ```json
 {
   "Version": "2012-10-17",
@@ -140,33 +68,73 @@ beyond two environment variables.
   }]
 }
 ```
-EC2 Console → your instance → **Actions → Security → Modify IAM role** → attach a role with that policy (create one if you don't have it: IAM → Roles → Create role → EC2 → attach/create the policy above).
+EC2 Console → instance → **Actions → Security → Modify IAM role** → attach a role with that policy.
 
-**2. Verify a sending identity in SES** (same region you'll run in):
+**2. Verify a sending identity in SES**, in the same region you'll run in:
 - SES Console → **Verified identities** → **Create identity**
-- Simplest: verify a single email address (e.g. your Gmail) — SES emails you a confirmation link
-- Better long-term: verify the `smilekisan.com` domain (needed anyway if you're also setting up SES receiving) — then any `@smilekisan.com` address can send without separate verification
-- **Sandbox mode**: by default SES also requires the *recipient* to be verified. Since this form only ever sends to you, verifying your own address as both `SES_FROM` and `SES_TO` works immediately without requesting production access.
+- Quickest: verify a single address (e.g. your Gmail) — SES emails a confirmation link
+- Better long-term: verify the `smilekisan.com` domain, then send as `contact@smilekisan.com`
 
-**3. Run the container with `SES_FROM` / `SES_TO` set:**
+**3. Check whether the account is still in SES sandbox mode.** In
+sandbox mode, SES will only deliver to *verified* recipients. This form
+sends two emails per submission:
+- **Notification to you** (`SES_TO_EMAIL`) — this is the one that matters, and it works in sandbox mode as long as your own address is verified
+- **Auto-confirmation reply to the visitor** — this will fail for any real visitor while still in sandbox, since their address is never pre-verified
+
+`server.mjs` is written so the visitor confirmation failing **never**
+blocks or fails the actual form submission — you still get notified even
+if the auto-reply silently fails. But if you want visitors to *also* get
+that confirmation email, request production access: SES Console →
+**Account dashboard** → **Request production access** (free, usually
+approved within a day for legitimate use).
+
+**4. `.env` on the server** (never committed — already in `.gitignore`):
 ```bash
-docker run -d \
-  --name smile-portfolio \
-  -p 443:8443 \
-  -e SES_FROM="contact@smilekisan.com" \
-  -e SES_TO="smilekisan.dev@gmail.com" \
-  -e AWS_REGION="us-east-1" \
-  -v /etc/letsencrypt/live/smilekisan.com/fullchain.pem:/app/certs/cert.pem:ro \
-  -v /etc/letsencrypt/live/smilekisan.com/privkey.pem:/app/certs/key.pem:ro \
-  --restart unless-stopped \
-  smile-portfolio
+AWS_REGION=us-east-1
+SES_FROM_EMAIL=contact@smilekisan.com
+SES_TO_EMAIL=smilekisan.dev@gmail.com
+```
+Deliberately **no** `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` — leaving
+them entirely absent (not blank) is what makes the AWS SDK correctly fall
+through to the instance's IAM role. Setting them (even to empty strings)
+can make the SDK try to use them literally and fail instead of falling
+back.
+
+**Rate limiting**: `server.mjs` keeps a small in-memory limiter — 5
+submissions per IP per 15 minutes. No Redis or database; resets if the
+container restarts, which is a fine tradeoff for a personal contact form.
+
+## Managing the container
+
+```bash
+docker compose logs -f portfolio      # tail logs
+docker compose restart portfolio      # restart
+docker compose down                   # stop and remove
+docker compose up -d --build          # rebuild after a git pull
 ```
 
-Without `SES_FROM`/`SES_TO` set, `/api/contact` returns a clear config error
-instead of pretending to send — check `docker logs smile-portfolio` for a
-startup warning if you forget them.
+## nginx
 
-**Testing without deploying**: run the container locally with dummy values
-for `SES_FROM`/`SES_TO` — the endpoint will respond (and fail gracefully,
-since there's no real IAM role locally), which is enough to confirm the
-form's client-side wiring and error states work before it ever touches AWS.
+Config lives at `nginx/smilekisan.conf` in this repo (the source of truth —
+edit it here, then `sudo cp` it to `/etc/nginx/sites-available/` and reload,
+rather than editing the live file directly). It:
+- Redirects `80 → 443`
+- Terminates TLS with the Let's Encrypt cert at `/etc/letsencrypt/live/smilekisan.com/`
+- Reverse-proxies everything to `127.0.0.1:8080`
+- Sets `X-Forwarded-For` / `X-Real-IP` so `server.mjs`'s rate limiter sees the real visitor IP, not nginx's
+
+**Certificate renewal**: certbot installs its own systemd timer
+automatically; `/etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh`
+(written by `deploy/setup-ec2.sh`) reloads nginx after each renewal so it
+picks up the new cert without downtime.
+
+## Security notes
+
+- The app container is **never** directly reachable from the internet —
+  `docker-compose.yml` binds it to `127.0.0.1:8080`, not `0.0.0.0`. Only
+  nginx, on the same machine, can reach it.
+- Runs as the non-root `node` user.
+- No TLS material — certs, keys, or otherwise — ever enters the image or
+  the container's filesystem.
+- No AWS access keys in `.env` or anywhere in the repo; SES auth is scoped
+  to exactly one action (`ses:SendEmail`) via the instance's IAM role.

@@ -1,0 +1,19 @@
+services:
+  portfolio:
+    build: .
+    container_name: smile-portfolio
+    restart: unless-stopped
+    # Bound to loopback only — the container is never reachable from the
+    # internet directly. nginx (on the host, not in Docker) is the only
+    # thing that can reach it, and nginx is what the public actually hits
+    # on 80/443.
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8080/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
