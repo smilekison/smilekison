@@ -52,12 +52,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <p className="mt-4 flex-1 text-[0.875rem] leading-relaxed text-dim">{project.tagline}</p>
 
         <div className="mt-5 rounded-2xl border-l-4 border-signal bg-signal-dim/60 p-4">
-          <p className="type-data mb-2.5 text-signal">Impact</p>
-          <ul className="space-y-2">
+          <p className="type-data mb-3 text-signal">Impact</p>
+          <ul className="grid grid-cols-2 gap-x-3 gap-y-3">
             {project.outcomes.slice(0, 2).map((o) => (
-              <li key={o.label} className="flex items-baseline gap-2.5">
-                <span className="shrink-0 text-sm font-medium tabular-nums text-bright">{o.value}</span>
-                <span className="text-[0.75rem] leading-snug text-dim">{o.label}</span>
+              <li key={o.label} className="min-w-0">
+                <p className="truncate text-base font-semibold tabular-nums text-bright">{o.value}</p>
+                <p className="mt-0.5 text-[0.75rem] leading-snug text-dim">{o.label}</p>
               </li>
             ))}
           </ul>
