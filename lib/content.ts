@@ -15,8 +15,8 @@ export const profile = {
   statement: "Engineering reliable systems from code to cloud.",
   // Hero paragraph. 2 sentences max — the page moves on quickly.
   summary:
-    "DevOps engineer with 1.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Currently building two platforms end-to-end while open to new roles.",
-  availability: "Open to DevOps, Platform & SRE roles — UK and Lithuania",
+    "DevOps engineer with 1.5+ years across AWS infrastructure, CI/CD automation and containerized platforms — from an infrastructure lead role in Nepal to a DevOps internship supporting production systems in the UK. Now based in Nepal, building AutoDeploy and LearnInclusive end-to-end.",
+  availability: "Open to remote DevOps roles worldwide, or relocation",
   email: "smilekisan.dev@gmail.com",
   domain: "smilekisan.com",
   photo: "/pp.jpg",
@@ -108,9 +108,10 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
   {
     year: "Now",
-    title: "Building, and open to new roles",
+    title: "Back in Nepal, building",
     org: "AutoDeploy & LearnInclusive",
-    body: "Building two platforms end-to-end — a DevOps automation tool and an accessibility-first LMS — while open to DevOps, platform and SRE roles in the UK and Lithuania.",
+    location: "Nepal",
+    body: "Based in Nepal after my UK visa ended, building two platforms end-to-end — AutoDeploy, a DevOps automation tool aimed at companies, and LearnInclusive, an accessibility-first LMS that's more personal: a social-impact project I care about independently of where it leads. Open to remote DevOps roles worldwide, or relocation.",
     tags: ["Terraform", "Docker", "Kubernetes", "Supabase"],
   },
   {
@@ -452,14 +453,14 @@ export const terminal: { cmd: string; out: string[] }[] = [
     cmd: "cat philosophy.txt",
     out: ["automate the repetitive.", "observe the important.", "secure the critical."],
   },
-  { cmd: "status", out: ["open to devops, platform & sre roles — uk and lithuania"] },
+  { cmd: "status", out: ["open to remote devops roles worldwide, or relocation"] },
 ];
 
 /* -------------------------------------------------------------------------- */
 
 export const contact = {
   heading: "Have a system that needs to scale?",
-  body: "I am open to DevOps, platform and cloud infrastructure roles in the UK and Lithuania, and to consulting on delivery pipelines and cloud platforms. Send a message directly, or email me.",
+  body: "I am open to remote DevOps, platform and cloud infrastructure roles worldwide, or relocation, and to consulting on delivery pipelines and cloud platforms. Send a message directly, or email me.",
   cta: "Start a conversation",
   // ▲ VERIFY — get a free access key at https://web3forms.com (30 seconds,
   // just your email). Paste it here; the form won't send mail without it.
