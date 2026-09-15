@@ -119,3 +119,54 @@ Access at `https://localhost` (or `https://localhost:<host-port>` if you mapped 
 ## Environment
 
 The container runs with `NODE_ENV=production` and serves the optimized static export from `out/`.
+
+## Contact form (AWS SES)
+
+The site serves itself via `server.js`, not the plain `serve` CLI — this adds
+one real endpoint, `POST /api/contact`, which sends mail through AWS SES.
+No API keys live in the code or the image: SES auth comes from whatever AWS
+credentials are available in the environment, which on EC2 means the
+**instance's attached IAM role** — nothing to configure inside the container
+beyond two environment variables.
+
+**1. Attach an IAM role to the EC2 instance** with permission to send via SES:
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": "ses:SendEmail",
+    "Resource": "*"
+  }]
+}
+```
+EC2 Console → your instance → **Actions → Security → Modify IAM role** → attach a role with that policy (create one if you don't have it: IAM → Roles → Create role → EC2 → attach/create the policy above).
+
+**2. Verify a sending identity in SES** (same region you'll run in):
+- SES Console → **Verified identities** → **Create identity**
+- Simplest: verify a single email address (e.g. your Gmail) — SES emails you a confirmation link
+- Better long-term: verify the `smilekisan.com` domain (needed anyway if you're also setting up SES receiving) — then any `@smilekisan.com` address can send without separate verification
+- **Sandbox mode**: by default SES also requires the *recipient* to be verified. Since this form only ever sends to you, verifying your own address as both `SES_FROM` and `SES_TO` works immediately without requesting production access.
+
+**3. Run the container with `SES_FROM` / `SES_TO` set:**
+```bash
+docker run -d \
+  --name smile-portfolio \
+  -p 443:8443 \
+  -e SES_FROM="contact@smilekisan.com" \
+  -e SES_TO="smilekisan.dev@gmail.com" \
+  -e AWS_REGION="us-east-1" \
+  -v /etc/letsencrypt/live/smilekisan.com/fullchain.pem:/app/certs/cert.pem:ro \
+  -v /etc/letsencrypt/live/smilekisan.com/privkey.pem:/app/certs/key.pem:ro \
+  --restart unless-stopped \
+  smile-portfolio
+```
+
+Without `SES_FROM`/`SES_TO` set, `/api/contact` returns a clear config error
+instead of pretending to send — check `docker logs smile-portfolio` for a
+startup warning if you forget them.
+
+**Testing without deploying**: run the container locally with dummy values
+for `SES_FROM`/`SES_TO` — the endpoint will respond (and fail gracefully,
+since there's no real IAM role locally), which is enough to confirm the
+form's client-side wiring and error states work before it ever touches AWS.

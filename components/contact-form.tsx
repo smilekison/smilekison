@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CheckCircle2, Loader2, TriangleAlert } from "lucide-react";
-import { contact, profile } from "@/lib/content";
+import { profile } from "@/lib/content";
 import { EASE_OUT, micro } from "@/lib/motion";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -11,10 +11,12 @@ type Status = "idle" | "sending" | "sent" | "error";
 const fieldClass =
   "w-full rounded-2xl border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
 
-/** Sends straight to Web3Forms from the browser — no backend, so this stays
- *  a true static export. Requires contact.web3formsAccessKey (see
- *  lib/content.ts) to actually deliver mail; without it the form still
- *  renders and validates, it just reports the missing key on submit. */
+/** Posts to /api/contact — a small endpoint served by the same container
+ *  (server.js) that sends through AWS SES using the EC2 instance's IAM
+ *  role. No API key lives in the client; SES_FROM/SES_TO are set as
+ *  environment variables at `docker run` time (see DOCKER.md). If those
+ *  aren't set, the endpoint reports that clearly rather than pretending
+ *  to send. */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -22,16 +24,8 @@ export function ContactForm() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!contact.web3formsAccessKey) {
-      setStatus("error");
-      setError("Form isn't wired up yet — add a Web3Forms access key in lib/content.ts.");
-      return;
-    }
-
     const form = e.currentTarget;
     const data = new FormData(form);
-    data.append("access_key", contact.web3formsAccessKey);
-    data.append("subject", `Portfolio contact from ${data.get("name")}`);
     // Honeypot: real users never fill a hidden field; bots often do.
     if (data.get("botcheck")) return;
 
@@ -39,18 +33,22 @@ export function ContactForm() {
     setError(null);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message"),
+        }),
       });
       const result = await res.json();
-      if (result.success) {
+      if (result.ok) {
         setStatus("sent");
         form.reset();
       } else {
         setStatus("error");
-        setError(result.message || "Something went wrong sending that — try email instead.");
+        setError(result.error || "Something went wrong sending that — try email instead.");
       }
     } catch {
       setStatus("error");

@@ -16,10 +16,15 @@ WORKDIR /app
 
 # openssl generates the cert at container startup (see docker-entrypoint.sh),
 # never at build time — no private key ever gets baked into an image layer.
-RUN apk add --no-cache openssl && npm install -g serve
+# serve-handler + the SES client are server.js's only runtime deps — kept
+# separate from the Next app's own package.json since they're unrelated to
+# the static build.
+RUN apk add --no-cache openssl && \
+    npm install --no-save serve-handler @aws-sdk/client-sesv2
 
-# Copy built static files from builder
+# Copy built static files and the runtime server
 COPY --from=builder /app/out /app/out
+COPY server.js /app/server.js
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
     mkdir -p /app/certs && \

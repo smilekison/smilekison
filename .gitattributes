@@ -1,0 +1,4 @@
+# Shell scripts must keep LF endings on every platform — a CRLF shebang
+# line (`#!/bin/sh\r`) fails to resolve inside the Alpine container with
+# "no such file or directory", even though the file looks fine on Windows.
+*.sh text eol=lf

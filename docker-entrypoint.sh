@@ -14,8 +14,8 @@ if [ ! -f "$CERT" ] || [ ! -f "$KEY" ]; then
     -days 365 -nodes -subj "/CN=localhost"
 fi
 
-# -s (SPA fallback: rewrite every unmatched path to index.html) is wrong
-# here — this is a real multi-page static export, not a single-page app.
-# With -s, every project case-study URL silently served the homepage
-# instead of 404ing or, correctly, its own page.
-exec serve out -l 8443 --ssl-cert="$CERT" --ssl-key="$KEY"
+# server.js serves the static export (correctly — a real multi-page site,
+# not an SPA fallback) and additionally handles POST /api/contact via SES.
+# SES_FROM / SES_TO / AWS_REGION are read from the environment at `docker
+# run` time; see DOCKER.md for the SES setup this depends on.
+exec node /app/server.js
