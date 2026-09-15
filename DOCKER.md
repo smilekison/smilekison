@@ -88,7 +88,9 @@ that confirmation email, request production access: SES Console →
 **Account dashboard** → **Request production access** (free, usually
 approved within a day for legitimate use).
 
-**4. `.env` on the server** (never committed — already in `.gitignore`):
+**4. `/opt/.env` on the server** — deliberately kept outside the repo
+directory, not just excluded via `.gitignore`, so it's never at risk from a
+`git` operation on the checkout:
 ```bash
 AWS_REGION=us-east-1
 SES_FROM_EMAIL=contact@smilekisan.com

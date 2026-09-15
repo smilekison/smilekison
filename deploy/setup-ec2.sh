@@ -76,13 +76,20 @@ sudo chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
 
 echo "==> Building and starting the app container"
 cd "$REPO_DIR"
-if [ ! -f .env ]; then
-  cat > .env <<ENV
+# Kept at /opt/.env, outside the repo directory, so it's never at risk from
+# a git operation on this checkout — see docker-compose.yml's env_file.
+if [ ! -f /opt/.env ]; then
+  sudo tee /opt/.env > /dev/null <<ENV
 AWS_REGION=us-east-1
 SES_FROM_EMAIL=contact@$DOMAIN
 SES_TO_EMAIL=smilekisan.dev@gmail.com
 ENV
-  echo "    Wrote $REPO_DIR/.env with defaults — edit SES_FROM_EMAIL/SES_TO_EMAIL if needed."
+  # Owned by you, not root — so `docker compose` works without sudo once
+  # your docker-group membership is active (after the re-login this script
+  # asks for), matching the sudo-free examples in DOCKER.md.
+  sudo chown "$USER":"$USER" /opt/.env
+  sudo chmod 600 /opt/.env
+  echo "    Wrote /opt/.env with defaults — edit SES_FROM_EMAIL/SES_TO_EMAIL if needed."
   echo "    Deliberately NOT setting AWS_ACCESS_KEY_ID/SECRET: the SDK picks up"
   echo "    credentials from the instance's IAM role automatically."
 fi
