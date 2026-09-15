@@ -4,8 +4,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-# npm install is intentional here because the SES dependency was added to
-# package.json; it also refreshes package-lock.json during the image build.
+# Use npm install because package-lock.json may lag package.json when dependencies
+# are changed; the build should always resolve the declared SES dependency.
 RUN npm install --no-audit --no-fund
 
 COPY . .
@@ -32,6 +32,6 @@ USER node
 EXPOSE 8443
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider https://localhost:8443/ || exit 1
+  CMD wget --no-verbose --no-check-certificate --tries=1 --spider https://localhost:8443/ || exit 1
 
 ENTRYPOINT ["docker-entrypoint.sh"]
