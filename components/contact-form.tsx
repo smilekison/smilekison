@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CheckCircle2, Loader2, TriangleAlert } from "lucide-react";
-import { contact, profile } from "@/lib/content";
+import { profile } from "@/lib/content";
 import { EASE_OUT, micro } from "@/lib/motion";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -11,10 +11,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 const fieldClass =
   "w-full rounded-2xl border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
 
-/** Sends straight to Web3Forms from the browser — no backend, so this stays
- *  a true static export. Requires contact.web3formsAccessKey (see
- *  lib/content.ts) to actually deliver mail; without it the form still
- *  renders and validates, it just reports the missing key on submit. */
+/** Sends the contact form to the server-side endpoint used by SES. */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -22,16 +19,9 @@ export function ContactForm() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!contact.web3formsAccessKey) {
-      setStatus("error");
-      setError("Form isn't wired up yet — add a Web3Forms access key in lib/content.ts.");
-      return;
-    }
-
     const form = e.currentTarget;
     const data = new FormData(form);
-    data.append("access_key", contact.web3formsAccessKey);
-    data.append("subject", `Portfolio contact from ${data.get("name")}`);
+
     // Honeypot: real users never fill a hidden field; bots often do.
     if (data.get("botcheck")) return;
 
@@ -39,19 +29,29 @@ export function ContactForm() {
     setError(null);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name") ?? "").trim(),
+          email: String(data.get("email") ?? "").trim(),
+          message: String(data.get("message") ?? "").trim(),
+        }),
       });
-      const result = await res.json();
-      if (result.success) {
-        setStatus("sent");
-        form.reset();
-      } else {
+
+      const result = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+      };
+
+      if (!res.ok || !result.success) {
         setStatus("error");
         setError(result.message || "Something went wrong sending that — try email instead.");
+        return;
       }
+
+      setStatus("sent");
+      form.reset();
     } catch {
       setStatus("error");
       setError("Couldn't reach the server — check your connection, or try email instead.");
@@ -90,8 +90,6 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
-      {/* Honeypot — hidden from real users via CSS, not display:none (which
-          some screen readers still announce inconsistently). */}
       <input
         type="text"
         name="botcheck"
@@ -103,9 +101,7 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="cf-name" className="sr-only">
-            Name
-          </label>
+          <label htmlFor="cf-name" className="sr-only">Name</label>
           <input
             id="cf-name"
             name="name"
@@ -116,9 +112,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="cf-email" className="sr-only">
-            Email
-          </label>
+          <label htmlFor="cf-email" className="sr-only">Email</label>
           <input
             id="cf-email"
             name="email"
@@ -131,9 +125,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="cf-message" className="sr-only">
-          Message
-        </label>
+        <label htmlFor="cf-message" className="sr-only">Message</label>
         <textarea
           id="cf-message"
           name="message"
