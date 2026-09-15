@@ -13,7 +13,7 @@
 set -euo pipefail
 
 DOMAIN="${DOMAIN:-smilekisan.com}"
-EMAIL="${EMAIL:?Set EMAIL=you@example.com for Let's Encrypt renewal notices}"
+EMAIL="${EMAIL:?Set EMAIL=you@example.com for the TLS certificate renewal contact}"
 REPO_DIR="${REPO_DIR:-$HOME/smilekison}"
 
 echo "==> Updating system packages"
