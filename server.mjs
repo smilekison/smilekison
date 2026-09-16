@@ -137,6 +137,66 @@ const serveStatic = (req, res) => {
   }
 };
 
+const escapeHtml = (s) =>
+  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+// Table-based layout + inline styles: the safe subset that renders
+// consistently across Gmail, Outlook, and Apple Mail.
+const emailShell = (title, bodyHtml) => `<!doctype html>
+<html>
+  <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f4f6;padding:32px 16px;">
+      <tr><td align="center">
+        <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+          <tr>
+            <td style="background:linear-gradient(135deg,#667eea,#764ba2);padding:24px 32px;">
+              <span style="color:#ffffff;font-size:15px;font-weight:600;letter-spacing:0.02em;">Smile Kisan</span>
+            </td>
+          </tr>
+          <tr><td style="padding:32px;">${bodyHtml}</td></tr>
+          <tr>
+            <td style="padding:20px 32px;background:#fafafa;border-top:1px solid #eee;">
+              <span style="color:#9ca3af;font-size:12px;">smilekisan.com &middot; sent via the portfolio contact form</span>
+            </td>
+          </tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>`;
+
+const notificationHtml = ({ name, email, message }) =>
+  emailShell(
+    "New portfolio contact",
+    `
+    <h1 style="margin:0 0 20px;color:#111827;font-size:18px;">New message from your portfolio</h1>
+    <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:20px;">
+      <tr>
+        <td style="padding:4px 0;color:#6b7280;font-size:13px;width:70px;">Name</td>
+        <td style="padding:4px 0;color:#111827;font-size:14px;">${escapeHtml(name)}</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 0;color:#6b7280;font-size:13px;">Email</td>
+        <td style="padding:4px 0;font-size:14px;"><a href="mailto:${escapeHtml(email)}" style="color:#667eea;text-decoration:none;">${escapeHtml(email)}</a></td>
+      </tr>
+    </table>
+    <div style="background:#f9fafb;border-left:3px solid #764ba2;border-radius:8px;padding:16px 18px;color:#374151;font-size:14px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(message)}</div>
+    <p style="margin:20px 0 0;color:#9ca3af;font-size:12px;">Hit reply — it goes straight to ${escapeHtml(email)}.</p>
+  `
+  );
+
+const confirmationHtml = ({ name, message }) =>
+  emailShell(
+    "Thanks for reaching out",
+    `
+    <h1 style="margin:0 0 12px;color:#111827;font-size:18px;">Thanks for reaching out, ${escapeHtml(name)}</h1>
+    <p style="margin:0 0 20px;color:#374151;font-size:14px;line-height:1.6;">I've received your message and will get back to you soon.</p>
+    <p style="margin:0 0 8px;color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;">Your message</p>
+    <div style="background:#f9fafb;border-left:3px solid #764ba2;border-radius:8px;padding:16px 18px;color:#374151;font-size:14px;line-height:1.6;white-space:pre-wrap;margin-bottom:24px;">${escapeHtml(message)}</div>
+    <p style="margin:0;color:#374151;font-size:14px;line-height:1.6;">Best,<br/>Smile Kisan<br/><a href="https://smilekisan.com" style="color:#667eea;text-decoration:none;">smilekisan.com</a></p>
+  `
+  );
+
 const handleContact = async (req, res) => {
   try {
     const ip = getClientIp(req);
@@ -179,7 +239,12 @@ const handleContact = async (req, res) => {
     }
 
     const notification = new SendEmailCommand({
-      Source: from,
+      // Display name carries the visitor's name/address for readability in
+      // your inbox; the actual From address must stay the SES-verified
+      // contact@smilekisan.com — SES will reject (or Gmail will spam-flag)
+      // any attempt to send From the visitor's own address, since it has no
+      // SPF/DKIM/DMARC authorization for your domain.
+      Source: `"${name.replace(/["\r\n]/g, "")} via smilekisan.com" <${from}>`,
       Destination: { ToAddresses: [to] },
       ReplyToAddresses: [email],
       Message: {
@@ -188,6 +253,10 @@ const handleContact = async (req, res) => {
           Text: {
             Charset: "UTF-8",
             Data: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+          },
+          Html: {
+            Charset: "UTF-8",
+            Data: notificationHtml({ name, email, message }),
           },
         },
       },
@@ -202,6 +271,10 @@ const handleContact = async (req, res) => {
           Text: {
             Charset: "UTF-8",
             Data: `Hi ${name},\n\nThank you for contacting me through my website.\n\nI have received your message and will contact you soon.\n\nFor your reference, here is the message you submitted:\n\n${message}\n\nBest regards,\nSmile Kisan\nhttps://smilekisan.com`,
+          },
+          Html: {
+            Charset: "UTF-8",
+            Data: confirmationHtml({ name, message }),
           },
         },
       },
