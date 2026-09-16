@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CheckCircle2, Loader2, TriangleAlert } from "lucide-react";
 import { profile } from "@/lib/content";
 import { EASE_OUT, micro } from "@/lib/motion";
 
 type Status = "idle" | "sending" | "sent" | "error";
+
+// How long the inline "sent" confirmation stays up before the form quietly
+// goes back to its normal idle state, ready for another message.
+const SENT_MESSAGE_MS = 6000;
 
 const fieldClass =
   "w-full rounded-2xl border border-line-bright bg-panel/60 px-4 py-3 text-[0.9375rem] text-bright placeholder:text-muted transition-colors duration-200 focus:border-signal focus:outline-none";
@@ -15,9 +19,18 @@ const fieldClass =
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const sentTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clear any pending "go back to idle" timer if the component unmounts
+  // mid-countdown (e.g. navigating away right after sending).
+  useEffect(() => () => {
+    if (sentTimer.current) clearTimeout(sentTimer.current);
+  }, []);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (sentTimer.current) clearTimeout(sentTimer.current);
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -55,41 +68,14 @@ export function ContactForm() {
 
       setStatus("sent");
       form.reset();
+      // Drops back to idle on its own — the form stays put and ready for
+      // another message rather than being replaced by a static "done" card.
+      sentTimer.current = setTimeout(() => setStatus("idle"), SENT_MESSAGE_MS);
     } catch {
       setStatus("error");
       setError("Couldn't reach the server — check your connection, or try email instead.");
     }
   };
-
-  if (status === "sent") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: EASE_OUT }}
-        className="card-surface flex min-h-[21rem] flex-col items-center justify-center gap-3 bg-panel/60 px-6 text-center"
-      >
-        <span
-          className="grid h-14 w-14 place-items-center rounded-full text-white shadow-md shadow-black/10"
-          style={{ backgroundImage: "var(--gradient-brand)" }}
-          aria-hidden
-        >
-          <CheckCircle2 size={26} strokeWidth={1.75} />
-        </span>
-        <p className="text-base font-medium text-bright">Message sent.</p>
-        <p className="max-w-xs text-sm text-dim">
-          Thanks — I read every message and reply from {profile.email}.
-        </p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className="mt-2 text-sm text-signal underline-offset-4 transition-colors duration-200 hover:text-bright hover:underline"
-        >
-          Send another
-        </button>
-      </motion.div>
-    );
-  }
 
   return (
     <form onSubmit={onSubmit} className="space-y-4" noValidate>
@@ -175,6 +161,20 @@ export function ContactForm() {
             >
               <TriangleAlert size={16} strokeWidth={1.75} className="mt-0.5 shrink-0" aria-hidden />
               {error}
+            </motion.p>
+          )}
+          {status === "sent" && (
+            <motion.p
+              key="sent"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={micro}
+              role="status"
+              className="flex items-start gap-2 text-sm text-signal"
+            >
+              <CheckCircle2 size={16} strokeWidth={1.75} className="mt-0.5 shrink-0" aria-hidden />
+              Sent — I read every message and reply from {profile.email}.
             </motion.p>
           )}
         </AnimatePresence>
